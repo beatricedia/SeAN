@@ -1,0 +1,50 @@
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 10px;
+	
+}
+
+tr:nth-child(even) {
+    background-color: #ffff99;
+	color: black;
+}
+footer {
+    background-color: #F3F3F3;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    text-align:center;
+}
+table.register_table {
+    
+   size: 30;
+   border: 1px solid black;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+.register_table{
+
+  border: none;
+  font: normal normal bold 14px/1 "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: white;
+  text-align: center;
+  background: #b32d00;
+  border-radius: 14px;
+  width:20%;
+  
+}
