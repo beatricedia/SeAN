@@ -13,7 +13,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-    background-color: #ffff99;
+    background-color: #00ff99;
 	color: black;
 }
 footer {
@@ -27,24 +27,17 @@ footer {
 }
 table.register_table {
     
-   size: 30;
    border: 1px solid black;
+   border-radius: 14px;
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+   color: white;
+   text-align: center;
+   background: #b32d00;
+   width:20%;
 }
 html {
     font-family: "Lucida Sans", sans-serif;
-}
-.register_table{
-
-  border: none;
-  font: normal normal bold 14px/1 "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  color: white;
-  text-align: center;
-  background: #b32d00;
-  border-radius: 14px;
-  width:20%;
-  
 }
