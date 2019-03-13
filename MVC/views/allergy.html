@@ -3,29 +3,32 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
         integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../css/allergy.css" />
+    <script src="../../MVC/scripts/index.js" defer></script>
 </head>
 
 <body>
 
     <!-- navbar -->
-    <div class="nav">
-        <div id="myTopnav">
+    <div class="nav" id="myTopnav">
+        <div>
             <a class="menu" href="#home">News</a>
         </div>
-
         <div class="icon-menu">
+            <a class="Login-btn" href="#register">Register</a>
+            <a class="Login-btn" href="#login">Login</a>
             <form id="search">
                 <input type="text" placeholder="Search...">
                 <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
             </form>
-            <a class="Login-btn" href="#register">Register</a>
-            <a class="Login-btn" href="#login">Login</a>
         </div>
+        <a href="javascript:void(0);" class="icon" onclick="menuBars()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
 
     <!-- allergy details -->
