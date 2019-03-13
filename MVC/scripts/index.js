@@ -20,3 +20,12 @@
     }
     slides[slideIndex-1].style.display = "block";  
   }
+
+  function menuBars() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "nav") {
+      x.className += " responsive";
+    } else {
+      x.className = "nav";
+    }
+  }
