@@ -27,7 +27,7 @@ tr:nth-child(even) {
 	color: black;
 }
 footer {
-    background-color: #F3F3F3;
+    #background-color: #F3F3F3;
     padding-top: 10px;
     padding-bottom: 0px;
     position:fixed;
@@ -38,6 +38,7 @@ footer {
 
 html {
     font-family: "Lucida Sans", sans-serif;
+	background-color: #474e5d;
 }
 textarea{
 	width:100%;

@@ -11,7 +11,7 @@ tr:nth-child(even) {
 	color: black;
 }
 footer {
-    background-color: #F3F3F3;
+    #background-color: #F3F3F3;
     padding-top: 10px;
     padding-bottom: 0px;
     position:fixed;
@@ -37,4 +37,5 @@ table.register_table {
 }
 html {
     font-family: "Lucida Sans", sans-serif;
+	#background-color:#474e5d;
 }
