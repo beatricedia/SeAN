@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Add Allergy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css" />
+	 <link rel="stylesheet" type="text/css" media="screen" href="../css/new_allergy.css" />
+    <script src="../../MVC/scripts/index.js" defer></script>
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <div class="nav" id="myTopnav">
+        <div>
+            <a class="menu" href="index.html">News</a>
+        </div>
+        <div class="icon-menu">
+            <a class="Login-btn" href="register.html">Register</a>
+            <a class="Login-btn" href="login.html">Login</a>
+            <form id="search">
+                <input type="text" placeholder="Search...">
+                <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="menuBars()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <form action="/login" method="POST">
+			<table class="register_table" >
+		
+			<tr>
+				<td colspan=2 style="font-size: 125%">
+					<span><b>ENTER NEW ALLERGY</b></span>
+                </td>
+			</tr>
+            <tr>
+				<td>Category</td>
+                <td>
+					<select>
+						<option value="Weather Allergies">Weather Allergies</option>
+						<option value="Respiratory Allergies">Respiratory Allergies</option>
+						<option value="Food Allergies">Food Allergies</option>
+					</select>
+                </td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>
+					<textarea name="nume" id="nume">
+					</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Symptoms</td>
+                <td>
+					<textarea name="simptome" id="simptome">
+					</textarea>
+				</td>
+			</tr>
+			 <tr>
+				<td>Prevention</td>
+                <td>
+					<textarea name="prevention" id="prevention">
+					</textarea>
+				</td>
+			</tr>
+			 <tr>
+				<td>Treatment</td>
+                <td>
+					<textarea name="treatment" id="treatment">
+					</textarea>
+				</td>
+			</tr>
+			 <tr>
+				<td>Medication</td>
+                <td>
+					<textarea name="medication" id="medication">
+					</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="reset">
+				</td>
+                <td>
+					<input type="submit" value="Add">
+                </td>
+			</tr>
+		</table>
+		
+		
+	</form>
+
+
+<footer>Copyright &copy; Proiect TW</footer>
+</body>
+
+</html>
