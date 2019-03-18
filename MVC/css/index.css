@@ -7,32 +7,36 @@ body{
     height: 60px;
     margin: 0; */
     background-color: #b32d00;
+    padding: 3px;
 }
 
 .nav a {
 
     text-align: center;
     text-decoration: none;
-    padding: 15px 16px;
+    padding: 13px 12px;
     float: left;
 }
 
 .menu {
-    width: 104px;
+    /* width: 104px; */
     height: 21px;
     font-family: 'Work Sans';
     font-size: 18px;
     letter-spacing: 0.4px;
     text-align: center;
     color:white;
-    
+    margin-top:0.2%;
+    margin-left:1.4%;
 
 }
 
 .menu:hover{
+  
     background-color: white;
+    /* padding: 1px; */
     color: black;
-    margin-top:0.3%;
+    /* margin-top:0.3%; */
 }
 
 .Login-btn {
@@ -43,12 +47,14 @@ body{
     letter-spacing: 0.4px;
     text-align: center;
     color: white;
+    margin-top:0.9%;
 }
 
 .Login-btn:hover{
-    margin-top:0.6%;
+    /* margin-top:0.6%; */
     background-color: white;
     color: black;
+    /* padding: 19px; */
 }
 
 /* #myTopnav {
