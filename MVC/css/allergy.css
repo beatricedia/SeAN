@@ -28,7 +28,7 @@
     margin-right: 23px;
     margin-bottom: 20px;
     font-weight: bold;
-    display: inline;
+    /* display: inline; */
 }
 
 #reports a{

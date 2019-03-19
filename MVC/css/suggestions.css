@@ -1,12 +1,16 @@
- {
+ *{
   box-sizing: border-box;
 }
 
 body {
-  #background-color: #474e5d;
+  background-color: #474e5d;
   font-family: Helvetica, sans-serif;
 }
 
+.sugestion-title{
+  text-align: center;
+  color: white;
+}
 /* The actual timeline (the vertical ruler) */
 .timeline {
   position: relative;
@@ -30,7 +34,7 @@ body {
 .container {
   padding: 10px 40px;
   position: relative;
-  background-color: inherit;
+  /* background-color: inherit; */
   width: 50%;
 }
 
