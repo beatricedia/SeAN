@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>Seasonal Allergy</title>
-	<meta charset="utf-8">
+    <title>Seasonal Allergy</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../css/index.css">
-	<link rel="stylesheet" type="text/css" href="../css/register.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/register.css">
+    <script src="../../MVC/scripts/register.js" defer></script>
 </head>
+
 <body>
 
     <!-- navbar -->
@@ -24,57 +27,119 @@
             <a class="Login-btn" href="login.html">Login</a>
         </div>
     </div>
-	
-	<form action="/register" method="POST">
 
-		<table class="register_table">
-		
-			<tr>
-				<td colspan=2 style="font-size: 25px">
-					<span><b>Registration Form</b></span>
-                </td>
-			</tr>
+    <form action="/register" method="POST">
+
+        <table class="register_table">
+
             <tr>
-				<td>Username</td>
-				<td>
-					<input type="text" name="username" id="firstname" size="30">
+                <td colspan=2 style="font-size: 25px">
+                    <span><b>Registration Form</b></span>
                 </td>
             </tr>
-		
             <tr>
-				<td>Password</td>
+                <td>Username</td>
                 <td>
-					<input type="password" name="password" id="password" size="30">
-                </td>
-			</tr>
-
-            <tr>
-				<td>Repeat password</td>
-                <td>
-					<input type="password" name="password2" id="password2" size="30">
+                    <input type="text" name="username" id="firstname" size="30">
                 </td>
             </tr>
-		
+
             <tr>
-				<td>Email</td>
+                <td>Password</td>
                 <td>
-					<input type="text" name="email" id="emailid" size="30">
+                    <input type="password" name="password" id="password" size="30">
                 </td>
-			</tr>
-		
-            <tr>
-				<td>
-					<input type="reset">
-				</td>
-				<td>
-					<input type="submit" value="Submit Form" />
-				</td>
             </tr>
-		</table>
-	</form>
+
+            <tr>
+                <td>Repeat password</td>
+                <td>
+                    <input type="password" name="password2" id="password2" size="30">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td>
+                    <input type="text" name="email" id="emailid" size="30">
+                </td>
+            </tr>
+            <tr>
+                <td>Your allergy</td>
+                <td>
+                    <form>
+                        <div class="multiselect">
+                            <div class="selectBox" onclick="showCheckboxes1()">
+                                <select>
+                                    <option>Select an option</option>
+                                </select>
+                                <div class="overSelect"></div>
+                            </div>
+                            <div id="checkboxes1">
+                                <label for="one">
+                                    <input type="checkbox" id="one" />First checkbox</label>
+                                <label for="two">
+                                    <input type="checkbox" id="two" />Second checkbox</label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" />Third checkbox</label>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form>
+                        <div class="multiselect">
+                            <div class="selectBox" onclick="showCheckboxes2()">
+                                <select>
+                                    <option>Select another option</option>
+                                </select>
+                                <div class="overSelect"></div>
+                            </div>
+                            <div id="checkboxes2">
+                                <label for="one">
+                                    <input type="checkbox" id="one" />First</label>
+                                <label for="two">
+                                    <input type="checkbox" id="two" />Second </label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" />Third </label>
+                            </div>
+                        </div>
+                    </form>
+                    <form>
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="showCheckboxes3()">
+                                    <select>
+                                        <option>Select another option</option>
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div id="checkboxes3">
+                                    <label for="one">
+                                        <input type="checkbox" id="one" />First</label>
+                                    <label for="two">
+                                        <input type="checkbox" id="two" />Second </label>
+                                    <label for="three">
+                                        <input type="checkbox" id="three" />Third </label>
+                                </div>
+                            </div>
+                        </form>
+                </td>
+            </tr>
 
 
-<footer>Copyright &copy; Proiect TW</footer>
+            <tr>
+                <td>
+                    <input type="reset">
+                </td>
+                <td>
+                    <input type="submit" value="Submit Form" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    <footer>Copyright &copy; Proiect TW</footer>
 
 </body>
+
 </html>
