@@ -1,64 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>Seasonal Allergy</title>
-	<meta charset="utf-8">
+    <title>Seasonal Allergy</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../css/index.css">
-	<link rel="stylesheet" type="text/css" href="../css/register.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/register.css">
+    <script src="../../MVC/scripts/index.js" defer></script>
 </head>
 
 <body>
-	
-	<!-- navbar -->
-    <div class="nav">
-        <div id="myTopnav">
+
+    <!-- navbar -->
+    <div class="nav" id="myTopnav">
+        <div>
             <a class="menu" href="index.html">News</a>
+            <a class="menu" href="suggestions.html">Sugestions</a>
         </div>
 
         <div class="icon-menu">
+            <a class="Login-btn" href="register.html">Register</a>
             <form id="search">
                 <input type="text" placeholder="Search...">
                 <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
             </form>
-            <a class="Login-btn" href="register.html">Register</a>
-            <a class="Login-btn" href="login.html">Login</a>
         </div>
+        <a href="javascript:void(0);" class="icon" onclick="menuBars()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
-	<form action="/login" method="POST">
-      
-		<table class="register_table" >
-		
-			<tr>
-				<td colspan=2 style="font-size: 25px">
-					<span><b>Log In</b></span>
-                </td>
-			</tr>
+
+    <!-- login-form -->
+    <form action="/login" method="POST">
+
+        <table class="register_table">
+
             <tr>
-				<td>Email</td>
+                <td colspan=2 style="font-size: 25px">
+                    <span><b>Log In</b></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
                 <td>
-					<input type="text" name="username" id="emailid" size="30">
+                    <input type="text" name="username" id="emailid" size="30">
                 </td>
             </tr>
             <tr>
                 <td>Password</td>
                 <td>
-					<input type="password" name="password" id="password" size="30">
+                    <input type="password" name="password" id="password" size="30">
                 </td>
-			</tr>
+            </tr>
             <tr>
-				<td>
-					<input type="reset">
-				</td>
                 <td>
-					<input type="submit" value="Login">
+                    <input type="reset">
                 </td>
-			</tr>
-		</table>
-	</form>
+                <td>
+                    <input type="submit" value="Login">
+                </td>
+            </tr>
+        </table>
+    </form>
 
 
-<footer>Copyright &copy; Proiect TW</footer>
+    <footer>Copyright &copy; Proiect TW</footer>
 
 </body>
+
 </html>
