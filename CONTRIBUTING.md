@@ -5,7 +5,7 @@ Fiecare am luat ultima versiune de pe master folosind comenzile:
 git clone  https://github.com/beatricedia/SeAN.git
 git checkout -b branch_name
 
-In brach-ul nostru am facut fiecare paginile asignate la pregatirea strategiei de lucru si le-am adaugat in branc-ul nostru prin commit-uri.
+Am facut fiecare paginile asignate la pregatirea strategiei de lucru si le-am adaugat in branc-ul nostru prin commit-uri.
 
 git add .
 git commit -m "mesajul prin care spunem ce s-a modificat/adaugat"
