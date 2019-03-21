@@ -111,14 +111,14 @@ body {
   }
   
   /* Full-width containers */
-  .container {
+  .containers {
   width: 100%;
   padding-left: 70px;
   padding-right: 25px;
   }
   
   /* Make sure that all arrows are pointing leftwards */
-  .container::before {
+  .containers::before {
   left: 60px;
   border: medium solid white;
   border-width: 10px 10px 10px 0;
