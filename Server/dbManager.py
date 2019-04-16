@@ -106,3 +106,25 @@ def insertUserAllergy(id_user,id_allergy):
 
 # insertUserAllergy("1","2")
 # print(selectAllUserAllergy())
+
+def selectSpecificAllergy(id):
+         with connection.cursor() as cursor:
+                querystring = "select * from allergies where id = %s"
+                cursor.execute(querystring, str(id))
+                result = cursor.fetchall()
+                return result
+# print(selectSpecificAllergy(2))                \
+
+def selectSpecificUser(id):
+         with connection.cursor() as cursor:
+                querystring = "select * from users where id = %s"
+                cursor.execute(querystring, str(id))
+                result = cursor.fetchall()
+                return result
+
+def selectUserAllergy(id_user):
+        with connection.cursor() as cursor:
+                querystring = "select * from users where id_user= %s"
+                cursor.execute(querystring, str(id))
+                result = cursor.fetchall()
+                return result    
