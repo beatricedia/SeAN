@@ -3,7 +3,7 @@ import socketserver
 import os
 import cgitb
 
-port = 8001
+port = 8000
 ip = 'localhost'
 
 cgitb.enable()
