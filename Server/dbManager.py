@@ -27,8 +27,6 @@ def formatAllSelectedAllergies():
         
         return result
 
-print(formatAllSelectedAllergies())
-
 def insertAllergy(id, name, category, description, symptoms, prevention, treatment, medication):
     with connection.cursor() as cursor:
         querystring = "insert into allergies VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
