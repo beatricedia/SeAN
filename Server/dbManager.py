@@ -20,7 +20,14 @@ def selectAllAllergies():
         return result
 
 
-# print(selectAllAllergies())
+def formatAllSelectedAllergies():
+        result = {}
+        for allergy in  selectAllAllergies():
+                result[allergy.__getitem__(0)] = list(allergy)
+        
+        return result
+
+
 
 def insertAllergy(id, name, category, description, symptoms, prevention, treatment, medication):
     with connection.cursor() as cursor:
@@ -113,7 +120,7 @@ def selectSpecificAllergy(id):
                 cursor.execute(querystring, str(id))
                 result = cursor.fetchall()
                 return result
-# print(selectSpecificAllergy(2))                \
+# print(selectSpecificAllergy(2))                
 
 def selectSpecificUser(id):
          with connection.cursor() as cursor:
