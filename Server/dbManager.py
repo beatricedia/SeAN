@@ -22,8 +22,12 @@ def selectAllAllergies():
 
 def formatAllSelectedAllergies():
         result = {}
+        i = 0
         for allergy in  selectAllAllergies():
-                result[allergy.__getitem__(0)] = list(allergy)
+                # print(allergy)
+                # result[allergy.__getitem__(0)] = list(allergy)
+                i+=1
+                result[i] =  list(allergy)
         
         return result
 

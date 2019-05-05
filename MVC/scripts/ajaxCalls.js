@@ -77,11 +77,11 @@ function getAllergyDetails(destination) {
 
             description = document.createElement("div");
             description.classList.add('box');
-            description.innerHTML = selectedAllergy[2];
+            description.innerHTML = selectedAllergy[3];
 
             var alergy_question = document.createElement("a");
             alergy_question.id = "title-description";
-            alergy_question.innerHTML = "What is " + selectedAllergy[1] + " Allergy";
+            alergy_question.innerHTML = "What is " + selectedAllergy[1] + " Allergy ?";
 
             var html_report_option = document.createElement("a");
             html_report_option.innerHTML = "HTML";
