@@ -37,6 +37,7 @@ function getAllergies(destination) {
                 title.id = String(key);
                 title.onclick = function() { setCookie('selectedAllergy', key, 1); }
                 title.href = 'allergy.html';
+                // http://127.0.0.1:39777/index.html#allergy?1
 
                 var description = document.createElement("p");
                 description.innerHTML = value[3];

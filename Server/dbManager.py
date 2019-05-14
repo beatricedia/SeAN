@@ -31,6 +31,9 @@ def formatAllSelectedAllergies():
         
         return result
 
+
+print(formatAllSelectedAllergies())
+
 def insertAllergy(id, name, category, description, symptoms, prevention, treatment, medication):
     with connection.cursor() as cursor:
         querystring = "insert into allergies VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
@@ -83,7 +86,7 @@ def insertAllergy(id, name, category, description, symptoms, prevention, treatme
 # insertAllergy("9","Pollen","Respiratory","As plants release pollen, millions of people start having hay fever. Trees, grasses, and weeds release these tiny grains into the air to fertilize other plants. When they get into the nose of someone who’s allergic, they send the body's defenses haywire. The immune system mistakenly sees the pollen as a danger and releases antibodies that attack the allergens.",
 # "runny nose, sneezing, watery eyes, coughing, dark circles under the eyes",
 # "It is advisable to keep the indoor air clean using a dehumidifier containing a filter to keep the pollen away from home. Also, in the season where allergies occur, it is advisable to keep doors and windows closed, not to leave the house on days when the wind blows strong or to wear a mask if you have to spend time outdoors.",
-# "NurofrenImmunotherapy gives you gradually increasing doses of the allergen until your body can handle it. The treatment can relieve your symptoms for a longer time than other types of allergy medications.",
+# "Immunotherapy gives you gradually increasing doses of the allergen until your body can handle it. The treatment can relieve your symptoms for a longer time than other types of allergy medications. ",
 # "Antihistamines, Nasal spray, Eye drops, Nasal irrigation")
 # print(selectAllAllergies())
 
@@ -104,10 +107,10 @@ def selectAllUsers():
         result = cursor.fetchall()
         return result
 
-def insertUser(id,username,password,email):
+def insertUser(username,password,email):
         with connection.cursor() as cursor:
-                querystring = "insert into users VALUES(%s,%s,%s,%s)"
-                cursor.execute(querystring, (id,username,password,email))
+                querystring = "insert into users(username, password, email) VALUES(%s,%s,%s)"
+                cursor.execute(querystring, (username,password,email))
                 connection.commit()
 
 # insertUser("1","ioneel","ceva","ionfrumosu@gmail.com")
@@ -181,4 +184,17 @@ def selectUserAllergy(id_user):
                 querystring = "select * from users where id_user= %s"
                 cursor.execute(querystring, str(id))
                 result = cursor.fetchall()
-                return result    
+                return result   
+
+def selectLastAllergyId():
+        with connection.cursor() as cursor:
+                querystring = "select max(id) from allergies"
+                cursor.execute(querystring, str(id))
+                result = cursor.fetchall()
+                return result  
+def selectLastUserId():
+        with connection.cursor() as cursor:
+                querystring = "select max(id) from allergies"
+                cursor.execute(querystring, str(id))
+                result = cursor.fetchall()
+                return result   
