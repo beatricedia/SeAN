@@ -7,10 +7,13 @@
     <title>Allergy</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
         integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../css/allergy.css" />
     <script src="../scripts/index.js" defer></script>
     <script src="../scripts/ajaxCalls.js" defer></script>
+    <script src="../scripts/share.js" defer></script>
 </head>
 
 <body onload="showAllergyDetails()">
@@ -77,7 +80,12 @@
             </div> -->
 
         </div>
+        <p class="share" title="Share on Facebook" onclick="shareOnFb()">
+                <i class="fas fa-share" id="shareBtn"></i> Share on <i class="fab fa-facebook"></i>
+            </p>
     </section>
+
+    
     <footer>Copyright &copy; Proiect TW</footer>
 </body>
 
