@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../css/register.css">
     <script src="../scripts/register.js" defer></script>
     <script src="../scripts/index.js" defer></script>
+
 </head>
 
 <body>
@@ -37,7 +38,7 @@
 
     <!-- register-form -->
 
-    <form action="/register" method="POST">
+    <div>
 
         <table class="register_table">
 
@@ -49,7 +50,7 @@
             <tr>
                 <td>Username</td>
                 <td>
-                    <input type="text" name="username" id="firstname" size="30">
+                    <input type="text" name="username" id="username" size="30">
                 </td>
             </tr>
 
@@ -70,7 +71,7 @@
             <tr>
                 <td>Email</td>
                 <td>
-                    <input type="text" name="email" id="emailid" size="30">
+                    <input type="text" name="email" id="email" size="30">
                 </td>
             </tr>
             <tr>
@@ -86,11 +87,11 @@
                         </div>
                         <div id="checkboxes1">
                             <label for="sun">
-                                <input type="checkbox" id="sun" />Sun</label>
+                                <input type="checkbox" class = "checks1" velue="Sun" />Sun</label>
                             <label for="wind">
-                                <input type="checkbox" id="wind" />Wind dust</label>
+                                <input type="checkbox" class = "checks1" value="Wind" />Wind dust</label>
                             <label for="cold">
-                                <input type="checkbox" id="cold" />Cold</label>
+                                <input type="checkbox" class = "checks1" value="Cold" />Cold</label>
                         </div>
                     </div>
 
@@ -105,13 +106,13 @@
                         </div>
                         <div id="checkboxes2">
                             <label for="pollen">
-                                <input type="checkbox" id="pollen" />Pollen</label>
+                                <input type="checkbox" class = "checks2" value = "Pollen"/>Pollen</label>
                             <label for="dust-mites">
-                                <input type="checkbox" id="dust-mites" />Dust mites</label>
+                                <input type="checkbox" class = "checks2" value="Dust mites" />Dust mites</label>
                             <label for="mold">
-                                <input type="checkbox" id="mold" />Mold </label>
+                                <input type="checkbox" class = "checks2" value="Mold" />Mold </label>
                             <label for="animals">
-                                <input type="checkbox" id="animals" />Animals </label>
+                                <input type="checkbox"  class = "checks2" value="Animals" />Animals </label>
                         </div>
                     </div>
 
@@ -125,13 +126,13 @@
                         </div>
                         <div id="checkboxes3">
                             <label for="milk">
-                                <input type="checkbox" id="milk" />Milk</label>
+                                <input type="checkbox" class = "checks3" value="Milk" />Milk</label>
                             <label for="eggs">
-                                <input type="checkbox" id="eggs" />Eggs </label>
+                                <input type="checkbox" class = "checks3" value="Eggs" />Eggs </label>
                             <label for="nuts">
-                                <input type="checkbox" id="nuts" />Nuts </label>
+                                <input type="checkbox" class = "checks3" value="Nuts" />Nuts </label>
                             <label for="soy">
-                                <input type="checkbox" id="soy" />Soy</label>
+                                <input type="checkbox" class = "checks3" value="Soy" />Soy</label>
                         </div>
                     </div>
 
@@ -149,11 +150,11 @@
                     <input type="reset">
                 </td>
                 <td>
-                    <input type="submit" value="Submit Form" />
+                    <input type="submit" value="Submit Form" onclick="getValue()" />
                 </td>
             </tr>
         </table>
-    </form>
+    </div>
 
 
     <footer>Copyright &copy; Proiect TW</footer>
