@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seasonal Allergy</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/notification.css" />
+    <script src="../scripts/index.js" defer></script>
+    <script src="../scripts/notification.js" defer></script>
+</head>
+
+<body>
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+            <img src=" ../images/Capture.jpg" alt="Capture">
+            <div class="text">SeAN</div>
+        </div>
+
+        <div class="mySlides fade">
+            <img src="../images/img2.jpg" alt="img2">
+            <div class="text">SeAN</div>
+        </div>
+
+        <div class="mySlides fade">
+
+            <img src="../images/img1.jpg" alt="img1">
+            <div class="text">SeAN</div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    </div>
+
+    <!-- navbar -->
+    <div class="nav" id="myTopnav">
+        <div>
+            <a class="menu" href="index.html">News</a>
+            <a class="menu" href="new_allergy.html"><i class="fa fa-plus-circle"></i> Add allergy</a>
+            <a class="menu" href="suggestions.html">Sugestions</a>
+        </div>
+
+        <div class="icon-menu">
+            <a class="Login-btn" href="register.html">Register</a>
+            <a class="Login-btn" href="login.html">Login</a>
+            <form id="search">
+                <input type="text" placeholder="Search...">
+                <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="menuBars()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <!-- popup -->
+
+    <a class="button" href="#popup1">Notification Allowed</a>
+
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <h2>What type of allergy notification do you like to recieve?</h2>
+            <a class="close-btn" href="#">&times;</a>
+            <div class="content">
+                <input type="checkbox" name="allergyType" value="Type1" checked> Weather Allergies<br>
+                <input type="checkbox" name="allergyType" value="Type2" checked> Respiratory Allergies<br>
+                <input type="checkbox" name="allergyType" value="Type3" checked> Food Allergies<br>
+                <button id="notificationSave" type="button">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- news -->
+    <div class="container">
+        <h2><span id="container" class="highlight">News</span> about allergies</h2>
+    </div>
+    <section id="news" class="w80p">
+
+        <div class="box">
+            <a href="allergy.html">Pollen Allergy</a>
+            <p>As plants release pollen, millions of people start having hay fever. Trees, grasses, and weeds
+                release
+                these tiny grains into the air to fertilize other plants. When they get into the nose of someone
+                who’s allergic, they send the body's defenses haywire. The immune system mistakenly sees the pollen
+                as
+                a danger and releases antibodies that attack the allergens. </p>
+        </div>
+
+        <div class="box" >
+            <a href="#">Dust Mites Allergy</a>
+            <p id="test">The current date is
+			<% import datetime
+			print datetime.date.today().strftime("%d:%m:%y")
+			%> </p>
+        </div>
+
+        <div class="box">
+            <a href="#">Mold Allergy</a>
+            <p>When it gets cold and your furnace kicks on, it sends dust, mold spores, and insect parts into the
+                air.
+                They can get into your nose and launch a reaction. This fungus thrives in damp, humid areas such as
+                basements and bathrooms. When mold spores get into the air, they can trigger allergy symptoms.</p>
+        </div>
+        <div class="box">
+            <a href="#">Eggs Allergy</a>
+            <p>Egg allergy is an exaggerated reaction of the immune system to egg consumption and is one of the most
+                common forms of allergy at children. Egg allergy occurs from early childhood and disappears to a
+                large
+                extent of children at adolescence.</p>
+        </div>
+
+        <div class="box">
+            <a href="#">Sun Allergy</a>
+            <p>Solar Allergy is a term used to describe a number of diseases characterized by the appearance of a
+                pruritic
+                eruption as a result of exposure to the sun. The most common form of sun allergy is polymorphic rash
+                or
+                summer prurigo, which usually occurs with the first exposure to the sun in the year and in many
+                cases improves
+                in the summer, once the skin is used to higher levels of UV radiation.</p>
+        </div>
+
+        <div class="box">
+            <a href="#">Soy Allergy</a>
+            <p>Soy allergy is an exaggerated reaction of the immune system to soy consumption and foods containing
+                soy.
+                Usually, the reaction occurs as a result of the consumption of soy milk in childhood. </p>
+        </div>
+
+    </section>
+    <footer>Copyright &copy; Proiect TW</footer>
+</body>
+
+</html>
