@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <link rel="stylesheet" type="text/css" href="../css/register.css">
     <script src="../scripts/index.js" defer></script>
+    <script src="../scripts/login.js" defer></script>
 </head>
 
 <body>
@@ -47,7 +48,7 @@
             <tr>
                 <td>Email</td>
                 <td>
-                    <input type="text" name="username" id="emailid" size="30">
+                    <input type="text" name="username" id="email" size="30">
                 </td>
             </tr>
             <tr>
@@ -61,7 +62,7 @@
                     <input type="reset">
                 </td>
                 <td>
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Login" onclick="getLoginData()">
                 </td>
             </tr>
         </table>
