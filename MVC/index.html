@@ -13,6 +13,7 @@
     <script src="../scripts/index.js" defer></script>
     <script src="../scripts/notification.js" defer></script>
     <script src="../scripts/ajaxCalls.js" defer></script>
+    <script src="sw.js" defer></script>
 </head>
 
 <body onload="showAllergies()">
@@ -63,9 +64,9 @@
 
     <!-- popup -->
 
-    <a class="button" href="#popup1">Notification Allowed</a>
+    <!-- <a class="button" href="#popup1">Notification Allowed</a> -->
 
-    <div id="popup1" class="overlay">
+    <!-- <div id="popup1" class="overlay">
         <div class="popup">
             <h2>What type of allergy notification do you like to recieve?</h2>
             <a class="close-btn" href="#">&times;</a>
@@ -75,6 +76,19 @@
                 <input type="checkbox" name="allergyType" value="Type3" checked> Food Allergies<br>
                 <button id="notificationSave" type="button">Save</button>
             </div>
+        </div>
+    </div> -->
+
+    <div id="notificationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form>
+                <h2>What type of notifications would you like to receive?</h2>
+                <input type="checkbox" name="allergyType" value="Type1" checked> Weather Allergies<br>
+                <input type="checkbox" name="allergyType" value="Type2" checked> Respiratory Allergies<br>
+                <input type="checkbox" name="allergyType" value="Type3" checked> Food Allergies<br>
+                <button id="notificationSave" type="button">Save</button>
+            </form>
         </div>
     </div>
 

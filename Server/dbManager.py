@@ -198,3 +198,16 @@ def selectLastUserId():
                 cursor.execute(querystring, str(id))
                 result = cursor.fetchall()
                 return result   
+
+def checkIfUserExists(email):
+        with connection.cursor() as cursor:
+                querystring = "select email from users"
+                cursor.execute(querystring, str(id))
+                result = cursor.fetchall()
+                return result   
+def checkUserPassword(email):
+        with connection.cursor() as cursor:
+                querystring = "select password from users where email = %s"
+                cursor.execute(querystring, str(id))
+                result = cursor.fetchall()
+                return result   
