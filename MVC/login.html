@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <link rel="stylesheet" type="text/css" href="../css/register.css">
-    <script src="../scripts/index.js" defer></script>
-    <script src="../scripts/login.js" defer></script>
+    <script src="/scripts/login.js"></script>
+    <script src="/scripts/index.js"></script>
 </head>
 
 <body>
@@ -36,7 +36,6 @@
     </div>
 
     <!-- login-form -->
-    <form action="/login" method="POST">
 
         <table class="register_table">
 
@@ -62,11 +61,10 @@
                     <input type="reset">
                 </td>
                 <td>
-                    <input type="submit" value="Login" onclick="getLoginData()">
+                    <button onclick="getLoginData()">Login</button>
                 </td>
             </tr>
         </table>
-    </form>
 
 
     <footer>Copyright &copy; Proiect TW</footer>

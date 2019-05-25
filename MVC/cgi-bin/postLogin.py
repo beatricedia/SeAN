@@ -1,6 +1,7 @@
 import os
 import sys
 import cgi
+
 import re
 import cgitb
 import json
@@ -44,14 +45,13 @@ jsonObj = json.loads(arguments['json'].value.encode('utf-8'))
 email = jsonObj['email']
 password = jsonObj['password']
 
-
-
 import dbManager as db
-if db.checkIfUserExists(email) != NULL:
-    if db.checkUserPassword(email)!= NULL :
-        print("autentificat cu succes")
+
+if db.checkIfUserExists(email) is not None:
+    if db.checkUserPassword(email)is not None:
+        returnSuccesMessage();
     else:
-        print("parola invalida")
+        returnErrorMessage();
 else:
     print("user invalid")
 

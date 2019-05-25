@@ -51,4 +51,6 @@ otherAllergy = jsonObj['otherAllergy']
 
 
 import dbManager as db
-db.insertUser(username,password,email)
+db.insertUser(username, password, email)
+
+returnSuccesMessage()

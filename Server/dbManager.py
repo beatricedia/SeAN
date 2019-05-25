@@ -1,11 +1,12 @@
 import mysql.connector
 import pymysql.cursors
 import pymysql
+import random
 from mysql.connector import (connection)
 
 
 connection = pymysql.connect(host="127.0.0.1",
-                             port=8001,
+                             port=3306,
                              user="beatricedia",
                              password="Mysql112",
                              db="sean_db",
@@ -33,6 +34,7 @@ def formatAllSelectedAllergies():
 
 
 print(formatAllSelectedAllergies())
+
 
 def insertAllergy(id, name, category, description, symptoms, prevention, treatment, medication):
     with connection.cursor() as cursor:
@@ -100,6 +102,7 @@ def deleteAllergy(id):
 # deleteAllergy(2)
 # print(selectAllAllergies())
 
+
 def selectAllUsers():
     with connection.cursor() as cursor:
         querystring = "select * from users"
@@ -107,14 +110,17 @@ def selectAllUsers():
         result = cursor.fetchall()
         return result
 
+
 def insertUser(username,password,email):
         with connection.cursor() as cursor:
+                random = 1
                 querystring = "insert into users(username, password, email) VALUES(%s,%s,%s)"
                 cursor.execute(querystring, (username,password,email))
                 connection.commit()
 
 # insertUser("1","ioneel","ceva","ionfrumosu@gmail.com")
 # print(selectAllUsers())
+
 
 def deleteUser(id):
         with connection.cursor() as cursor:
@@ -124,12 +130,14 @@ def deleteUser(id):
 # deleteUser(1)
 # print(selectAllUsers())
 
+
 def selectAllSuggestions():
     with connection.cursor() as cursor:
         querystring = "select * from suggestions"
         cursor.execute(querystring)
         result = cursor.fetchall()
         return result
+
 
 def insertSuggestion(id_suggestion,id_user,category,name,symptoms,prevention,treatment,medication,ok):
         with connection.cursor() as cursor:
@@ -140,6 +148,7 @@ def insertSuggestion(id_suggestion,id_user,category,name,symptoms,prevention,tre
 # insertSuggestion("1","2","Weather","Sun","hapciu","medicamente","Nurofren","altceva","0")
 # print(selectAllSuggestions())
 
+
 def deleteSuggestion(id):
         with connection.cursor() as cursor:
                 querystring = "delete from suggestions WHERE id_suggestion = %s"
@@ -148,12 +157,14 @@ def deleteSuggestion(id):
 # deleteSuggestion(1)
 # print(selectAllSuggestions())
 
+
 def selectAllUserAllergy():
         with connection.cursor() as cursor:
                 querystring = "select * from user_allergy"
                 cursor.execute(querystring)
                 result = cursor.fetchall()
                 return result
+
 
 def insertUserAllergy(id_user,id_allergy):
         with connection.cursor() as cursor:
@@ -164,6 +175,7 @@ def insertUserAllergy(id_user,id_allergy):
 # insertUserAllergy("1","2")
 # print(selectAllUserAllergy())
 
+
 def selectSpecificAllergy(id):
          with connection.cursor() as cursor:
                 querystring = "select * from allergies where id = %s"
@@ -172,12 +184,14 @@ def selectSpecificAllergy(id):
                 return result
 # print(selectSpecificAllergy(2))                
 
+
 def selectSpecificUser(id):
          with connection.cursor() as cursor:
                 querystring = "select * from users where id = %s"
                 cursor.execute(querystring, str(id))
                 result = cursor.fetchall()
                 return result
+
 
 def selectUserAllergy(id_user):
         with connection.cursor() as cursor:
@@ -186,12 +200,15 @@ def selectUserAllergy(id_user):
                 result = cursor.fetchall()
                 return result   
 
+
 def selectLastAllergyId():
         with connection.cursor() as cursor:
                 querystring = "select max(id) from allergies"
                 cursor.execute(querystring, str(id))
                 result = cursor.fetchall()
                 return result  
+
+
 def selectLastUserId():
         with connection.cursor() as cursor:
                 querystring = "select max(id) from allergies"
@@ -199,15 +216,35 @@ def selectLastUserId():
                 result = cursor.fetchall()
                 return result   
 
+
 def checkIfUserExists(email):
         with connection.cursor() as cursor:
-                querystring = "select email from users"
-                cursor.execute(querystring, str(id))
-                result = cursor.fetchall()
-                return result   
+                querystring = "select email from users where email = %s"
+                rows_count = cursor.execute(querystring, str(email))
+                if rows_count > 0:
+                    rs = cursor.fetchall()
+                    return rs
+                else:
+                    return 0
+
+
 def checkUserPassword(email):
         with connection.cursor() as cursor:
                 querystring = "select password from users where email = %s"
-                cursor.execute(querystring, str(id))
-                result = cursor.fetchall()
-                return result   
+                rows_count = cursor.execute(querystring, str(email))
+                if rows_count > 0:
+                    rs = cursor.fetchall()
+                    return rs
+                else:
+                    return 0
+
+
+def selectAllFromUser(email):
+    with connection.cursor() as cursor:
+        querystring = "select * from users where email = %s"
+        rows_count = cursor.execute(querystring, str(email))
+        if rows_count > 0:
+            rs = cursor.fetchall()
+            return rs
+        else:
+            return 0

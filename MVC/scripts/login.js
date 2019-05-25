@@ -1,21 +1,19 @@
-function postLogin(json,destination)
+
+function postLogin(json,callback)
 {
-    var jsonField = "?json=" + JSON.stringify(json);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", destination+jsonField);
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200)
-        {    console.log("intra in post")
-            console.log(destination+jsonField);
-        }
+     var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.open("POST", "/login");
+       xmlhttp.onreadystatechange = function() {
+       if(this.readyState == 4)
+            callback(JSON.parse(xmlhttp.responseText))
     };
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send(jsonField);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send(JSON.stringify(json))
 }
 
 
 function getLoginData(){
-    console.log("intra in login")
     var emailValue = document.getElementById("email").value;
     var passwordValue = document.getElementById("password").value;
 
@@ -25,5 +23,12 @@ function getLoginData(){
 
     json.email = emailValue;
     json.password = passwordValue;
-    postLogin(json, "../cgi-bin/postLogin.py");
+    postLogin(json,function(response){
+        if(response.type=="Error")
+            alert(response.message)
+        else{
+            setCookie("seanData", JSON.stringify(response.data), 1)
+            window.location.replace("/")
+        }
+    });
 }

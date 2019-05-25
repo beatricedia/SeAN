@@ -37,19 +37,17 @@ function showCheckboxes3() {
     }
 }
 
-function postRegister(json,destination)
+function postRegister(json,callback)
 {
-    var jsonField = "?json=" + JSON.stringify(json);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", destination+jsonField);
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200)
-        {
-            console.log(destination+jsonField);
-        }
+     var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.open("POST", "/register");
+       xmlhttp.onreadystatechange = function() {
+       if(this.readyState == 4)
+        callback(JSON.parse(xmlhttp.responseText));
     };
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send(jsonField);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send(JSON.stringify(json))
 }
 
 
@@ -115,5 +113,10 @@ function getValue(){
 
     json.otherAllergy = otherAllergy;
 
-    postRegister(json, "../cgi-bin/postRegister.py");
+    postRegister(json, function(response){
+        console.log(response)
+        window.location.replace("login.html");
+    });
+
+
 }
