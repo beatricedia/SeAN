@@ -18,7 +18,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def setHeader(self, data):
         self.send_response(data["code"])
-        self.send_header('Content-type',data["type"])
+        self.send_header('Content-type', data["type"])
         self.end_headers()
 
     def getResource(self, resursa):
@@ -109,9 +109,6 @@ class RequestHandler(BaseHTTPRequestHandler):
             response["type"] = "Success"
 
         return response
-
-
-
 
 
 os.chdir("../MVC");

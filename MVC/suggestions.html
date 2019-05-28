@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="../css/suggestions.css" />
-  <script src="../scripts/index.js" defer></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="css/index.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/suggestions.css" />
+  <script src="scripts/index.js" defer></script>
+  <script src="scripts/suggestions.js" defer></script>
 </head>
 
 <body>
@@ -18,23 +19,25 @@
   <!-- navbar -->
   <div class="nav" id="myTopnav">
     <div>
-      <a class="menu" href="index.html">News</a>
-      <a class="menu" href="new_allergy.html"><i class="fa fa-plus-circle"></i> Add allergy</a>
-      <a class="menu" href="suggestions.html">Sugestions</a>
+        <a class="menu" href="index.html">News</a>
+        <a id="addAllergyDiv"  style="display:none" class="menu" href="new_allergy.html"><i class="fa fa-plus-circle"></i> Add allergy</a>
+        <a class="menu" href="suggestions.html">Sugestions</a>
     </div>
 
     <div class="icon-menu">
-      <a class="Login-btn" href="register.html">Register</a>
-      <a class="Login-btn" href="login.html">Login</a>
-      <form id="search">
-        <input type="text" placeholder="Search...">
-        <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
-      </form>
+        <a id="registerDiv" class="Login-btn" href="register.html">Register</a>
+        <a id="loginDiv"    class="Login-btn" href="login.html">Login</a>
+        <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
+        <a id="logoutDiv"   class="Login-btn"  style="display:none" onclick="logout()">Logout</a>
+        <form id="search">
+            <input type="text" placeholder="Search...">
+            <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
+        </form>
     </div>
     <a href="javascript:void(0);" class="icon" onclick="menuBars()">
-      <i class="fa fa-bars"></i>
+        <i class="fa fa-bars"></i>
     </a>
-  </div>
+</div>
 
   <!-- suggestion -->
 
