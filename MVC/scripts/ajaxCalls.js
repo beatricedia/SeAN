@@ -18,16 +18,16 @@ function getCookie(name) {
     return null;
 }
 
-function getAllergies(destination) {
+function getAllergiess() {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", destination);
+    xmlhttp.open("GET", "/alergii");
     xmlhttp.onreadystatechange = function () {
-        if (this.readyState === 4) {            
+        if (this.readyState === 4) {
             let responseJson = JSON.parse(this.response);
             for (const [key, value] of Object.entries(responseJson)) {
-                console.log(responseJson);
                 var section = document.getElementById("news");
-                section.classList.add('w80p');
+                if(section)
+                    section.classList.add('w80p');
 
                 var box = document.createElement("div");
                 box.classList.add('box');
@@ -45,7 +45,8 @@ function getAllergies(destination) {
                 box.appendChild(title);
                 box.appendChild(description);
 
-                section.appendChild(box);
+                if(section)
+                    section.appendChild(box);
               }
         }
     };
@@ -53,9 +54,9 @@ function getAllergies(destination) {
     xmlhttp.send();
 }
 
-function getAllergyDetails(destination) {
+function getAllergyDetails() {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", destination);
+    xmlhttp.open("GET", "/alergii");
     xmlhttp.onreadystatechange = function () {
         if (this.readyState === 4) {            
             let responseJson = JSON.parse(this.response);
@@ -142,7 +143,14 @@ function getAllergyDetails(destination) {
             medication_box = document.createElement("div");
             medication_box.classList.add('box');
             medication_box.appendChild(medication_box_text);
-            
+
+            var share = document.createElement("div");
+            share.innerHTML = `<p class="share" title="Share on Facebook" onclick="shareOnFb()">
+                <i class="fas fa-share" id="shareBtn"></i> Share on <i class="fab fa-facebook"></i>
+                </p>`
+
+            var Pspatii = document.createElement("div");
+            Pspatii.innerHTML = "&#10&#10&#10&#10&#10&#10&#10&#10&#10&#10"
 
             container.appendChild(allergy_title);
             container.appendChild(alergy_question);
@@ -154,22 +162,23 @@ function getAllergyDetails(destination) {
             container.appendChild(prevention_box);
             container.appendChild(treatment_title);
             container.appendChild(treatment_box);
-            container.appendChild(medication_title);
             container.appendChild(medication_box);
+            container.appendChild(share);
 
             section.appendChild(container);
             document.body.appendChild(section);
+
               
         }
     };
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send();
 }
-
-function showAllergies() {
-    getAllergies("../cgi-bin/getAllAlergies.py");
-}
-
-function showAllergyDetails() {
-    getAllergyDetails("../cgi-bin/getAllAlergies.py");
-}
+//
+//function showAllergies() {
+//    getAllergies("../cgi-bin/getAllAlergies.py");
+//}
+//
+//function showAllergyDetails() {
+//    getAllergyDetails("../cgi-bin/getAllAlergies.py");
+//}

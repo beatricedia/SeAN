@@ -45,7 +45,7 @@ def insertAllergy(id, name, category, description, symptoms, prevention, treatme
 
 
 # insertAllergy("id","name","category","description","symptoms","prevention","treatment","medication")
-# insertAllergy("1","Soy","Food","Soy allergy is an exaggerated reaction of the immune system to soy consumption and foods containing soy. Usually, the reaction occurs as a result of the consumption of soy milk in childhood.",
+# insertAllergy("10","Soy","Food","Soy allergy is an exaggerated reaction of the immune system to soy consumption and foods containing soy. Usually, the reaction occurs as a result of the consumption of soy milk in childhood.",
 # "rash, hives, pruritus around the mouth,sneezing,cramps,vomiting",
 # "Remove products containing soy protein. Always take a self-injected syringe with epinephrine in case of a severe allergic reaction.",
 # "Administration of antihistamines, treatment of epinephrine injectable anaphylaxis, the removal from food of products containing soy protein.",
