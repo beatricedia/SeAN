@@ -49,4 +49,4 @@ if(getCookie("seanData")){
     }
   }
 
-getAllergiess();
+

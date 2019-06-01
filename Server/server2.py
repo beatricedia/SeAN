@@ -88,7 +88,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.send_response(data["code"])
         self.send_header('Content-type', 'application/json')
         self.end_headers()
-        self.wfile.write(bytes(json.dumps(data),"UTF-8"))
+        self.wfile.write(bytes(json.dumps(data), "UTF-8"))
 
     def login(self, parametri):
         response = {}
