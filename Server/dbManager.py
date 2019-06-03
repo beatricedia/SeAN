@@ -138,6 +138,25 @@ def selectAllSuggestions():
         result = cursor.fetchall()
         return result
 
+def formatAllSelectedSuggestions():
+        result = {}
+        i = 0
+        for allergy in  selectAllSuggestions():
+                i+=1
+                result[i] =  list(allergy)
+        
+        return result
+
+def insertSuggestion(id_suggestion,id_user,category,name,symptoms,prevention,treatment,medication,ok):
+        with connection.cursor() as cursor:
+                querystring = "insert into suggestions VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                cursor.execute(querystring, (id_suggestion,id_user,category,name,symptoms,prevention,treatment,medication,ok))
+                connection.commit()
+
+# insertSuggestion("1","2","Weather","Sun","hapciu","medicamente","Nurofren","altceva","0")
+# insertSuggestion("2","2","Weather","NailPolish","mancarimi","paracetamol","aspirina","ceva","0")
+# print(selectAllSuggestions())
+print(formatAllSelectedSuggestions())
 
 def insertSuggestion(id_suggestion,id_user,category,name,symptoms,prevention,treatment,medication,ok):
         with connection.cursor() as cursor:

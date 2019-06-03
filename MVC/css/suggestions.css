@@ -11,6 +11,12 @@ body {
   text-align: center;
   color: white;
 }
+
+.allergy-title{
+  text-align: center;
+  color:#b32d00;
+}
+
 /* The actual timeline (the vertical ruler) */
 .timeline {
   position: relative;
