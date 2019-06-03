@@ -129,6 +129,6 @@ class RequestHandler(BaseHTTPRequestHandler):
         return response
 
 
-os.chdir("../MVC");
+os.chdir(os.path.join(os.path.dirname(__file__),'..','MVC',))
 server = ServerConcurent(('localhost',4034), RequestHandler)
 Thread(target=server.serve_forever).start()
