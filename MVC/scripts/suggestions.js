@@ -1,7 +1,7 @@
-function getSuggestionDetails(destination) {
+function getSuggestionDetails() {
     console.log("intra in functie")
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", destination);
+    xmlhttp.open("GET", "/suggestions");
     xmlhttp.onreadystatechange = function () {
         console.log("intra in aici")
         if (this.readyState === 4) {
@@ -92,6 +92,6 @@ function getSuggestionDetails(destination) {
     xmlhttp.send();
 }
 
-function showSuggestionDetails() {
-    getSuggestionDetails("../cgi-bin/getSuggestions.py");
-}
+// function showSuggestionDetails() {
+//     getSuggestionDetails("../cgi-bin/getSuggestions.py");
+// }

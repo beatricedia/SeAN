@@ -42,12 +42,15 @@ class RequestHandler(BaseHTTPRequestHandler):
                 data["type"] = "text/javascript"
             elif resursa == "alergii":
                 data["type"] = "application/json"
-                data["file"] = bytes(json.dumps(db.selectAllAllergies()), "utf-8")
+                data["file"] = bytes(json.dumps(db.formatAllSelectedAllergies()), "utf-8")
             elif "alergie" in resursa:
                 data["type"] = "text/html"
                 pagina_creata = open("allergy.html", "r").read()
                 pagina_creata = pagina_creata.replace("<!--replace me senpai-->",self.genSetCookieCode(resursa.replace("alergie","")))
                 data["file"] = bytes(pagina_creata, "utf-8")
+            elif resursa == "suggestions":
+                data["type"] = "application/json"
+                data["file"] = bytes(json.dumps(db.formatAllSelectedSuggestions()), "utf-8")
 
             if resursa != "alergii" and "alergie" not in resursa:
                 data["file"] = open(resursa, "rb").read()
