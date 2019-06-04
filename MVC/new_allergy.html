@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="../css/index.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="../css/new_allergy.css" />
 	<script src="../scripts/index.js" defer></script>
+	<script src="../scripts/new_allergy.js" defer></script>
 	
 </head>
 
@@ -49,7 +50,7 @@
 			<tr>
 				<td>Category</td>
 				<td>
-					<select>
+					<select id="optionType">
 						<option value="Weather Allergies">Weather Allergies</option>
 						<option value="Respiratory Allergies">Respiratory Allergies</option>
 						<option value="Food Allergies">Food Allergies</option>
@@ -59,14 +60,14 @@
 			<tr>
 				<td>Name</td>
 				<td>
-					<textarea name="nume" id="nume">
+					<textarea name="name" id="name">
 					</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>Symptoms</td>
 				<td>
-					<textarea name="simptome" id="simptome">
+					<textarea name="symptoms" id="symptoms">
 					</textarea>
 				</td>
 			</tr>
@@ -96,7 +97,7 @@
 					<input type="reset">
 				</td>
 				<td>
-					<input type="submit" value="Add">
+					<input type="submit" value="Add" onclick="getValue()">
 				</td>
 			</tr>
 		</table>

@@ -1,7 +1,6 @@
 import os
 import sys
 import cgi
-
 import re
 import cgitb
 import json
@@ -42,16 +41,17 @@ jsonObj = json.loads(arguments['json'].value.encode('utf-8'))
 
 # partea de validare dupa
 
-email = jsonObj['email']
-password = jsonObj['password']
+allergy_type = jsonObj['allergy_type']
+name = jsonObj['name']
+symptoms = jsonObj['symptoms']
+prevention = jsonObj['prevention']
+treatment = jsonObj['treatment']
+medication = jsonObj['medication']
+
+print(allergy_type)
+print(name)
 
 import dbManager as db
+# db.insertSuggestion(is_user, allergy_type, name, symptoms,prevention,treatment,medication,0)
 
-if db.checkIfUserExists(email) is not None:
-    if db.checkUserPassword(email)is not None:
-        returnSuccesMessage()
-    else:
-        returnErrorMessage()
-else:
-    print("user invalid")
-
+returnSuccesMessage()

@@ -85,6 +85,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             data = self.login(parametri)
         elif path == "register":
             data = self.register(parametri)
+        elif path == "add_allergy":
+            data = self.add_allergy(parametri)
         else:
             response = 404
 
@@ -128,6 +130,15 @@ class RequestHandler(BaseHTTPRequestHandler):
             response["code"] = 200
             response["message"] = "All is well"
             response["type"] = "Success"
+
+        return response
+
+    def add_allergy(self, parametri):
+        response = {}
+        # db.insertSuggestion(is_user, parametri['allergy_type'],parametri['name'] , parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'],0)
+        response["code"] = 200
+        response["message"] = "All is well"
+        response["type"] = "Success"
 
         return response
 
