@@ -107,6 +107,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 response["message"] = "Login succesfull"
 
                 dataJson["username"] = data[0][1]
+                dataJson["id"] = data[0][0]
 
                 response["data"] = dataJson
             else:
@@ -135,7 +136,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def add_allergy(self, parametri):
         response = {}
-        # db.insertSuggestion(is_user, parametri['allergy_type'],parametri['name'] , parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'],0)
+        db.insertSuggestion(parametri['id'], parametri['allergy_type'],parametri['name'] , parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'], 0)
         response["code"] = 200
         response["message"] = "All is well"
         response["type"] = "Success"

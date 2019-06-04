@@ -43,7 +43,7 @@ DROP TABLE IF EXISTS `suggestions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `suggestions` (
-  `id_suggestion` int(11) NOT NULL,
+  `id_suggestion` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) DEFAULT NULL,
   `category` varchar(45) DEFAULT NULL,
   `name` varchar(45) DEFAULT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `suggestions` (
   PRIMARY KEY (`id_suggestion`),
   KEY `id_user_idx` (`id_user`),
   CONSTRAINT `id_user2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

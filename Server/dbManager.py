@@ -6,7 +6,7 @@ from mysql.connector import (connection)
 
 
 connection = pymysql.connect(host="127.0.0.1",
-                             port=8001,
+                             port=3306,
                              user="beatricedia",
                              password="Mysql112",
                              db="sean_db",
@@ -147,21 +147,18 @@ def formatAllSelectedSuggestions():
         
         return result
 
-def insertSuggestion(id_suggestion,id_user,category,name,symptoms,prevention,treatment,medication,ok):
-        with connection.cursor() as cursor:
-                querystring = "insert into suggestions VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                cursor.execute(querystring, (id_suggestion,id_user,category,name,symptoms,prevention,treatment,medication,ok))
-                connection.commit()
 
 # insertSuggestion("1","2","Weather","Sun","hapciu","medicamente","Nurofren","altceva","0")
 # insertSuggestion("2","2","Weather","NailPolish","mancarimi","paracetamol","aspirina","ceva","0")
 # print(selectAllSuggestions())
 print(formatAllSelectedSuggestions())
 
-def insertSuggestion(id_suggestion,id_user,category,name,symptoms,prevention,treatment,medication,ok):
+
+def insertSuggestion(id_user,category,name,symptoms,prevention,treatment,medication,ok):
         with connection.cursor() as cursor:
-                querystring = "insert into suggestions VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                cursor.execute(querystring, (id_suggestion,id_user,category,name,symptoms,prevention,treatment,medication,ok))
+                querystring = "insert into suggestions (id_user, category, name, symptoms, prevention, " \
+                              "treatment, medication, ok) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
+                cursor.execute(querystring, (id_user,category,name,symptoms,prevention,treatment,medication,ok))
                 connection.commit()
 
 # insertSuggestion("1","2","Weather","Sun","hapciu","medicamente","Nurofren","altceva","0")

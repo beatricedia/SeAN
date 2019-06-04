@@ -1,0 +1,1 @@
+SELECT * FROM sean_db.suggestions;

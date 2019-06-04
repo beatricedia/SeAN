@@ -25,22 +25,21 @@
 			<a class="menu" href="suggestions.html">Sugestions</a>
 		</div>
 
-		<div class="icon-menu">
-			<a class="Login-btn" href="login.html">Logout</a>
-			<form id="search">
-				<input type="text" placeholder="Search...">
-				<button type="submit" value="Submit"><i class="fas fa-search"></i></button>
-			</form>
-		</div>
+        <div class="icon-menu">
+            <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
+            <a id="logoutDiv"   class="Login-btn"  style="display:none" onclick="logout()">Logout</a>
+            <form id="search">
+                <input type="text" placeholder="Search...">
+                <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
 		<a href="javascript:void(0);" class="icon" onclick="menuBars()">
 			<i class="fa fa-bars"></i>
 		</a>
 	</div>
 
 	<!-- add-allergy-form -->
-
-	<form action="/login.html" method="POST">
-		<table class="register_table">
+	<table class="register_table">
 
 			<tr>
 				<td colspan=2 style="font-size: 125%">
@@ -100,10 +99,8 @@
 					<input type="submit" value="Add" onclick="getValue()">
 				</td>
 			</tr>
-		</table>
+	</table>
 
-
-	</form>
 
 
 	<footer>Copyright &copy; Proiect TW</footer>
