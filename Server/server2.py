@@ -52,7 +52,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 data["type"] = "application/json"
                 data["file"] = bytes(json.dumps(db.formatAllSelectedSuggestions()), "utf-8")
 
-            if resursa != "alergii" and "alergie" not in resursa:
+            if resursa != "alergii" and "alergie" not in resursa and resursa != "suggestions":
                 data["file"] = open(resursa, "rb").read()
 
         except Exception as exception:
