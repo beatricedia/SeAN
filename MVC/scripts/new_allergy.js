@@ -36,7 +36,7 @@ function postAllergy(json,callback)
         callback(JSON.parse(xmlhttp.responseText));
     };
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xmlhttp.send(JSON.stringify(json))
+    xmlhttp.send(JSON.stringify(json));
 }
 
 

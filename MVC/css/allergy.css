@@ -34,6 +34,7 @@
     color: #b32d00;
     text-align: center;
     padding: 15px 16px;
+    text-decoration: none;
 }
 #reports a:hover{
     color:#35424a;
