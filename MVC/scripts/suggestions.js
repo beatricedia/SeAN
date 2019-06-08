@@ -58,7 +58,7 @@ function getSuggestionDetails() {
                     var allergy_title = document.createElement("h2");
                     allergy_title.classList.add('allergy-title');
                     allergy_title.innerHTML = value[3] + " Allergy ";
-                    if(JSON.parse(getCookie("seanData")).id == 0)
+                    if(JSON.parse(getCookie("seanData")).id == 1)
                         allergy_title.innerHTML += "<div onclick='validate("+value[0]+")' style='cursor: pointer'>&#10004;</div>"
 
                     var symptoms_title = document.createElement("h3");
