@@ -62,7 +62,7 @@ function getValue(){
     json.allergy_type = allergy_type;
     json.name = name;
     var globalData = JSON.parse(getCookie("seanData"));
-    json.id = '19';
+    json.id = globalData['id'];
     json.symptoms = symptoms;
     json.prevention = prevention;
     json.treatment = treatment;

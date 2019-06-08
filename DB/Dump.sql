@@ -31,6 +31,10 @@ CREATE TABLE `allergies` (
   `prevention` varchar(500) DEFAULT NULL,
   `treatment` varchar(500) DEFAULT NULL,
   `medication` varchar(500) DEFAULT NULL,
+  `years` varchar(500) DEFAULT NULL,
+  `people` varchar(500) DEFAULT NULL,
+  `age` varchar(500) DEFAULT NULL,
+  `percent` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -39,22 +43,22 @@ CREATE TABLE `allergies` (
 -- Table structure for table `suggestions`
 --
 
-DROP TABLE IF EXISTS `suggestions`;
+DROP TABLE IF EXISTS suggestions;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `suggestions` (
-  `id_suggestion` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) DEFAULT NULL,
-  `category` varchar(45) DEFAULT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `symptoms` varchar(500) DEFAULT NULL,
-  `prevention` varchar(500) DEFAULT NULL,
-  `treatment` varchar(500) DEFAULT NULL,
-  `medication` varchar(500) DEFAULT NULL,
-  `ok` int(10) unsigned zerofill DEFAULT NULL,
-  PRIMARY KEY (`id_suggestion`),
-  KEY `id_user_idx` (`id_user`),
-  CONSTRAINT `id_user2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+CREATE TABLE suggestions (
+  id_suggestion int(11) NOT NULL AUTO_INCREMENT,
+  id_user int(11) DEFAULT NULL,
+  category varchar(45) DEFAULT NULL,
+  name varchar(45) DEFAULT NULL,
+  symptoms varchar(500) DEFAULT NULL,
+  prevention varchar(500) DEFAULT NULL,
+  treatment varchar(500) DEFAULT NULL,
+  medication varchar(500) DEFAULT NULL,
+  ok int(10) unsigned zerofill DEFAULT NULL,
+  PRIMARY KEY (id_suggestion),
+  KEY id_user_idx (id_user),
+  CONSTRAINT id_user2 FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
