@@ -6,7 +6,7 @@ from mysql.connector import (connection)
 
 
 connection = pymysql.connect(host="127.0.0.1",
-                             port=8001,
+                             port=3306,
                              user="beatricedia",
                              password="Mysql112",
                              db="sean_db",
@@ -91,7 +91,7 @@ def insertAllergy(id, name, category, description, symptoms, prevention, treatme
 # "Immunotherapy gives you gradually increasing doses of the allergen until your body can handle it. The treatment can relieve your symptoms for a longer time than other types of allergy medications. ",
 # "Antihistamines, Nasal spray, Eye drops, Nasal irrigation","2010,2012,2015,2016,2017,2018,2019","150,143,148,151,157,160,173","0-3,4-7,8-15,16-20,21-30,31-70","2,15,23,27,17,25")
 # print(selectAllAllergies())
-
+#
 
 def deleteAllergy(id):
     with connection.cursor() as cursor:

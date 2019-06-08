@@ -71,7 +71,7 @@ function getValue(){
     postAllergy(json, function(response){
         console.log(response)
         alert("Succesfully added!");
-        window.location.replace("index.html");
+        window.location.replace("suggestions.html");
     });
 
 
