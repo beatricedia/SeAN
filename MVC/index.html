@@ -13,6 +13,7 @@
     <script src="../scripts/ajaxCalls.js" defer></script>
     <script src="../scripts/index.js" defer></script>
     <script src="../scripts/notification.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 </head>
 
 <body onload="getAllergiess()">
@@ -44,15 +45,16 @@
     <div class="nav" id="myTopnav">
         <div>
             <a class="menu" href="index.html">News</a>
-            <a id="addAllergyDiv"  style="display:none" class="menu" href="new_allergy.html"><i class="fa fa-plus-circle"></i> Add allergy</a>
+            <a id="addAllergyDiv" style="display:none" class="menu" href="new_allergy.html"><i
+                    class="fa fa-plus-circle"></i> Add allergy</a>
             <a class="menu" href="suggestions.html">Sugestions</a>
         </div>
 
         <div class="icon-menu">
             <a id="registerDiv" class="Login-btn" href="register.html">Register</a>
-            <a id="loginDiv"    class="Login-btn" href="login.html">Login</a>
+            <a id="loginDiv" class="Login-btn" href="login.html">Login</a>
             <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
-            <a id="logoutDiv"   class="Login-btn"  style="display:none" onclick="logout()">Logout</a>
+            <a id="logoutDiv" class="Login-btn" style="display:none" onclick="logout()">Logout</a>
             <form id="search">
                 <input type="text" placeholder="Search...">
                 <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
@@ -95,8 +97,18 @@
 
     <!-- news -->
     <div class="container">
-        <h2><span id="container" class="highlight">News</span> about allergies</h2>
+        <h2><span id="container" class="highlight">News</span> about allergies
+            <span id="statistics">
+                Statistics:
+                <span class="reports" id="pdf"><a>PDF</a></span>
+                <span class="reports" id ="html"><a>HTML</a></span>
+            </span>
+
+
+        </h2>
+
     </div>
+
     <section id="news" class="w80p">
 
         <!-- <div class="box">
