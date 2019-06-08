@@ -85,6 +85,10 @@ function getAllergyDetails() {
             alergy_question.id = "title-description";
             alergy_question.innerHTML = "What is " + selectedAllergy[1] + " Allergy ?";
 
+            var statistics = document.createElement("a");
+            statistics.id = "statistics";
+            statistics.innerHTML = "Statistics: "
+
             var html_report_option = document.createElement("a");
             html_report_option.innerHTML = "HTML";
         
@@ -93,8 +97,10 @@ function getAllergyDetails() {
 
             var allergy_reports = document.createElement("div");
             allergy_reports.id = "reports";
+            
             allergy_reports.appendChild(html_report_option);
             allergy_reports.appendChild(pdf_report_option);
+            statistics.appendChild(allergy_reports);
 
             function download(filename, text) {
                 var element = document.createElement('a');
@@ -286,7 +292,7 @@ function getAllergyDetails() {
 
             container.appendChild(allergy_title);
             container.appendChild(alergy_question);
-            container.appendChild(allergy_reports);
+            container.appendChild(statistics);
             container.appendChild(description);
             container.appendChild(symptoms_title);
             container.appendChild(symptoms_box);
