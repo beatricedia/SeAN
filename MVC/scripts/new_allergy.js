@@ -44,11 +44,11 @@ function getValue(){
     var allergy_type = document.getElementById("optionType").value;
    
 
-    var name = document.getElementById("name").value;
-    var symptoms = document.getElementById("symptoms").value;
-    var prevention = document.getElementById("prevention").value;
-    var treatment = document.getElementById("treatment").value;
-    var medication = document.getElementById("medication").value;
+    var name = document.getElementById("name").value.replace(/^\s*|\s*$/g,'');
+    var symptoms = document.getElementById("symptoms").value.replace(/^\s*|\s*$/g,'');
+    var prevention = document.getElementById("prevention").value.replace(/^\s*|\s*$/g,'');
+    var treatment = document.getElementById("treatment").value.replace(/^\s*|\s*$/g,'');
+    var medication = document.getElementById("medication").value.replace(/^\s*|\s*$/g,'');
 
     console.log(allergy_type);
     console.log(name);
@@ -71,7 +71,7 @@ function getValue(){
     postAllergy(json, function(response){
         console.log(response)
         alert("Succesfully added!");
-        window.location.replace("suggestions.html");
+        window.location.replace("index.html");
     });
 
 
