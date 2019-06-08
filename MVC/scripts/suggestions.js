@@ -1,63 +1,65 @@
-function setCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
+function validate(id){
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.open("POST", "/validate");
+       xmlhttp.onreadystatechange = function() {
+       if(this.readyState == 4)
+        window.location.replace("index.html");
+    };
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send(JSON.stringify({id:id}))
 }
 
-
-
-if(getCookie("seanData")){
-    var globalData = JSON.parse(getCookie("seanData"))
-    console.log(globalData)
-    if(globalData){
-        document.getElementById("logoutDiv").style.display="block"
-        document.getElementById("usernameDiv").innerHTML = globalData.username
-        document.getElementById("usernameDiv").style.display = "block"
-        document.getElementById("addAllergyDiv").style.display="block"
-        document.getElementById("registerDiv").style.display="none"
-        document.getElementById("loginDiv").style.display="none"
+function searchSuggestions(){
+    var searchPattern = document.getElementById("searchInput").value
+    if(searchPattern == "Search...")
+        return
+    var ok = true;
+    var contor = 1;
+    while(ok){
+        element = document.getElementById(""+contor)
+        if(!element){
+            ok = false
+            break
+        }
+        htmeleu = (element.innerText || element.textContent).replace("Allergy","").replace("Symptoms","").replace("Prevention","")
+        if(htmeleu.indexOf(searchPattern) == -1)
+            element.style.display = 'none'
+         else{
+            element.style.display = 'block'
+         }
+        contor++
     }
 }
-
 
 function getSuggestionDetails() {
-    console.log("intra in functie")
+    //console.log("intra in functie")
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "/suggestions");
     xmlhttp.onreadystatechange = function () {
-        console.log("intra in aici")
+        //console.log("intra in aici")
         if (this.readyState === 4) {
-            console.log("intra in if")
+            //console.log("intra in if")
             let responseJson = JSON.parse(this.response);
-            console.log(responseJson);
+            //console.log(responseJson);
             for (const [key, value] of Object.entries(responseJson)) {
-                console.log(responseJson);
+                //console.log(responseJson);
                 var section = document.createElement("div");
                 section.className = 'timeline'
+
 
                 if (key % 2 != 0) {
 
                     var container_left = document.createElement("div");
                     container_left.classList.add('containers');
                     container_left.classList.add('left');
+                    container_left.id = String(key)
 
                     var allergy_title = document.createElement("h2");
                     allergy_title.classList.add('allergy-title');
-                    allergy_title.innerHTML = value[3] + " Allergy";
+                    allergy_title.innerHTML = value[3] + " Allergy ";
+                    if(JSON.parse(getCookie("seanData")).id == 0)
+                        allergy_title.innerHTML += "<div onclick='validate("+value[0]+")' style='cursor: pointer'>&#10004;</div>"
 
                     var symptoms_title = document.createElement("h3");
                     symptoms_title.innerHTML = "Symptoms";
@@ -89,11 +91,14 @@ function getSuggestionDetails() {
                     var container_right = document.createElement("div");
                     container_right.classList.add('containers');
                     container_right.classList.add('right');
+                    container_right.id = String(key)
 
 
                     var allergy_title = document.createElement("h2");
                     allergy_title.classList.add('allergy-title');
                     allergy_title.innerHTML = value[3] + " Allergy";
+                    if(JSON.parse(getCookie("seanData")).id == 0)
+                        allergy_title.innerHTML += "<div onclick='validate("+value[0]+")' style='cursor: pointer'>&#10004;</div>"
 
                     var symptoms_title = document.createElement("h3");
                     symptoms_title.innerHTML = "Symptoms";
@@ -127,7 +132,3 @@ function getSuggestionDetails() {
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send();
 }
-
-// function showSuggestionDetails() {
-//     getSuggestionDetails("../cgi-bin/getSuggestions.py");
-// }

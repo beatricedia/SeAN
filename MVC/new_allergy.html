@@ -17,26 +17,28 @@
 
 <body>
 
-	<!-- navbar -->
-	<div class="nav" id="myTopnav">
-		<div>
-			<a class="menu" href="index.html">News</a>
-			<a class="menu" href="new_allergy.html"><i class="fa fa-plus-circle"></i> Add allergy</a>
-			<a class="menu" href="suggestions.html">Sugestions</a>
-		</div>
+<!-- navbar -->
+    <div class="nav" id="myTopnav">
+        <div>
+            <a class="menu" href="index.html">News</a>
+            <a id="addAllergyDiv" style="display:none" class="menu" href="new_allergy.html"><i
+                    class="fa fa-plus-circle"></i> Add allergy</a>
+            <a class="menu" href="suggestions.html">Sugestions</a>
+        </div>
 
         <div class="icon-menu">
+            <a id="registerDiv" class="Login-btn" href="register.html">Register</a>
+            <a id="loginDiv" class="Login-btn" href="login.html">Login</a>
             <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
-            <a id="logoutDiv"   class="Login-btn"  style="display:none" onclick="logout()">Logout</a>
+            <a id="logoutDiv" class="Login-btn" style="display:none" onclick="logout()">Logout</a>
             <form id="search">
-                <input type="text" placeholder="Search...">
-                <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
+                <input id="searchInput" type="text" placeholder="Search..." oninput="search()">
             </form>
         </div>
-		<a href="javascript:void(0);" class="icon" onclick="menuBars()">
-			<i class="fa fa-bars"></i>
-		</a>
-	</div>
+        <a href="javascript:void(0);" class="icon" onclick="menuBars()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
 
 	<!-- add-allergy-form -->
 	<table class="register_table">
@@ -60,6 +62,12 @@
 				<td>Name</td>
 				<td>
 					<textarea name="name" id="name">
+					</textarea>
+				</td>
+			</tr>	<tr>
+				<td>Description</td>
+				<td>
+					<textarea name="description" id="description">
 					</textarea>
 				</td>
 			</tr>
@@ -91,6 +99,8 @@
 					</textarea>
 				</td>
 			</tr>
+					<tr>
+
 			<tr>
 				<td>
 					<input type="reset">

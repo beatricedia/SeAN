@@ -1,34 +1,7 @@
-function setCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-if(getCookie("seanData")){
-     var globalData = JSON.parse(getCookie("seanData"))
-     console.log(globalData)
-     if(globalData){
-         document.getElementById("usernameDiv").innerHTML = globalData.username
-     }
- }
-
 function postAllergy(json,callback)
 {
      var xmlhttp = new XMLHttpRequest();
+
 
     xmlhttp.open("POST", "/add_allergy");
        xmlhttp.onreadystatechange = function() {
@@ -45,12 +18,14 @@ function getValue(){
    
 
     var name = document.getElementById("name").value.replace(/^\s*|\s*$/g,'');
+    var description = document.getElementById("description").value.replace(/^\s*|\s*$/g,'');
     var symptoms = document.getElementById("symptoms").value.replace(/^\s*|\s*$/g,'');
     var prevention = document.getElementById("prevention").value.replace(/^\s*|\s*$/g,'');
     var treatment = document.getElementById("treatment").value.replace(/^\s*|\s*$/g,'');
     var medication = document.getElementById("medication").value.replace(/^\s*|\s*$/g,'');
 
     console.log(allergy_type);
+    console.log(description);
     console.log(name);
     console.log(symptoms);
     console.log(prevention);
@@ -61,6 +36,7 @@ function getValue(){
 
     json.allergy_type = allergy_type;
     json.name = name;
+    json.description = description;
     var globalData = JSON.parse(getCookie("seanData"));
     json.id = globalData['id'];
     json.symptoms = symptoms;
@@ -71,7 +47,7 @@ function getValue(){
     postAllergy(json, function(response){
         console.log(response)
         alert("Succesfully added!");
-        window.location.replace("index.html");
+        window.location.replace("suggestions.html");
     });
 
 

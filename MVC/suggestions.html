@@ -11,8 +11,15 @@
   <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="../css/suggestions.css" />
   <script src="../scripts/index.js" defer></script>
+    <script src="../scripts/ajaxCalls.js" defer></script>
   <script src="../scripts/suggestions.js" defer></script>
 </head>
+
+<style>
+    .okey{
+        display: none
+    }
+</style>
 
 <body onload="getSuggestionDetails()">
 
@@ -30,8 +37,7 @@
             <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
             <a id="logoutDiv"   class="Login-btn"  style="display:none" onclick="logout()">Logout</a>
             <form id="search">
-                <input type="text" placeholder="Search...">
-                <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
+                <input id="searchInput" type="text" placeholder="Search..." oninput="searchSuggestions()">
             </form>
         </div>
     <a href="javascript:void(0);" class="icon" onclick="menuBars()">
