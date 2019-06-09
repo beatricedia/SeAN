@@ -271,3 +271,26 @@ def selectAllFromUser(email):
             return rs
         else:
             return 0
+
+def selectAllergiesForUsers():
+    with connection.cursor() as cursor:
+        querystring = "select * from allergies where validation=1 "
+        cursor.execute(querystring)
+        result = cursor.fetchall()
+        return result
+
+
+def formatAllergiesForUSers():
+        result = {}
+        i = 0
+        for allergy in selectAllergiesForUsers():
+                i+=1
+                result[i] =  list(allergy)
+        return result
+
+def nrOfAllergies():
+        with connection.cursor() as cursor:
+                querystring = "select count(id) from allergies where validation=1"
+                cursor.execute(querystring)
+                result = cursor.fetchone()
+                return result[0]

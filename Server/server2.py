@@ -48,11 +48,14 @@ class RequestHandler(BaseHTTPRequestHandler):
                 pagina_creata = open("allergy.html", "r").read()
                 pagina_creata = pagina_creata.replace("<!--replace me senpai-->",self.genSetCookieCode(resursa.replace("alergie","")))
                 data["file"] = bytes(pagina_creata, "utf-8")
+            elif resursa == "user_allergies":
+                data["type"] = "application/json"
+                data["file"] = bytes(json.dumps(db.formatAllergiesForUSers()), "utf-8")
             elif resursa == "suggestions":
                 data["type"] = "application/json"
                 data["file"] = bytes(json.dumps(db.formatAllSelectedSuggestions()), "utf-8")
 
-            if resursa != "alergii" and "alergie" not in resursa and resursa != "suggestions":
+            if resursa != "alergii" and "alergie" not in resursa and resursa != "suggestions" and resursa != "user_allergies":
                 data["file"] = open(resursa, "rb").read()
 
         except Exception as exception:
@@ -87,6 +90,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             data = self.register(parametri)
         elif path == "add_allergy":
             data = self.add_allergy(parametri)
+        elif path == "add_user_allergies":
+            data = self.add_user_allergies(parametri)
         elif path == "validate":
             data = self.validate(parametri)
         else:
@@ -154,6 +159,15 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         return response
 
+    def add_user_allergies(self, parametri):
+        response = {}
+        for i in range(0,parametri['countAllergies']):
+            db.insertUserAllergy(parametri['id'],parametri['allergiesId'][i])
+        response["code"] = 200
+        response["message"] = "All is well"
+        response["type"] = "Success"
+
+        return response
 
 os.chdir(os.path.join(os.path.dirname(__file__),'..','MVC',))
 server = ServerConcurent(('localhost',4034), RequestHandler)
