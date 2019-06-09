@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allergy</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/user_allergies.css" />
+    <script src="../scripts/ajaxCalls.js"></script>
+<!--replace me senpai-->
+    <script src="../scripts/index.js" defer></script>
+    <!-- <script src="../scripts/share.js" defer></script> -->
+    <script src="../scripts/user_allergies.js" defer></script>
+
+
+
+</head>
+
+<body onload="getAllergyNames()">
+
+
+    <!-- navbar -->
+<div class="nav" id="myTopnav">
+        <div>
+            <a class="menu" href="index.html">News</a>
+            <a id="addAllergyDiv"  style="display:none" class="menu" href="new_allergy.html"><i class="fa fa-plus-circle"></i> Add allergy</a>
+            <a class="menu" href="suggestions.html">Sugestions</a>
+        </div>
+
+        <div class="icon-menu">
+            <a id="registerDiv" class="Login-btn" href="register.html">Register</a>
+            <a id="loginDiv"    class="Login-btn" href="login.html">Login</a>
+            <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
+            <a id="logoutDiv"   class="Login-btn"  style="display:none" onclick="logout()">Logout</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="menuBars()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    
+    <h2 class = "page_title">Check what allergies you have</h2>
+   
+    <input type="submit" value="Submit allergies" onclick="getAllergyValue()" />
+
+    <footer>Copyright &copy; Proiect TW</footer>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+.user_container{
+    font-size:25px;
+    color: red;
+    /* text-align: center; */
+    /* margin-top: 20px; */
+    margin-left: 40%;
+    text-decoration: none;
+}
+
+.page_title{
+    font-size:30px;
+    color: black;
+    text-align: center; 
+}
+
+.corpus{
+    margin-bottom: 50px;
+    /* padding: 10px; */
+}
