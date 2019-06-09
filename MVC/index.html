@@ -56,8 +56,7 @@
             <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
             <a id="logoutDiv" class="Login-btn" style="display:none" onclick="logout()">Logout</a>
             <form id="search">
-                <input type="text" placeholder="Search...">
-                <button type="submit" value="Submit"><i class="fas fa-search"></i></button>
+                <input id="searchInput" type="text" placeholder="Search..." oninput="search()">
             </form>
         </div>
         <a href="javascript:void(0);" class="icon" onclick="menuBars()">

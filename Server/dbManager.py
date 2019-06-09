@@ -6,7 +6,7 @@ from mysql.connector import (connection)
 
 
 connection = pymysql.connect(host="127.0.0.1",
-                             port=8001,
+                             port=3306,
                              user="beatricedia",
                              password="Mysql112",
                              db="sean_db",
@@ -15,7 +15,7 @@ connection = pymysql.connect(host="127.0.0.1",
 
 def selectAllAllergies():
     with connection.cursor() as cursor:
-        querystring = "select * from allergies  order by id desc"
+        querystring = "select * from allergies where validation=1 order by id desc "
         cursor.execute(querystring)
         result = cursor.fetchall()
         return result
@@ -29,6 +29,7 @@ def formatAllSelectedAllergies():
                 # result[allergy.__getitem__(0)] = list(allergy)
                 i+=1
                 result[i] =  list(allergy)
+
         
         return result
 
@@ -93,6 +94,12 @@ def insertAllergy(id, name, category, description, symptoms, prevention, treatme
 # print(selectAllAllergies())
 
 
+def validate(id):
+    with connection.cursor() as cursor:
+        querystring = "UPDATE allergies SET validation=1 WHERE id= %s"
+        cursor.execute(querystring, str(id))
+        connection.commit()
+
 def deleteAllergy(id):
     with connection.cursor() as cursor:
         querystring = "delete from allergies WHERE id = %s"
@@ -111,11 +118,11 @@ def selectAllUsers():
         return result
 
 
-def insertUser(username,password,email):
+def insertUser(username,password,email, sex):
         with connection.cursor() as cursor:
                 random = 1
-                querystring = "insert into users(username, password, email) VALUES(%s,%s,%s)"
-                cursor.execute(querystring, (username,password,email))
+                querystring = "insert into users(username, password, email, sex) VALUES(%s,%s,%s,%s)"
+                cursor.execute(querystring, (username,password,email, sex))
                 connection.commit()
 
 # insertUser("1","ioneel","ceva","ionfrumosu@gmail.com")
@@ -133,7 +140,7 @@ def deleteUser(id):
 
 def selectAllSuggestions():
     with connection.cursor() as cursor:
-        querystring = "select * from suggestions"
+        querystring = "select * from allergies where validation<>1"
         cursor.execute(querystring)
         result = cursor.fetchall()
         return result
@@ -154,11 +161,11 @@ def formatAllSelectedSuggestions():
 # print(formatAllSelectedSuggestions())
 
 
-def insertSuggestion(id_user,category,name,symptoms,prevention,treatment,medication,ok):
+def insertSuggestion(name, category, description, symptoms, prevention, treatment, medication, id_user):
         with connection.cursor() as cursor:
-                querystring = "insert into suggestions (id_user, category, name, symptoms, prevention, " \
-                              "treatment, medication, ok) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
-                cursor.execute(querystring, (id_user,category,name,symptoms,prevention,treatment,medication,ok))
+                querystring = "insert into allergies (name, category, description, symptoms, prevention, " \
+                              "treatment, medication,user_id, validation) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                cursor.execute(querystring, (name, category, description, symptoms, prevention, treatment, medication, id_user, 0))
                 connection.commit()
 
 # insertSuggestion("1","2","Weather","Sun","hapciu","medicamente","Nurofren","altceva","0")

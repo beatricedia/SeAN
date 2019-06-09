@@ -22,7 +22,7 @@ function getLoginData(){
     json = {};
 
     json.email = emailValue;
-    json.password = passwordValue;
+    json.password = hashfunction(passwordValue);
     postLogin(json,function(response){
         if(response.type=="Error")
             alert(response.message)

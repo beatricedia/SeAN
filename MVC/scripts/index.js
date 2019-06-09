@@ -1,3 +1,26 @@
+function search(){
+    var searchPattern = document.getElementById("searchInput").value
+    if(searchPattern == "Search..." || searchPattern == "")
+        return
+    var ok = true;
+    var contor = 1;
+    while(ok){
+        element = document.getElementById(""+contor)
+        if(!element){
+            ok = false
+            break
+        }
+        htmeleu = (element.innerText || element.textContent).replace("Allergy","").replace("Symptoms","").replace("Prevention","")
+        if(htmeleu.indexOf(searchPattern) == -1)
+            element.style.display = 'none'
+         else{
+            element.style.display = 'block'
+         }
+
+        contor++
+    }
+}
+
 function setCookie(name,value,days) {
     var expires = "";
     if (days) {

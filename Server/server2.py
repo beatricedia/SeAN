@@ -87,6 +87,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             data = self.register(parametri)
         elif path == "add_allergy":
             data = self.add_allergy(parametri)
+        elif path == "validate":
+            data = self.validate(parametri)
         else:
             response = 404
 
@@ -94,6 +96,15 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'application/json')
         self.end_headers()
         self.wfile.write(bytes(json.dumps(data), "UTF-8"))
+
+    def validate(self, parametri):
+        db.validate(parametri["id"])
+        response = {}
+        response["code"] = 200
+        response["type"] = "Success"
+        response["message"] = "Validation succesfull"
+        return response
+
 
     def login(self, parametri):
         response = {}
@@ -127,7 +138,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             response["message"] = "Email already in use"
             response["type"] = "Error"
         else:
-            db.insertUser(parametri["username"], parametri["password"], parametri["email"])
+            db.insertUser(parametri["username"], parametri["password"], parametri["email"], parametri["sex"])
             response["code"] = 200
             response["message"] = "All is well"
             response["type"] = "Success"
@@ -136,7 +147,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def add_allergy(self, parametri):
         response = {}
-        db.insertSuggestion(parametri['id'], parametri['allergy_type'],parametri['name'] , parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'], 0)
+        db.insertSuggestion(parametri['name'], parametri['allergy_type'], parametri['description'], parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'], parametri['id'])
         response["code"] = 200
         response["message"] = "All is well"
         response["type"] = "Success"

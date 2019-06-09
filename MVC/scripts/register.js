@@ -1,5 +1,10 @@
 var expanded1 = false;
 
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 function showCheckboxes1() {
     var checkboxes1 = document.getElementById("checkboxes1");
     if (!expanded1) {
@@ -56,7 +61,36 @@ function getValue(){
     var passwordValue = document.getElementById("password").value;
     var repeatpassword = document.getElementById("password2").value;
     var emailValue = document.getElementById("email").value;
+    var sexValue = document.getElementById("sex").value;
 
+    var catAlergii = [];
+
+
+
+
+    if(usernameValue.length<4)
+    {
+        alert("Username de lungime prea mica");
+        return
+    }
+
+    if(passwordValue.length<6)
+    {
+        alert("Parola de lungimea prea mica");
+        return
+    }
+
+    if(passwordValue != repeatpassword)
+    {
+        alert("Parolele nu coincid");
+        return
+    }
+
+    if(!validateEmail(emailValue))
+    {
+        alert("Email invalid");
+        return
+    }
 
     var weatherList = []
     var checks1 = document.getElementsByClassName('checks1');
@@ -95,9 +129,9 @@ function getValue(){
     json = {};
 
     json.username = usernameValue;
-    json.password = passwordValue;
-    json.repeatpassword = repeatpassword;
+    json.password = hashfunction(passwordValue);
     json.email = emailValue;
+    json.sex = sexValue;
 
     // for(i=0; i<weatherList.length-1;i++){
     //     json.weatherAllergy[i] = weatherList[i];

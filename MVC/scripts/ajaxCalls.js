@@ -49,10 +49,10 @@ function getAllergiess() {
 
                 var box = document.createElement("div");
                 box.classList.add('box');
+                box.id = String(key)
 
                 var title = document.createElement("a");
                 title.innerHTML = value[1];
-                title.id = String(key);
                 title.onclick = function () { setCookie('selectedAllergy', key, 1); }
                 title.href = 'allergy.html';
                 // http://127.0.0.1:39777/index.html#allergy?1
@@ -67,6 +67,7 @@ function getAllergiess() {
                     section.appendChild(box);
 
                 var allergy_name = value[1];
+                try{
                 table += '<h2 style="color: #992600;">Statistics of people who have ' + allergy_name + ' allergy per year</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
                 table += '<tbody>';
                 var years = value[8].split(",");
@@ -138,6 +139,7 @@ function getAllergiess() {
                 }
                 table += '</tbody>';
                 table += '</table><br><br>';
+                }catch(e){statistics.style.display="none"}
             }
 
 
@@ -248,6 +250,8 @@ function getAllergyDetails() {
 
                 document.body.removeChild(element);
             }
+
+            try{
 
             var allergy_name = selectedAllergy[1];
             let table = '<h2>Statistics of people who have ' + allergy_name + ' allergy per year</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
@@ -366,6 +370,8 @@ function getAllergyDetails() {
                         pdf.save('report  .pdf');
                     }, margins);
             }
+
+            }catch(e){statistics.style.display="none"}
 
 
             //Symptoms
