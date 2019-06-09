@@ -51,6 +51,7 @@ if(getCookie("seanData")){
         document.getElementById("addAllergyDiv").style.display="block"
         document.getElementById("registerDiv").style.display="none"
         document.getElementById("loginDiv").style.display="none"
+        document.getElementById("profileDiv").style.display="block"
     }
 }
 

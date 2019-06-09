@@ -6,7 +6,7 @@ from mysql.connector import (connection)
 
 
 connection = pymysql.connect(host="127.0.0.1",
-                             port=8001,
+                             port=3306,
                              user="beatricedia",
                              password="Mysql112",
                              db="sean_db",
