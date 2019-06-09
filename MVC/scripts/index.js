@@ -71,7 +71,7 @@ if(getCookie("seanData")){
 
   function logout(){
     setCookie("seanData", undefined, 1)
-    window.location.replace("/login.html")
+    window.location.replace("/")
   }
 
   function showSlides(n) {

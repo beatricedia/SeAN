@@ -323,3 +323,28 @@ def insertFeedback(parametri):
         querystring = "insert into feedback(id_user, name, email, rating, message) VALUES(%s,%s,%s,%s,%s)"
         cursor.execute(querystring, (parametri["id_user"], parametri["name"], parametri["email"], parametri["rating"], parametri["message"]))
         connection.commit()
+
+
+def insertComment(parametri):
+    with connection.cursor() as cursor:
+        querystring = "insert into comments(username, allergy_name, comment) VALUES(%s,%s,%s)"
+        cursor.execute(querystring, (parametri["username"], parametri["allergy_name"], parametri["comment"]))
+        connection.commit()
+
+
+def selectComments(allergy_name):
+    with connection.cursor() as cursor:
+        querystring = "select username, comment from comments where allergy_name=%s "
+        cursor.execute(querystring, allergy_name)
+        result = cursor.fetchall()
+        return result
+
+
+def formatComments(allergy_name):
+        result = {}
+        i = 0
+        for comment in selectComments(allergy_name):
+            i += 1
+            result[i] = list(comment)
+        return result
+

@@ -194,15 +194,16 @@ function getAllergyDetails() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "/alergii");
     xmlhttp.onreadystatechange = function () {
+
         if (this.readyState === 4) {
             let responseJson = JSON.parse(this.response);
             selectedAllergy = responseJson[getCookie("selectedAllergy")];
 
-            var section = document.createElement("section");
-            section.id = 'info';
+            //var section = document.createElement("section");
+            //section.id = 'info';
 
-            var container = document.createElement("div");
-            container.classList.add('container');
+           // var container = document.createElement("div");
+           // container.classList.add('container');
 
             var allergy_title = document.createElement("h1");
             allergy_title.id = "allergy-title";
@@ -429,25 +430,26 @@ function getAllergyDetails() {
 
             var Pspatii = document.createElement("div");
             Pspatii.innerHTML = "&#10&#10&#10&#10&#10&#10&#10&#10&#10&#10"
+            document.getElementById("container").appendChild(allergy_title)
+            document.getElementById("container").appendChild(allergy_title);
+            document.getElementById("container").appendChild(alergy_question);
+            document.getElementById("container").appendChild(statistics);
+            document.getElementById("container").appendChild(description);
+            document.getElementById("container").appendChild(symptoms_title);
+            document.getElementById("container").appendChild(symptoms_box);
+            document.getElementById("container").appendChild(prevention_title);
+            document.getElementById("container").appendChild(prevention_box);
+            document.getElementById("container").appendChild(treatment_title);
+            document.getElementById("container").appendChild(treatment_box);
+            document.getElementById("container").appendChild(medication_title);
+            document.getElementById("container").appendChild(medication_box);
+            document.getElementById("container").appendChild(share);
 
-            container.appendChild(allergy_title);
-            container.appendChild(alergy_question);
-            container.appendChild(statistics);
-            container.appendChild(description);
-            container.appendChild(symptoms_title);
-            container.appendChild(symptoms_box);
-            container.appendChild(prevention_title);
-            container.appendChild(prevention_box);
-            container.appendChild(treatment_title);
-            container.appendChild(treatment_box);
-            container.appendChild(medication_title);
-            container.appendChild(medication_box);
-            container.appendChild(share);
+            //section.appendChild(container);
+            //document.getElementById("info").appendChild(container);
+           // document.body.appendChild(section);
 
-            section.appendChild(container);
-            document.body.appendChild(section);
-
-
+        getCommentsDetails()
         }
     };
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

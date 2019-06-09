@@ -54,8 +54,14 @@ class RequestHandler(BaseHTTPRequestHandler):
             elif resursa == "suggestions":
                 data["type"] = "application/json"
                 data["file"] = bytes(json.dumps(db.formatAllSelectedSuggestions()), "utf-8")
+            elif "comments" in resursa:
+                arg = resursa.replace("comments", "")
+                print("Sa vedem", arg)
+                data["type"] = "application/json"
+                data["file"] = bytes(json.dumps(db.formatComments(arg)), "utf-8")
 
-            if resursa != "alergii" and "alergie" not in resursa and resursa != "suggestions" and resursa != "user_allergies":
+            if resursa != "alergii" and "alergie" not in resursa and resursa != "suggestions" \
+                    and resursa != "user_allergies" and "comments" not in resursa:
                 data["file"] = open(resursa, "rb").read()
 
         except Exception as exception:
@@ -96,6 +102,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             data = self.validate(parametri)
         elif path == "feedback":
             data = self.feedback(parametri)
+        elif path == "add_comment":
+            data = self.comment(parametri)
         else:
             response = 404
 
@@ -175,6 +183,15 @@ class RequestHandler(BaseHTTPRequestHandler):
     def feedback(self, parametri):
         response = {}
         db.insertFeedback(parametri)
+        response["code"] = 200
+        response["message"] = "All is well"
+        response["type"] = "Success"
+
+        return response
+
+    def comment(self, parametri):
+        response = {}
+        db.insertComment(parametri)
         response["code"] = 200
         response["message"] = "All is well"
         response["type"] = "Success"
