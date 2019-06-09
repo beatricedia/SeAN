@@ -198,6 +198,12 @@ def insertUserAllergy(id_user,id_allergy):
 # insertUserAllergy("1","2")
 # print(selectAllUserAllergy())
 
+def seletUserAllergies(id_user):
+          with connection.cursor() as cursor:
+                querystring = "delete from user_allergy WHERE id_user = %s"
+                cursor.execute(querystring, str(id_user))
+                connection.commit()
+
 
 def selectSpecificAllergy(id):
          with connection.cursor() as cursor:
