@@ -100,9 +100,17 @@ def validate(id):
         cursor.execute(querystring, str(id))
         connection.commit()
 
+
 def deleteAllergy(id):
     with connection.cursor() as cursor:
         querystring = "delete from allergies WHERE id = %s"
+        cursor.execute(querystring, str(id))
+        connection.commit()
+
+
+def deleteUserAllergies(id):
+    with connection.cursor() as cursor:
+        querystring = "delete from user_allergy WHERE id_user = %s"
         cursor.execute(querystring, str(id))
         connection.commit()
 

@@ -102,7 +102,7 @@ function getAllergyValue() {
   console.log(json)
   postUserAllergies(json, function (response) {
     console.log(response)
-    alert("Your allergies wore uccesfully added!");
+    alert("Your allergies were succesfully added!");
     window.location.replace("index.html");
   });
 

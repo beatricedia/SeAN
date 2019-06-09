@@ -161,6 +161,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def add_user_allergies(self, parametri):
         response = {}
+        db.deleteUserAllergies(parametri['id'])
         for i in range(0,parametri['countAllergies']):
             db.insertUserAllergy(parametri['id'],parametri['allergiesId'][i])
         response["code"] = 200
