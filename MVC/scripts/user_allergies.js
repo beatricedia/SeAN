@@ -82,7 +82,7 @@ function postUserAllergies(json, callback) {
 
 function getAllergyValue() {
   console.log("intrs in functie");
-  var length = 13;
+
   json = {};
   var globalData = JSON.parse(getCookie("seanData"));
   json.id = globalData['id'];

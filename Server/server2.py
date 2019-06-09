@@ -94,6 +94,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             data = self.add_user_allergies(parametri)
         elif path == "validate":
             data = self.validate(parametri)
+        elif path == "feedback":
+            data = self.feedback(parametri)
         else:
             response = 404
 
@@ -169,6 +171,16 @@ class RequestHandler(BaseHTTPRequestHandler):
         response["type"] = "Success"
 
         return response
+
+    def feedback(self, parametri):
+        response = {}
+        db.insertFeedback(parametri)
+        response["code"] = 200
+        response["message"] = "All is well"
+        response["type"] = "Success"
+
+        return response
+
 
 os.chdir(os.path.join(os.path.dirname(__file__),'..','MVC',))
 server = ServerConcurent(('localhost',4034), RequestHandler)

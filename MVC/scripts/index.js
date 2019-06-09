@@ -52,6 +52,8 @@ if(getCookie("seanData")){
         document.getElementById("registerDiv").style.display="none"
         document.getElementById("loginDiv").style.display="none"
         document.getElementById("profileDiv").style.display="block"
+        document.getElementById("feedbackDiv").style.display="block"
+
     }
 }
 
@@ -69,7 +71,7 @@ if(getCookie("seanData")){
 
   function logout(){
     setCookie("seanData", undefined, 1)
-    window.location.reload()
+    window.location.replace("/login.html")
   }
 
   function showSlides(n) {

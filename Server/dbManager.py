@@ -100,6 +100,9 @@ def validate(id):
         cursor.execute(querystring, str(id))
         connection.commit()
 
+    ceva = selectUsersByCategoryAllergy(id)
+    print(ceva)
+
 
 def deleteAllergy(id):
     with connection.cursor() as cursor:
@@ -296,9 +299,27 @@ def formatAllergiesForUSers():
                 result[i] =  list(allergy)
         return result
 
+
 def nrOfAllergies():
         with connection.cursor() as cursor:
                 querystring = "select count(id) from allergies where validation=1"
                 cursor.execute(querystring)
                 result = cursor.fetchone()
                 return result[0]
+
+
+def selectUsersByCategoryAllergy(id_allergy):
+    with connection.cursor() as cursor:
+        querystring = "SELECT distinct id_user FROM user_allergy as ua inner join allergies as a " \
+                      "where ua.id_allergy = a.id and category = ( SELECT category from allergies where id = %s) " \
+                      "and a.validation = 1"
+        cursor.execute(querystring, str(id_allergy))
+        result = cursor.fetchall()
+        return result
+
+
+def insertFeedback(parametri):
+    with connection.cursor() as cursor:
+        querystring = "insert into feedback(id_user, name, email, rating, message) VALUES(%s,%s,%s,%s,%s)"
+        cursor.execute(querystring, (parametri["id_user"], parametri["name"], parametri["email"], parametri["rating"], parametri["message"]))
+        connection.commit()

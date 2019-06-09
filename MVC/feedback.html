@@ -11,7 +11,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="../css/index.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="../css/new_allergy.css" />
 	<script src="../scripts/index.js" defer></script>
-	<script src="../scripts/new_allergy.js" defer></script>
+	<script src="../scripts/feedback.js" defer></script>
+	<script src="../scripts/register.js" defer></script>
 	
 </head>
 
@@ -25,7 +26,7 @@
                     class="fa fa-plus-circle"></i> Add allergy</a>
             <a class="menu" href="suggestions.html">Sugestions</a>
 			<a id="profileDiv" style="display:none" class="menu" href="user_allergies.html">Profile</a>
-			<a id="feedbackDiv" style="display:none" class="menu" href="feedback.html">Feedback</a>
+			<a id="feedbackDiv" class="menu" href="feedback.html">Feedback</a>
         </div>
 
         <div class="icon-menu">
@@ -45,17 +46,7 @@
 
 			<tr>
 				<td colspan=2 style="font-size: 125%">
-					<span><b>ENTER NEW ALLERGY</b></span>
-				</td>
-			</tr>
-			<tr>
-				<td>Category</td>
-				<td>
-					<select id="optionType">
-						<option value="Weather Allergies">Weather Allergies</option>
-						<option value="Respiratory Allergies">Respiratory Allergies</option>
-						<option value="Food Allergies">Food Allergies</option>
-					</select>
+					<span><b>ENTER YOUR FEEDBACK</b></span>
 				</td>
 			</tr>
 			<tr>
@@ -64,49 +55,38 @@
 					<textarea name="name" id="name">
 					</textarea>
 				</td>
-			</tr>	<tr>
-				<td>Description</td>
-				<td>
-					<textarea name="description" id="description">
-					</textarea>
-				</td>
-			</tr>
 			<tr>
-				<td>Symptoms</td>
-				<td>
-					<textarea name="symptoms" id="symptoms">
-					</textarea>
-				</td>
-			</tr>
 			<tr>
-				<td>Prevention</td>
+				<td>Email</td>
 				<td>
-					<textarea name="prevention" id="prevention">
+					<textarea name="email" id="email">
 					</textarea>
 				</td>
-			</tr>
-			<tr>
-				<td>Treatment</td>
-				<td>
-					<textarea name="treatment" id="treatment">
-					</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Medication</td>
-				<td>
-					<textarea name="medication" id="medication">
-					</textarea>
-				</td>
-			</tr>
-					<tr>
 
 			<tr>
+			<tr>
+				<td>Rating</td>
 				<td>
-					<input type="reset">
+					<select id="rating">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
 				</td>
+			</tr>
+			<tr>
+				<td>Your message</td>
 				<td>
-					<input type="submit" value="Add" onclick="getValue()">
+					<textarea name="message" id="message">
+					</textarea>
+				</td>
+
+			<tr>
+
+				<td colspan=2 style="font-size: 125%">
+					<input type="submit" value="Submit Feedback" onclick="getFeedback()">
 				</td>
 			</tr>
 	</table>
