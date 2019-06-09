@@ -88,14 +88,25 @@ function getAllergyValue() {
   json.id = globalData['id'];
   json.countAllergies = 0
   json.allergiesId = []
-  for (i = 1; i < length; i++) {
-    var box = document.getElementById(i).checked;
-    if (box == true) {
-      console.log("checked ", i)
-      json.allergiesId.push(i);
-      json.countAllergies += 1
+
+  var ok = true;
+  var contor = 1;
+  while(ok){
+        var element = document.getElementById(""+contor)
+        if(!element){
+            ok = false
+            break
+        }
+        var box = element.checked
+        if (box == true){
+            console.log("Test")
+            console.log(box)
+            json.allergiesId.push(contor)
+            json.countAllergies += 1
+        }
+
+        contor++
     }
-  }
 
   for (i = 0; i < json.countAllergies; i++)
     console.log(json.allergiesId[i])
