@@ -67,79 +67,82 @@ function getAllergiess() {
                     section.appendChild(box);
 
                 var allergy_name = value[1];
-                try{
-                table += '<h2 style="color: #992600;">Statistics of people who have ' + allergy_name + ' allergy per year</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
-                table += '<tbody>';
-                var years = value[8].split(",");
-                var people = value[9].split(",");
+                try {
+                    if (value[8] != null && value[9] != null && value[10] != null && value[11] != null) {
+                        table += '<h2 style="color: #992600;">Statistics of people who have ' + allergy_name + ' allergy per year</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
+                        table += '<tbody>';
+                        var years = value[8].split(",");
+                        var people = value[9].split(",");
 
-                for (var i = 0; i < 2; i++) {
-                    table += '<tr>';
-                    for (var j = -1; j < years.length; j++) {
+                        for (var i = 0; i < 2; i++) {
+                            table += '<tr>';
+                            for (var j = -1; j < years.length; j++) {
 
-                        if (j == -1) {
-                            if (i == 0) {
+                                if (j == -1) {
+                                    if (i == 0) {
 
-                                table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Years</td>';
+                                        table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Years</td>';
+                                    }
+                                    else if (i == 1) {
+
+                                        table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">People</td>';
+                                    }
+                                }
+                                else {
+                                    if (i == 0) {
+
+                                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${years[j]}</td>`;
+                                    }
+                                    else {
+
+                                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${people[j]}</td>`;
+                                    }
+                                }
                             }
-                            else if (i == 1) {
 
-                                table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">People</td>';
-                            }
+                            table += '</tr>';
                         }
-                        else {
-                            if (i == 0) {
 
-                                table += `<td style="border: 2px solid #ddd;padding: 8px;">${years[j]}</td>`;
-                            }
-                            else {
+                        table += '</tbody>';
+                        table += '</table>';
 
-                                table += `<td style="border: 2px solid #ddd;padding: 8px;">${people[j]}</td>`;
+                        var age = value[10].split(",");
+                        var percent = value[11].split(",");
+
+                        table += '<br><br><h2>Age statistics for 2019</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">'
+                        for (var i = 0; i < 2; i++) {
+                            table += '<tr>';
+                            for (var j = -1; j < age.length; j++) {
+
+                                if (j == -1) {
+                                    if (i == 0) {
+
+                                        table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Age</td>';
+                                    }
+                                    else if (i == 1) {
+
+                                        table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Percent</td>';
+                                    }
+                                }
+                                else {
+                                    if (i == 0) {
+
+                                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${age[j]}</td>`;
+                                    }
+                                    else {
+
+                                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${percent[j]} %</td>`;
+                                    }
+                                }
                             }
+
+                            table += '</tr>';
                         }
+                        table += '</tbody>';
+                        table += '</table><br><br>';
                     }
 
-                    table += '</tr>';
-                }
-
-                table += '</tbody>';
-                table += '</table>';
-
-                var age = value[10].split(",");
-                var percent = value[11].split(",");
-
-                table += '<br><br><h2>Age statistics for 2019</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">'
-                for (var i = 0; i < 2; i++) {
-                    table += '<tr>';
-                    for (var j = -1; j < age.length; j++) {
-
-                        if (j == -1) {
-                            if (i == 0) {
-
-                                table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Age</td>';
-                            }
-                            else if (i == 1) {
-
-                                table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Percent</td>';
-                            }
-                        }
-                        else {
-                            if (i == 0) {
-
-                                table += `<td style="border: 2px solid #ddd;padding: 8px;">${age[j]}</td>`;
-                            }
-                            else {
-
-                                table += `<td style="border: 2px solid #ddd;padding: 8px;">${percent[j]} %</td>`;
-                            }
-                        }
-                    }
-
-                    table += '</tr>';
-                }
-                table += '</tbody>';
-                table += '</table><br><br>';
-                }catch(e){statistics.style.display="none"}
+                } catch (e) { statistics.style.display = "none" }
             }
 
 
@@ -221,22 +224,9 @@ function getAllergyDetails() {
             alergy_question.id = "title-description";
             alergy_question.innerHTML = "What is " + selectedAllergy[1] + " Allergy ?";
 
-            var statistics = document.createElement("a");
-            statistics.id = "statistics";
-            statistics.innerHTML = "Statistics: "
 
-            var html_report_option = document.createElement("a");
-            html_report_option.innerHTML = "HTML";
-
-            var pdf_report_option = document.createElement("a");
-            pdf_report_option.innerHTML = "PDF";
-
-            var allergy_reports = document.createElement("div");
-            allergy_reports.id = "reports";
-
-            allergy_reports.appendChild(html_report_option);
-            allergy_reports.appendChild(pdf_report_option);
-            statistics.appendChild(allergy_reports);
+            container.appendChild(allergy_title);
+            container.appendChild(alergy_question);
 
             function download(filename, text) {
                 var element = document.createElement('a');
@@ -251,127 +241,148 @@ function getAllergyDetails() {
                 document.body.removeChild(element);
             }
 
-            try{
+            try {
 
-            var allergy_name = selectedAllergy[1];
-            let table = '<h2>Statistics of people who have ' + allergy_name + ' allergy per year</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
-            table += '<tbody>';
+                if (selectedAllergy[8] != null && selectedAllergy[9] != null && selectedAllergy[10] != null && selectedAllergy[11] != null) {
+                    var statistics = document.createElement("a");
+                    statistics.id = "statistics";
+                    statistics.innerHTML = "Statistics: "
 
-            // var years = ["2005", "2006", "2009", "2012"];
-            var years = selectedAllergy[8].split(",");
-            var people = selectedAllergy[9].split(",");
+                    var html_report_option = document.createElement("a");
+                    html_report_option.innerHTML = "HTML";
 
-            for (var i = 0; i < 2; i++) {
-                table += '<tr>';
-                for (var j = -1; j < years.length; j++) {
+                    var pdf_report_option = document.createElement("a");
+                    pdf_report_option.innerHTML = "PDF";
 
-                    if (j == -1) {
-                        if (i == 0) {
+                    var allergy_reports = document.createElement("div");
+                    allergy_reports.id = "reports";
 
-                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Years</td>';
+                    allergy_reports.appendChild(html_report_option);
+                    allergy_reports.appendChild(pdf_report_option);
+                    statistics.appendChild(allergy_reports);
+
+                    var allergy_name = selectedAllergy[1];
+                    let table = '<h2>Statistics of people who have ' + allergy_name + ' allergy per year</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
+                    table += '<tbody>';
+
+                    // var years = ["2005", "2006", "2009", "2012"];
+                    var years = selectedAllergy[8].split(",");
+                    var people = selectedAllergy[9].split(",");
+
+                    for (var i = 0; i < 2; i++) {
+                        table += '<tr>';
+                        for (var j = -1; j < years.length; j++) {
+
+                            if (j == -1) {
+                                if (i == 0) {
+
+                                    table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Years</td>';
+                                }
+                                else if (i == 1) {
+
+                                    table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">People</td>';
+                                }
+                            }
+                            else {
+                                if (i == 0) {
+
+                                    table += `<td style="border: 2px solid #ddd;padding: 8px;">${years[j]}</td>`;
+                                }
+                                else {
+
+                                    table += `<td style="border: 2px solid #ddd;padding: 8px;">${people[j]}</td>`;
+                                }
+                            }
                         }
-                        else if (i == 1) {
 
-                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">People</td>';
-                        }
+                        table += '</tr>';
                     }
-                    else {
-                        if (i == 0) {
 
-                            table += `<td style="border: 2px solid #ddd;padding: 8px;">${years[j]}</td>`;
-                        }
-                        else {
+                    table += '</tbody>';
+                    table += '</table>';
 
-                            table += `<td style="border: 2px solid #ddd;padding: 8px;">${people[j]}</td>`;
+                    var age = selectedAllergy[10].split(",");
+                    var percent = selectedAllergy[11].split(",");
+
+                    table += '<br><br><h2>Age statistics for 2019</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">'
+                    for (var i = 0; i < 2; i++) {
+                        table += '<tr>';
+                        for (var j = -1; j < age.length; j++) {
+
+                            if (j == -1) {
+                                if (i == 0) {
+
+                                    table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Age</td>';
+                                }
+                                else if (i == 1) {
+
+                                    table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Percent</td>';
+                                }
+                            }
+                            else {
+                                if (i == 0) {
+
+                                    table += `<td style="border: 2px solid #ddd;padding: 8px;">${age[j]}</td>`;
+                                }
+                                else {
+
+                                    table += `<td style="border: 2px solid #ddd;padding: 8px;">${percent[j]} %</td>`;
+                                }
+                            }
                         }
+
+                        table += '</tr>';
                     }
+
+
+                    table += '</tbody>';
+                    table += '</table>';
+
+                    html_report_option.addEventListener("click", function () {
+
+                        var filename = "report.html";
+                        download(filename, table);
+                    }, false);
+
+                    pdf_report_option.onclick = function () {
+
+                        var pdf = new jsPDF('p', 'pt', 'letter');
+                        console.log("intra in functie");
+                        source = table
+                        specialElementHandlers = {
+                            // element with id of "bypass" - jQuery style selector
+                            '#bypassme': function (element, renderer) {
+                                // true = "handled elsewhere, bypass text extraction"
+                                return true
+                            }
+                        };
+                        margins = {
+                            top: 80,
+                            bottom: 60,
+                            left: 30,
+                            width: 700
+                        };
+                        // all coords and widths are in jsPDF instance's declared units
+                        // 'inches' in this case
+                        pdf.fromHTML(
+                            source, // HTML string or DOM elem ref.
+                            margins.left, // x coord
+                            margins.top, { // y coord
+                                'width': margins.width, // max width of content on PDF
+                                'elementHandlers': specialElementHandlers
+                            },
+
+                            function (dispose) {
+                                // dispose: object with X, Y of the last line add to the PDF 
+                                //          this allow the insertion of new lines after html
+                                pdf.save('report  .pdf');
+                            }, margins);
+                    }
+
+                    container.appendChild(statistics);
                 }
 
-                table += '</tr>';
-            }
-
-            table += '</tbody>';
-            table += '</table>';
-
-            var age = selectedAllergy[10].split(",");
-            var percent = selectedAllergy[11].split(",");
-
-            table += '<br><br><h2>Age statistics for 2019</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">'
-            for (var i = 0; i < 2; i++) {
-                table += '<tr>';
-                for (var j = -1; j < age.length; j++) {
-
-                    if (j == -1) {
-                        if (i == 0) {
-
-                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Age</td>';
-                        }
-                        else if (i == 1) {
-
-                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Percent</td>';
-                        }
-                    }
-                    else {
-                        if (i == 0) {
-
-                            table += `<td style="border: 2px solid #ddd;padding: 8px;">${age[j]}</td>`;
-                        }
-                        else {
-
-                            table += `<td style="border: 2px solid #ddd;padding: 8px;">${percent[j]} %</td>`;
-                        }
-                    }
-                }
-
-                table += '</tr>';
-            }
-
-
-            table += '</tbody>';
-            table += '</table>';
-
-            html_report_option.addEventListener("click", function () {
-
-                var filename = "report.html";
-                download(filename, table);
-            }, false);
-
-            pdf_report_option.onclick = function () {
-
-                var pdf = new jsPDF('p', 'pt', 'letter');
-                console.log("intra in functie");
-                source = table
-                specialElementHandlers = {
-                    // element with id of "bypass" - jQuery style selector
-                    '#bypassme': function (element, renderer) {
-                        // true = "handled elsewhere, bypass text extraction"
-                        return true
-                    }
-                };
-                margins = {
-                    top: 80,
-                    bottom: 60,
-                    left: 30,
-                    width: 700
-                };
-                // all coords and widths are in jsPDF instance's declared units
-                // 'inches' in this case
-                pdf.fromHTML(
-                    source, // HTML string or DOM elem ref.
-                    margins.left, // x coord
-                    margins.top, { // y coord
-                        'width': margins.width, // max width of content on PDF
-                        'elementHandlers': specialElementHandlers
-                    },
-
-                    function (dispose) {
-                        // dispose: object with X, Y of the last line add to the PDF 
-                        //          this allow the insertion of new lines after html
-                        pdf.save('report  .pdf');
-                    }, margins);
-            }
-
-            }catch(e){statistics.style.display="none"}
+            } catch (e) { statistics.style.display = "none" }
 
 
             //Symptoms
@@ -430,9 +441,7 @@ function getAllergyDetails() {
             var Pspatii = document.createElement("div");
             Pspatii.innerHTML = "&#10&#10&#10&#10&#10&#10&#10&#10&#10&#10"
 
-            container.appendChild(allergy_title);
-            container.appendChild(alergy_question);
-            container.appendChild(statistics);
+
             container.appendChild(description);
             container.appendChild(symptoms_title);
             container.appendChild(symptoms_box);
