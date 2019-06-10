@@ -1,6 +1,7 @@
 import mysql.connector
 import pymysql.cursors
 import pymysql
+import smtplib
 import random
 from mysql.connector import (connection)
 
@@ -309,6 +310,21 @@ def notify(userID, mesaj, type):
         querystring = "INSERT into notifications(id_user,mesaj,tip) VALUES(%s, %s, %s);"
         cursor.execute(querystring, (userID, mesaj, type))
         connection.commit()
+
+    with connection.cursor() as cursor:
+        querystring = "select email from users where id=%s "
+        cursor.execute(querystring, userID)
+        email = cursor.fetchone()
+
+    server = smtplib.SMTP('smtp.gmail.com', 25)
+    server.connect("smtp.gmail.com", 587)
+    server.ehlo()
+    server.starttls()
+    server.ehlo()
+    server.login("seallergy.notifications", "web2019!")
+    text = mesaj
+    server.sendmail("seallergy.notifications@gmail.com", email, text)
+    server.quit()
 
 
 def validate(id):
