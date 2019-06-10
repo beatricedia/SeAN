@@ -71,7 +71,7 @@ xmlhttp.send();
         document.getElementById("loginDiv").style.display="none"
         document.getElementById("profileDiv").style.display="block"
         document.getElementById("feedbackDiv").style.display="block"
-
+        document.getElementById("suggestionsDiv").style.display="block"
     }
 }
 
