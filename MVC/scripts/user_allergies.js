@@ -8,7 +8,7 @@ function listAllergies(){
         for(var alergieToken in alergii){
             alergie = alergii[alergieToken]
             var id = alergie[0]
-            var nume = alergie[1]
+            var name = alergie[1]
             var categorie = alergie[2]
             var checked = alergie[alergie.length-1]
             var checkbox = document.createElement('input');
@@ -17,13 +17,25 @@ function listAllergies(){
             checkbox.type = "checkbox";
             checkbox.id = id;
 
+            var arrow = document.createElement("i");
+            arrow.classList.add("right");
+            var categoryLabel =  document.createElement("label");
+            categoryLabel.innerHTML = "Category: " + categorie + " "
             var label = document.createElement('label');
-            label.appendChild(document.createTextNode(("Category: "+categorie + " || Allergy:     ").toLowerCase() + nume));
+            label.innerHTML = " Allergy: ";
 
+            var nameLabel =  document.createElement('label');
+            nameLabel.classList.add("allergy-name");
+            nameLabel.innerHTML = name;
 
             var container = document.createElement("div");
-            container.appendChild(label)
-            container.appendChild(checkbox)
+            container.appendChild(checkbox);
+            container.appendChild(categoryLabel);
+            container.appendChild(arrow);
+            container.appendChild(label);
+            container.appendChild(nameLabel);
+            
+            
             container.classList.add("user_container");
 
             placeholder.appendChild(container)
