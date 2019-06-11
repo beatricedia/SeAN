@@ -57,6 +57,9 @@ class RequestHandler(BaseHTTPRequestHandler):
             elif "user_allergies_profile" in resursa:
                 data["type"] = "application/json"
                 data["file"] = bytes(json.dumps(db.formatAllergiesForUserProfile(resursa.replace("user_allergies_profile",""))),"utf-8")
+            elif resursa == "gender-statistics":
+                data["type"] = "application/json"
+                data["file"] = bytes(json.dumps(db.allergyStatistics()), "utf-8")
             elif "notificari" in resursa:
                 data["type"] = "application/json"
                 data["file"] = bytes(json.dumps(db.getNotificari(resursa.replace("notificari",""))),"utf-8")
@@ -69,7 +72,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
             if resursa != "alergii" and "alergie" not in resursa and resursa != "suggestions" \
                     and resursa != "user_allergies" and "user_allergies_profile" not in resursa \
-                    and "comments" not in resursa and "notificari" not in resursa:
+                    and "comments" not in resursa and "notificari" not in resursa and resursa != "gender-statistics":
                     data["file"] = open(resursa, "rb").read()
 
         except Exception as exception:

@@ -35,7 +35,7 @@ def formatAllSelectedAllergies():
         return result
 
 
-print(formatAllSelectedAllergies())
+# print(formatAllSelectedAllergies())
 
 
 def insertAllergy(id, name, category, description, symptoms, prevention, treatment, medication,years,people,age,percent):
@@ -432,3 +432,143 @@ def formatComments(allergy_name):
             result[i] = list(comment)
         return result
 
+
+def selectFemale():
+        with connection.cursor() as cursor:
+                querystring = "select * from users where sex=0000000001 "
+                cursor.execute(querystring)
+                result = cursor.fetchall()
+                return result
+
+# print(selectFemale())
+
+def selectFemaleID():
+        result = []
+        i = 0
+        for value in selectFemale():
+           result.append(value[0])
+        return result
+# print(selectFemaleID())
+
+def findUser(id):
+        resultList = []
+        with connection.cursor() as cursor:
+                        querystring = "select id_allergy from user_allergy where id_user =%s "
+                        cursor.execute(querystring,id)
+                        result = cursor.fetchall()
+                        for value in result:
+                                resultList.append(value[0])
+                        return resultList
+
+
+# print(findUser(2))
+def selectFemaleAllergy():
+        resultList = []
+
+        for value in selectFemaleID():
+                for item in findUser(value):
+                        resultList.append(item)
+       
+        return resultList
+
+
+# print(selectFemaleAllergy())
+
+def selectAllergyName(id):
+         with connection.cursor() as cursor:
+                        querystring = "select name from allergies where id =%s "
+                        cursor.execute(querystring,id)
+                        result = cursor.fetchone()
+                        return result[0]
+
+# print(selectAllergyName(2))
+
+def allergyFemaleStatistics():
+        femaleList = selectFemaleAllergy()
+        resultList = []
+        
+        # resultList = {}
+        for i in range(0,nrOfAllergies()):
+                resultList.append(0)
+        
+
+        for item in femaleList:
+                for i,value in enumerate(resultList):
+                        if item-1 == i:
+                                resultList[i] +=1
+
+        for i,value in enumerate(resultList):
+                resultList[i]  = [selectAllergyName(i+1),value]
+
+        return(resultList)
+
+        
+# print(allergyFemaleStatistics())
+
+# ###
+
+def selectMale():
+        with connection.cursor() as cursor:
+                querystring = "select * from users where sex=0000000000 "
+                cursor.execute(querystring)
+                result = cursor.fetchall()
+                return result
+
+# print(selectMale())
+
+def selectMaleID():
+        result = []
+        i = 0
+        for value in selectMale():
+           result.append(value[0])
+        return result
+# print(selectMaleID())
+
+
+def selectMaleAllergy():
+        resultList = []
+
+        for value in selectMaleID():
+                for item in findUser(value):
+                        resultList.append(item)
+       
+        return resultList
+
+
+# print(selectMaleAllergy())
+
+
+def allergyMaleStatistics():
+        maleList = selectMaleAllergy()
+        resultList = []
+        
+        for i in range(0,nrOfAllergies()):
+                resultList.append(0)
+        
+        for item in maleList:
+                for i,value in enumerate(resultList):
+                        if item-1 == i:
+                                resultList[i] +=1
+
+        for i,value in enumerate(resultList):
+                resultList[i]  = [selectAllergyName(i+1),value]
+
+
+        return(resultList)
+
+        
+# print(allergyMaleStatistics())
+
+def allergyStatistics():
+        dictResult = {}
+        femaleList = allergyFemaleStatistics()
+        maleList = allergyMaleStatistics()
+
+        dictResult["1"] = femaleList
+        dictResult["2"] = maleList
+
+        return dictResult
+
+print(allergyStatistics())
+
+# print(selectAllergyName())
