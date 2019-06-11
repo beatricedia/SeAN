@@ -21,7 +21,7 @@
 
 </head>
 
-<body onload="getAllergyNames()">
+<body onload="listAllergies()">
 
 
     <!-- navbar -->
@@ -29,7 +29,9 @@
         <div>
             <a class="menu" href="index.html">News</a>
             <a id="addAllergyDiv"  style="display:none" class="menu" href="new_allergy.html"><i class="fa fa-plus-circle"></i> Add allergy</a>
-            <a class="menu" href="suggestions.html">Sugestions</a>
+            <a id="suggestionsDiv" style="display:none" class="menu" href="suggestions.html">Sugestions</a>
+            <a id="profileDiv" class="menu" href="user_allergies.html">Profile</a>
+            <a id="feedbackDiv" style="display:none" class="menu" href="feedback.html">Feedback</a>
         </div>
 
         <div class="icon-menu">
@@ -46,19 +48,18 @@
         <div class = "notification">
             <form>
                
-                <input type="checkbox" name="allergyType" value="Type1" checked> Weather Allergies<br>
-                <input type="checkbox" name="allergyType" value="Type2" checked> Respiratory Allergies<br>
-                <input type="checkbox" name="allergyType" value="Type3" checked> Food Allergies<br>
-                <input type="checkbox" name="allergyType" value="Type3" checked> My allergies only<br>
+                <input id="notificare1" type="checkbox" name="allergyType" value="Type3" checked> New allergy  in my categories<br>
+                <input id="notificare2" type="checkbox" name="allergyType" value="Type3" checked> New comments on my alergies<br>
                
             </form>
         </div>
     
-    <h2 class = "page_title">Check what allergies you have</h2>
+    <h2 class = "page_title">Your allergies</h2>
    
-    <input type="submit" id="submit" value="Submit allergies" onclick="getAllergyValue()" />
+    <div id="checkboxholder"></div>
 
-    <footer>Copyright &copy; Proiect TW</footer>
+    <center><input type="submit" value="Submit settings" onclick="saveSettings()" /></center>
+
 </body>
 
 </html>

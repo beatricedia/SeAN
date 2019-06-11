@@ -43,6 +43,24 @@ function getCookie(name) {
 
 if(getCookie("seanData")){
     var globalData = JSON.parse(getCookie("seanData"))
+/*Notificari*/
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.open("GET", "/notificari"+JSON.parse(getCookie("seanData")).id);
+xmlhttp.onreadystatechange = function () {
+if (this.readyState === 4){
+    var notificari = JSON.parse(this.response)
+    console.log(notificari)
+    for(var indexNot in notificari){
+        var notificare = notificari[indexNot]
+        if(notificare[3] == 1 && globalData.notificare1)
+            alert(notificare[2])
+        if(notificare[3] == 2 && globalData.notificare2)
+            alert(notificare[2])
+    }
+}
+}
+xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xmlhttp.send();
     console.log(globalData)
     if(globalData){
         document.getElementById("logoutDiv").style.display="block"
@@ -51,6 +69,9 @@ if(getCookie("seanData")){
         document.getElementById("addAllergyDiv").style.display="block"
         document.getElementById("registerDiv").style.display="none"
         document.getElementById("loginDiv").style.display="none"
+        document.getElementById("profileDiv").style.display="block"
+        document.getElementById("feedbackDiv").style.display="block"
+        document.getElementById("suggestionsDiv").style.display="block"
     }
 }
 
@@ -68,7 +89,7 @@ if(getCookie("seanData")){
 
   function logout(){
     setCookie("seanData", undefined, 1)
-    window.location.reload()
+    window.location.replace("/")
   }
 
   function showSlides(n) {

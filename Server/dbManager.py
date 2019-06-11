@@ -1,12 +1,13 @@
 import mysql.connector
 import pymysql.cursors
 import pymysql
+import smtplib
 import random
 from mysql.connector import (connection)
 
 
 connection = pymysql.connect(host="127.0.0.1",
-                             port=8001,
+                             port=3306,
                              user="beatricedia",
                              password="Mysql112",
                              db="sean_db",
@@ -94,15 +95,19 @@ def insertAllergy(id, name, category, description, symptoms, prevention, treatme
 # print(selectAllAllergies())
 
 
-def validate(id):
-    with connection.cursor() as cursor:
-        querystring = "UPDATE allergies SET validation=1 WHERE id= %s"
-        cursor.execute(querystring, str(id))
-        connection.commit()
+
+
 
 def deleteAllergy(id):
     with connection.cursor() as cursor:
         querystring = "delete from allergies WHERE id = %s"
+        cursor.execute(querystring, str(id))
+        connection.commit()
+
+
+def deleteUserAllergies(id):
+    with connection.cursor() as cursor:
+        querystring = "delete from user_allergy WHERE id_user = %s"
         cursor.execute(querystring, str(id))
         connection.commit()
 
@@ -294,9 +299,136 @@ def formatAllergiesForUSers():
                 result[i] =  list(allergy)
         return result
 
+
+def getNotificari(userID):
+    with connection.cursor() as cursor:
+        querystring = "SELECT * from notifications where id_user=%s;"
+        cursor.execute(querystring,(userID))
+        rezultat = cursor.fetchall()
+        querystring = "DELETE FROM notifications where id_user=%s;"
+        cursor.execute(querystring,(userID))
+        connection.commit()
+        return rezultat
+
+
+def notify(userID, mesaj, type):
+    with connection.cursor() as cursor:
+        querystring = "INSERT into notifications(id_user,mesaj,tip) VALUES(%s, %s, %s);"
+        cursor.execute(querystring, (userID, mesaj, type))
+        connection.commit()
+
+    with connection.cursor() as cursor:
+        querystring = "select email from users where id=%s "
+        cursor.execute(querystring, userID)
+        email = cursor.fetchone()
+
+    server = smtplib.SMTP('smtp.gmail.com', 25)
+    server.connect("smtp.gmail.com", 587)
+    server.ehlo()
+    server.starttls()
+    server.ehlo()
+    server.login("seallergy.notifications", "web2019!")
+    text = mesaj
+    server.sendmail("seallergy.notifications@gmail.com", email, text)
+    server.quit()
+
+
+def validate(id):
+    with connection.cursor() as cursor:
+        querystring = "UPDATE allergies SET validation=1 WHERE id= %s"
+        cursor.execute(querystring, str(id))
+        connection.commit()
+    with connection.cursor() as cursor:
+        querystring = "SELECT name, category from allergies where id=%s"
+        cursor.execute(querystring, id)
+        rezultat = cursor.fetchall()[0]
+        print(rezultat)
+    usersToNotify = selectUsersByCategoryAllergy(id)
+    for i in usersToNotify:
+        userID = i[0]
+        notify(userID, "New allergy added! \nCategory: "+rezultat[1] +"Name: "+rezultat[0], 1)
+
+
+def saveNotifications(userID,val1, val2):
+        with connection.cursor() as cursor:
+                querystring = "UPDATE users SET notificare1=%s, notificare2=%s WHERE id=%s;"
+                cursor.execute(querystring,(val1, val2, userID))
+                connection.commit()
+def saveAllergies(userID, allergies):
+        with connection.cursor() as cursor:
+                querystring= "DELETE FROM user_allergy where id_user=%s"
+                cursor.execute(querystring,(userID))
+                for i in allergies:
+                    print(i)
+                    querystring = "INSERT INTO user_allergy(id_user, id_allergy) VALUES(%s, %s);"
+                    cursor.execute(querystring, (userID, i))
+                connection.commit()
+def saveSettings(parametri):
+        userId = parametri["id"]
+        notificare1 = parametri["notificare1"]
+        notificare2 = parametri["notificare2"]
+        allergies = parametri["alergii"]
+        saveNotifications(userId, notificare1,notificare2)
+        saveAllergies(userId, allergies)
+def selectAllergiesForUserProfile(id):
+    with connection.cursor() as cursor:
+        querystring = "SELECT *,(SELECT COUNT(*) from user_allergy where id_allergy=id and id_user = " + id + ") FROM sean_db.allergies;"
+        cursor.execute(querystring)
+        result = cursor.fetchall()
+        return result
+def formatAllergiesForUserProfile(id):
+    result = {}
+    i = 0
+    for allergy in selectAllergiesForUserProfile(id):
+        i += 1
+        result[i] = list(allergy)
+    return result
+
 def nrOfAllergies():
         with connection.cursor() as cursor:
                 querystring = "select count(id) from allergies where validation=1"
                 cursor.execute(querystring)
                 result = cursor.fetchone()
                 return result[0]
+
+
+def selectUsersByCategoryAllergy(id_allergy):
+    with connection.cursor() as cursor:
+        querystring = "SELECT distinct id_user FROM user_allergy as ua inner join allergies as a " \
+                      "where ua.id_allergy = a.id and category = ( SELECT category from allergies where id = %s) " \
+                      "and a.validation = 1"
+        cursor.execute(querystring, str(id_allergy))
+        result = cursor.fetchall()
+        return result
+
+
+def insertFeedback(parametri):
+    with connection.cursor() as cursor:
+        querystring = "insert into feedback(id_user, name, email, rating, message) VALUES(%s,%s,%s,%s,%s)"
+        cursor.execute(querystring, (parametri["id_user"], parametri["name"], parametri["email"], parametri["rating"], parametri["message"]))
+        connection.commit()
+
+
+def insertComment(parametri):
+    with connection.cursor() as cursor:
+        querystring = "insert into comments(username, allergy_name, comment) VALUES(%s,%s,%s)"
+        cursor.execute(querystring, (parametri["username"], parametri["allergy_name"], parametri["comment"]))
+        connection.commit()
+
+
+def selectComments(allergy_name):
+    with connection.cursor() as cursor:
+        querystring = "select username, comment from comments where allergy_name=%s "
+        cursor.execute(querystring, allergy_name)
+        result = cursor.fetchall()
+        return result
+
+
+def formatComments(allergy_name):
+        result = {}
+        i = 0
+        for comment in selectComments(allergy_name):
+            i += 1
+            result[i] = list(comment)
+        return result
+

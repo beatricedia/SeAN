@@ -54,9 +54,23 @@ class RequestHandler(BaseHTTPRequestHandler):
             elif resursa == "suggestions":
                 data["type"] = "application/json"
                 data["file"] = bytes(json.dumps(db.formatAllSelectedSuggestions()), "utf-8")
+            elif "user_allergies_profile" in resursa:
+                data["type"] = "application/json"
+                data["file"] = bytes(json.dumps(db.formatAllergiesForUserProfile(resursa.replace("user_allergies_profile",""))),"utf-8")
+            elif "notificari" in resursa:
+                data["type"] = "application/json"
+                data["file"] = bytes(json.dumps(db.getNotificari(resursa.replace("notificari",""))),"utf-8")
+                print(data["file"])
+            elif "comments" in resursa:
+                arg = resursa.replace("comments", "")
+                print("Sa vedem", arg)
+                data["type"] = "application/json"
+                data["file"] = bytes(json.dumps(db.formatComments(arg)), "utf-8")
 
-            if resursa != "alergii" and "alergie" not in resursa and resursa != "suggestions" and resursa != "user_allergies":
-                data["file"] = open(resursa, "rb").read()
+            if resursa != "alergii" and "alergie" not in resursa and resursa != "suggestions" \
+                    and resursa != "user_allergies" and "user_allergies_profile" not in resursa \
+                    and "comments" not in resursa and "notificari" not in resursa:
+                    data["file"] = open(resursa, "rb").read()
 
         except Exception as exception:
             print(exception)
@@ -94,6 +108,12 @@ class RequestHandler(BaseHTTPRequestHandler):
             data = self.add_user_allergies(parametri)
         elif path == "validate":
             data = self.validate(parametri)
+        elif path == "feedback":
+            data = self.feedback(parametri)
+        elif path =="setari":
+            data = self.setari(parametri)
+        elif path == "add_comment":
+            data = self.comment(parametri)
         else:
             response = 404
 
@@ -110,6 +130,13 @@ class RequestHandler(BaseHTTPRequestHandler):
         response["message"] = "Validation succesfull"
         return response
 
+    def setari(self, parametri):
+        db.saveSettings(parametri)
+        response = {}
+        response["code"] = 200
+        response["type"] = "success"
+        response["message"] = "Settings saved"
+        return response
 
     def login(self, parametri):
         response = {}
@@ -124,6 +151,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
                 dataJson["username"] = data[0][1]
                 dataJson["id"] = data[0][0]
+                dataJson["notificare1"] = data[0][5]
 
                 response["data"] = dataJson
             else:
@@ -161,7 +189,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def add_user_allergies(self, parametri):
         response = {}
-        db.seletUserAllergies(parametri['id'])
+        db.deleteUserAllergies(parametri['id'])
         for i in range(0,parametri['countAllergies']):
             db.insertUserAllergy(parametri['id'],parametri['allergiesId'][i])
         response["code"] = 200
@@ -169,6 +197,25 @@ class RequestHandler(BaseHTTPRequestHandler):
         response["type"] = "Success"
 
         return response
+
+    def feedback(self, parametri):
+        response = {}
+        db.insertFeedback(parametri)
+        response["code"] = 200
+        response["message"] = "All is well"
+        response["type"] = "Success"
+
+        return response
+
+    def comment(self, parametri):
+        response = {}
+        db.insertComment(parametri)
+        response["code"] = 200
+        response["message"] = "All is well"
+        response["type"] = "Success"
+
+        return response
+
 
 os.chdir(os.path.join(os.path.dirname(__file__),'..','MVC',))
 server = ServerConcurent(('localhost',4034), RequestHandler)

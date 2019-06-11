@@ -197,15 +197,16 @@ function getAllergyDetails() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "/alergii");
     xmlhttp.onreadystatechange = function () {
+
         if (this.readyState === 4) {
             let responseJson = JSON.parse(this.response);
             selectedAllergy = responseJson[getCookie("selectedAllergy")];
 
-            var section = document.createElement("section");
-            section.id = 'info';
+            //var section = document.createElement("section");
+            //section.id = 'info';
 
-            var container = document.createElement("div");
-            container.classList.add('container');
+           // var container = document.createElement("div");
+           // container.classList.add('container');
 
             var allergy_title = document.createElement("h1");
             allergy_title.id = "allergy-title";
