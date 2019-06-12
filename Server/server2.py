@@ -1,8 +1,24 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from threading   import Thread
 
+import time
 import os, json
 import dbManager as db
+
+anotimp = "summer"
+
+mesajeNot = {
+    "summer" : {
+        "mesaj" : "A venit vara si odata cu ea soarele puternic. Atentie!",
+        "alergieID" : 2,
+        "interval" : 3600
+    },
+    "spring" : {
+        "mesaj" : "Primavara este aici. Aveti grija la polen",
+        "alergieID" : 9,
+        "interval" : 3600
+    }
+}
 
 class ServerConcurent(HTTPServer):
 
@@ -156,7 +172,10 @@ class RequestHandler(BaseHTTPRequestHandler):
                         dataJson["username"] = data[0][1]
                         dataJson["id"] = data[0][0]
                         dataJson["notificare1"] = data[0][5]
+                        dataJson["notificare2"] = data[0][6]
+                        dataJson["notificare3"] = data[0][7]
                         response["data"] = dataJson
+
                     else:
                         response["code"] = 401
                         response["type"] = "Error"
@@ -270,3 +289,10 @@ class RequestHandler(BaseHTTPRequestHandler):
 os.chdir(os.path.join(os.path.dirname(__file__),'..','MVC',))
 server = ServerConcurent(('localhost',4034), RequestHandler)
 Thread(target=server.serve_forever).start()
+
+def notificari_add():
+    while True:
+        db.add_sesonal_notifications(mesajeNot[anotimp])
+        time.sleep(mesajeNot[anotimp]["interval"])
+
+Thread(target=notificari_add).start()

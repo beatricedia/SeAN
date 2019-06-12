@@ -36,9 +36,6 @@ def formatAllSelectedAllergies():
         return result
 
 
-print(formatAllSelectedAllergies())
-
-
 def insertAllergy(id, name, category, description, symptoms, prevention, treatment, medication,years,people,age,percent):
     with connection.cursor() as cursor:
         querystring = "insert into allergies VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
@@ -309,6 +306,7 @@ def getNotificari(userID):
         querystring = "SELECT * from notifications where id_user=%s;"
         cursor.execute(querystring,(userID))
         rezultat = cursor.fetchall()
+
         querystring = "DELETE FROM notifications where id_user=%s;"
         cursor.execute(querystring,(userID))
         connection.commit()
@@ -350,7 +348,7 @@ def validate(id):
     usersToNotify = selectUsersByCategoryAllergy(id)
     for i in usersToNotify:
         userID = i[0]
-        notify(userID, "New allergy added! \nCategory: "+rezultat[1] +"Name: "+rezultat[0], 1)
+        notify(userID, "New allergy added! \nCategory: "+rezultat[1] +"\nName: "+rezultat[0], 1)
 
 
 def saveNotifications(userID,val1, val2, val3):
@@ -435,16 +433,14 @@ def insertComment(parametri):
         querystring = "select id from users where username=%s"
         cursor.execute(querystring, parametri["username"])
         user = cursor.fetchone()[0]
-        print("testulet", user)
         mesaj = "New comment added on " + str(parametri["allergy_name"]) + " allergy"
 
         ids = list(sum(result, ()))
         for id_user in ids:
             if user != id_user:
                 with connection.cursor() as cursor:
-                    print(id_user)
                     querystring = "insert into notifications(id_user, mesaj, tip) VALUES(%s,%s,%s)"
-                    cursor.execute(querystring, (str(id_user), mesaj, 3))
+                    cursor.execute(querystring, (str(id_user), mesaj, 2))
                     connection.commit()
 
 def selectComments(allergy_name):
@@ -575,3 +571,57 @@ def validateTextXss(text):
     if re.search(r'<(|\/|[^\/>][^>]+|\/[^>][^>]+)>',text):
         return False
     return True
+
+
+def add_spring_notification():
+    with connection.cursor() as cursor:
+        querystring = "select id from users where id in (select id_user from user_allergy " \
+                      "where id_allergy = ( select id_allergy from allergies where name = \"Pollen\")) "
+        cursor.execute(querystring)
+        result = cursor.fetchall()
+        result = list(sum(result, ()))
+        mesaj = "Atentie! Primavara este sezonul alergiilor la polen! "
+    for id in result:
+        with connection.cursor() as cursor:
+            querystring = "insert into notifications(id_user, mesaj, tip) values(%s,%s,%s)"
+            cursor.execute(querystring, (str(id), mesaj, 2))
+            connection.commit()
+
+def add_summer_notification():
+    with connection.cursor() as cursor:
+        querystring = "select id from users where id in (select id_user from user_allergy " \
+                      "where id_allergy = ( select id_allergy from allergies where name = \"Sun\")) "
+        cursor.execute(querystring)
+
+        result = cursor.fetchall()
+        result = list(sum(result, ()))
+        mesaj = "Atentie! Vine vara, stati la umbra! "
+
+    for id in result:
+        with connection.cursor() as cursor:
+            querystring = "insert into notifications(id_user, mesaj, tip) values(%s,%s,%s)"
+            cursor.execute(querystring, (str(id), mesaj, 2))
+            connection.commit()
+
+def add_sesonal_notifications(seson):
+    with connection.cursor() as cursor:
+
+        querystring = "delete from notifications where tip=3"
+        cursor.execute(querystring)
+
+        querystring = "select distinct id_user from user_allergy where id_allergy = %s ";
+        cursor.execute(querystring, seson["alergieID"])
+
+        result = cursor.fetchall()
+        result = list(sum(result, ()))
+
+
+        for id in result:
+            querystring = "insert into notifications(id_user, mesaj, tip) values(%s, %s, %s)"
+            cursor.execute(querystring,(id, seson["mesaj"], 3))
+
+    connection.commit()
+
+
+
+
