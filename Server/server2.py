@@ -183,11 +183,15 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def add_allergy(self, parametri):
         response = {}
-        db.insertSuggestion(parametri['name'], parametri['allergy_type'], parametri['description'], parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'], parametri['id'])
-        response["code"] = 200
-        response["message"] = "All is well"
-        response["type"] = "Success"
-
+        if db.validateText(parametri['name']) == True and db.validateText(parametri['description'])==True and db.validateText(parametri['symptoms'])==True and db.validateText(parametri['prevention'])==True and db.validateText(parametri['treatment'])==True and db.validateText(parametri['medication'])==True:
+            db.insertSuggestion(parametri['name'], parametri['allergy_type'], parametri['description'], parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'], parametri['id'])
+            response["code"] = 200
+            response["message"] = "All is well"
+            response["type"] = "Success"
+        else:
+            response["code"] = 409
+            response["message"] = "You tried sql injection! Got ya'!"
+            response["type"] = "Error"
         return response
 
     def add_user_allergies(self, parametri):
@@ -203,11 +207,16 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def feedback(self, parametri):
         response = {}
-        db.insertFeedback(parametri)
-        response["code"] = 200
-        response["message"] = "All is well"
-        response["type"] = "Success"
-
+        if db.validateText(parametri['name']) == True and db.validateText(parametri['email']) == True and db.validateText(parametri['message']) == True:
+            db.insertFeedback(parametri)
+            response["code"] = 200
+            response["message"] = "All is well"
+            response["type"] = "Success"
+        else:
+            response["code"] = 409
+            response["message"] = "You tried sql injection! Got ya'!"
+            response["type"] = "Error"
+            
         return response
 
     def comment(self, parametri):
