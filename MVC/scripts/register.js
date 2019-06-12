@@ -63,11 +63,6 @@ function getValue(){
     var emailValue = document.getElementById("email").value;
     var sexValue = document.getElementById("sex").value;
 
-    var catAlergii = [];
-
-
-
-
     if(usernameValue.length<4)
     {
         alert("Username de lungime prea mica");
@@ -91,40 +86,6 @@ function getValue(){
         alert("Email invalid");
         return
     }
-
-    var weatherList = []
-    var checks1 = document.getElementsByClassName('checks1');
-    for( i =0;i<3;i++)
-    {
-        if( checks1[i].checked == true){
-            weatherList.push(checks1[i].value)
-           
-        } 
-    }
-    console.log(weatherList)
-
-    var respiratoryList = []
-    var checks2 = document.getElementsByClassName('checks2');
-    for( i =0;i<4;i++)
-    {
-        if( checks2[i].checked == true){
-            respiratoryList.push(checks2[i].value)
-        } 
-    }
-    console.log(respiratoryList)
-
-    var foodList = []
-    var checks3 = document.getElementsByClassName('checks3');
-    for( i =0;i<4;i++)
-    {
-        if( checks3[i].checked == true){
-            foodList.push(checks3[i].value)
-        } 
-    }
-    console.log(foodList)
-
-    var otherAllergy = document.getElementById("another-allergy").value;
-
    
     json = {};
 
@@ -132,20 +93,6 @@ function getValue(){
     json.password = hashfunction(passwordValue);
     json.email = emailValue;
     json.sex = sexValue;
-
-    // for(i=0; i<weatherList.length-1;i++){
-    //     json.weatherAllergy[i] = weatherList[i];
-    // }
-    
-    // for(i=0; i<respiratoryList.length-1;i++){
-    //     json.respiratoryAllergy[i] = respiratoryList[i];
-    // }
-
-    // for(i=0; i<foodList.length-1;i++){
-    //     json.foodAllergy[i] = foodList[i];
-    // }
-
-    json.otherAllergy = otherAllergy;
 
     postRegister(json, function(response){
         console.log(response)
