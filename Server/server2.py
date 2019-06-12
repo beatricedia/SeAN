@@ -143,41 +143,60 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def login(self, parametri):
         response = {}
+        if db.validateTextSqlInjection(parametri["email"]) == True and db.validateTextSqlInjection(parametri["password"]) == True:
+            if db.validateTextXss(parametri["email"]) == True and db.validateTextXss(parametri["password"]) == True:
+                if db.checkIfUserExists(parametri["email"]):
+                    if db.checkUserPassword(parametri["email"])[0][0] == parametri["password"]:
+                        data = db.selectAllFromUser(parametri["email"])
+                        dataJson = {}
+                        response["code"] = 200
+                        response["type"] = "Success"
+                        response["message"] = "Login succesfull"
 
-        if db.checkIfUserExists(parametri["email"]):
-            if db.checkUserPassword(parametri["email"])[0][0] == parametri["password"]:
-                data = db.selectAllFromUser(parametri["email"])
-                dataJson = {}
-                response["code"] = 200
-                response["type"] = "Success"
-                response["message"] = "Login succesfull"
+                        dataJson["username"] = data[0][1]
+                        dataJson["id"] = data[0][0]
+                        dataJson["notificare1"] = data[0][5]
 
-                dataJson["username"] = data[0][1]
-                dataJson["id"] = data[0][0]
-                dataJson["notificare1"] = data[0][5]
-
-                response["data"] = dataJson
+                        response["data"] = dataJson
+                    else:
+                        response["code"] = 401
+                        response["type"] = "Error"
+                        response["message"] = "Username, password combination is wrong"
+                else:
+                    response["code"] = 401
+                    response["type"] = "Error"
+                    response["message"] = "Username, password combination is wrong"
             else:
-                response["code"] = 401
+                response["code"] = 409
+                response["message"] = "You tried xss! Got ya'!"
                 response["type"] = "Error"
-                response["message"] = "Username, password combination is wrong"
         else:
-            response["code"] = 401
+            response["code"] = 409
+            response["message"] = "You tried sql injection! Got ya'!"
             response["type"] = "Error"
-            response["message"] = "Username, password combination is wrong"
         return response
 
     def register(self, parametri):
         response = {}
-        if db.checkIfUserExists(parametri["email"]):
-            response["code"] = 409
-            response["message"] = "Email already in use"
-            response["type"] = "Error"
+        if db.validateTextSqlInjection(parametri["email"]) == True and db.validateTextSqlInjection(parametri["password"]) == True and db.validateTextSqlInjection(parametri["sex"]) == True :
+            if db.validateTextXss(parametri["email"]) == True and db.validateTextXss(parametri["password"]) == True and db.validateTextXss(parametri["sex"]) == True :
+                if db.checkIfUserExists(parametri["email"]):
+                    response["code"] = 409
+                    response["message"] = "Email already in use"
+                    response["type"] = "Error"
+                else:
+                    db.insertUser(parametri["username"], parametri["password"], parametri["email"], parametri["sex"])
+                    response["code"] = 200
+                    response["message"] = "All is well"
+                    response["type"] = "Success"
+            else:
+                response["code"] = 409
+                response["message"] = "You tried xss! Got ya'!"
+                response["type"] = "Error"
         else:
-            db.insertUser(parametri["username"], parametri["password"], parametri["email"], parametri["sex"])
-            response["code"] = 200
-            response["message"] = "All is well"
-            response["type"] = "Success"
+            response["code"] = 409
+            response["message"] = "You tried sql injection! Got ya'!"
+            response["type"] = "Error"
 
         return response
 
@@ -231,10 +250,20 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def comment(self, parametri):
         response = {}
-        db.insertComment(parametri)
-        response["code"] = 200
-        response["message"] = "All is well"
-        response["type"] = "Success"
+        if db.validateTextSqlInjection(parametri['comment']) == True :
+            if db.validateTextXss(parametri['comment']) == True:
+                db.insertComment(parametri)
+                response["code"] = 200
+                response["message"] = "All is well"
+                response["type"] = "Success"
+            else:
+                response["code"] = 409
+                response["message"] = "You tried xss! Got ya'!"
+                response["type"] = "Error"
+        else:
+            response["code"] = 409
+            response["message"] = "You tried sql injection! Got ya'!"
+            response["type"] = "Error"
 
         return response
 
