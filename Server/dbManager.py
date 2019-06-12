@@ -239,10 +239,11 @@ def selectUserAllergy(id_user):
 def selectLastAllergyId():
         with connection.cursor() as cursor:
                 querystring = "select max(id) from allergies"
-                cursor.execute(querystring, str(id))
+                cursor.execute(querystring)
                 result = cursor.fetchall()
-                return result  
+                return result[0][0] 
 
+# print(selectLastAllergyId())
 
 def selectLastUserId():
         with connection.cursor() as cursor:
@@ -433,6 +434,17 @@ def formatComments(allergy_name):
             result[i] = list(comment)
         return result
 
+######### STATISTICS
+
+def checkIfAllergyExists(id):
+        with connection.cursor() as cursor:
+                querystring = "select name from allergies where id = %s and validation=1"
+                rows_count = cursor.execute(querystring, str(id))
+                if rows_count > 0:
+                    rs = cursor.fetchall()
+                    return 1
+                else:
+                    return 0
 
 def selectFemale():
         with connection.cursor() as cursor:
@@ -488,19 +500,24 @@ def allergyFemaleStatistics():
         femaleList = selectFemaleAllergy()
         resultList = []
         
-        # resultList = {}
-        for i in range(0,nrOfAllergies()):
+        for i in range(0, selectLastAllergyId()):
                 resultList.append(0)
-        
 
         for item in femaleList:
                 for i,value in enumerate(resultList):
-                        if item-1 == i:
-                                resultList[i] +=1
+                        if checkIfAllergyExists(i+1)==1:
+                                if item-1 == i:
+                                        resultList[i] +=1
+                        else:
+                                resultList[i] = -1
+
 
         for i,value in enumerate(resultList):
-                resultList[i]  = [selectAllergyName(i+1),value]
-
+                if resultList[i] !=-1:
+                        resultList[i]  = [selectAllergyName(i+1),value]
+        
+        resultList = list(filter(lambda a: a != -1, resultList))
+       
         return(resultList)
 
         
@@ -543,17 +560,24 @@ def allergyMaleStatistics():
         maleList = selectMaleAllergy()
         resultList = []
         
-        for i in range(0,nrOfAllergies()):
+        for i in range(0, selectLastAllergyId()):
                 resultList.append(0)
-        
+
         for item in maleList:
                 for i,value in enumerate(resultList):
-                        if item-1 == i:
-                                resultList[i] +=1
+                        if checkIfAllergyExists(i+1)==1:
+                                if item-1 == i:
+                                        resultList[i] +=1
+                        else:
+                                resultList[i] = -1
+
 
         for i,value in enumerate(resultList):
-                resultList[i]  = [selectAllergyName(i+1),value]
-
+                if resultList[i] !=-1:
+                        resultList[i]  = [selectAllergyName(i+1),value]
+        
+        resultList = list(filter(lambda a: a != -1, resultList))
+       
 
         return(resultList)
 
@@ -570,7 +594,7 @@ def allergyStatistics():
 
         return dictResult
 
-print(allergyStatistics())
+# print(allergyStatistics())
 
 # print(selectAllergyName())
 
