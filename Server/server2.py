@@ -183,11 +183,16 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def add_allergy(self, parametri):
         response = {}
-        if db.validateText(parametri['name']) == True and db.validateText(parametri['description'])==True and db.validateText(parametri['symptoms'])==True and db.validateText(parametri['prevention'])==True and db.validateText(parametri['treatment'])==True and db.validateText(parametri['medication'])==True:
-            db.insertSuggestion(parametri['name'], parametri['allergy_type'], parametri['description'], parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'], parametri['id'])
-            response["code"] = 200
-            response["message"] = "All is well"
-            response["type"] = "Success"
+        if db.validateTextSqlInjection(parametri['name']) == True and db.validateTextSqlInjection(parametri['description'])==True and db.validateTextSqlInjection(parametri['symptoms'])==True and db.validateTextSqlInjection(parametri['prevention'])==True and db.validateTextSqlInjection(parametri['treatment'])==True and db.validateTextSqlInjection(parametri['medication'])==True:
+            if db.validateTextXss(parametri['name']) == True and db.validateTextXss(parametri['description'])==True and db.validateTextXss(parametri['symptoms'])==True and db.validateTextXss(parametri['prevention'])==True and db.validateTextXss(parametri['treatment'])==True and db.validateTextXss(parametri['medication'])==True:
+                db.insertSuggestion(parametri['name'], parametri['allergy_type'], parametri['description'], parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'], parametri['id'])
+                response["code"] = 200
+                response["message"] = "All is well"
+                response["type"] = "Success"
+            else:
+                response["code"] = 409
+                response["message"] = "You tried xss! Got ya'!"
+                response["type"] = "Error"
         else:
             response["code"] = 409
             response["message"] = "You tried sql injection! Got ya'!"
@@ -207,16 +212,21 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def feedback(self, parametri):
         response = {}
-        if db.validateText(parametri['name']) == True and db.validateText(parametri['email']) == True and db.validateText(parametri['message']) == True:
-            db.insertFeedback(parametri)
-            response["code"] = 200
-            response["message"] = "All is well"
-            response["type"] = "Success"
+        if db.validateTextSqlInjection(parametri['name']) == True and db.validateTextSqlInjection(parametri['email']) == True and db.validateTextSqlInjection(parametri['message']) == True:
+            if db.validateTextXss(parametri['name']) == True and db.validateTextXss(parametri['email']) == True and db.validateTextXss(parametri['message']) == True:
+                db.insertFeedback(parametri)
+                response["code"] = 200
+                response["message"] = "All is well"
+                response["type"] = "Success"
+            else:
+                response["code"] = 409
+                response["message"] = "You tried xss! Got ya'!"
+                response["type"] = "Error"
         else:
             response["code"] = 409
             response["message"] = "You tried sql injection! Got ya'!"
             response["type"] = "Error"
-            
+
         return response
 
     def comment(self, parametri):

@@ -3,6 +3,7 @@ import pymysql.cursors
 import pymysql
 import smtplib
 import random
+import re
 from mysql.connector import (connection)
 
 
@@ -573,12 +574,18 @@ print(allergyStatistics())
 
 # print(selectAllergyName())
 
-import re
 
-def validateText(textToCheck):
+# INPUT TEXT VALIDATION
+
+def validateTextSqlInjection(textToCheck):
     pattern = re.compile(r"('(''|[^'])*')|(;)|(\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|MERGE|SELECT|UPDATE|UNION( +ALL){0,1})\b)  ")
 
     if (pattern.match(textToCheck)) or (re.findall(pattern, textToCheck)):
         return False
     else:
         return True
+
+def validateTextXss(text):
+    if re.search(r'<(|\/|[^\/>][^>]+|\/[^>][^>]+)>',text):
+        return False
+    return True
