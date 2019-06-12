@@ -48,6 +48,7 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.open("GET", "/notificari"+JSON.parse(getCookie("seanData")).id);
 xmlhttp.onreadystatechange = function () {
 if (this.readyState === 4){
+    console.log(this.response)
     var notificari = JSON.parse(this.response)
     console.log(notificari)
     for(var indexNot in notificari){

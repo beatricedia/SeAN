@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/server2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-312">
-              <caret line="100" column="68" selection-start-line="100" selection-start-column="68" selection-end-line="100" selection-end-column="68" />
+            <state relative-caret-position="391">
+              <caret line="262" column="34" lean-forward="true" selection-start-line="253" selection-start-column="33" selection-end-line="253" selection-end-column="42" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -28,58 +28,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MVC/scripts/allergy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/dbManager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="377" column="46" lean-forward="true" selection-start-line="377" selection-start-column="46" selection-end-line="377" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MVC/scripts/ajaxCalls.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1922">
-              <caret line="460" column="19" lean-forward="true" selection-start-line="460" selection-start-column="19" selection-end-line="460" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MVC/user_allergies.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="61" column="78" selection-start-line="61" selection-start-column="66" selection-end-line="61" selection-end-column="78" />
-              <folding>
-                <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="272">
+              <caret line="16" column="38" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MVC/scripts/user_allergies.js">
+        <entry file="file://$PROJECT_DIR$/Server/dbManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
+            <state relative-caret-position="115">
+              <caret line="436" column="35" lean-forward="true" selection-start-line="436" selection-start-column="35" selection-end-line="436" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MVC/scripts/new_allergy.js">
+        <entry file="file://$PROJECT_DIR$/MVC/scripts/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="53" column="1" lean-forward="true" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
+            <state relative-caret-position="340">
+              <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -95,13 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>noti</find>
-      <find>suggestion</find>
-      <find>parametri['allergy_type']</find>
-      <find>allergy_type</find>
-      <find>selectUsersByCategoryAllergy</find>
-      <find>notificare2</find>
-      <find>notificare</find>
       <find>saveNotifications</find>
       <find>delete</find>
       <find>deleteUserAllergies</find>
@@ -125,6 +86,13 @@
       <find>saveSettings</find>
       <find>container</find>
       <find>window</find>
+      <find>add_comment</find>
+      <find>for</find>
+      <find>insertComment</find>
+      <find>comment</find>
+      <find>test</find>
+      <find>testt</find>
+      <find>testule</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -161,17 +129,17 @@
         <option value="$PROJECT_DIR$/MVC/new_allergy.html" />
         <option value="$PROJECT_DIR$/MVC/register.html" />
         <option value="$PROJECT_DIR$/MVC/user_allergies.html" />
-        <option value="$PROJECT_DIR$/MVC/scripts/index.js" />
         <option value="$PROJECT_DIR$/MVC/scripts/ajaxCalls.js" />
-        <option value="$PROJECT_DIR$/Server/dbManager.py" />
         <option value="$PROJECT_DIR$/Server/server2.py" />
         <option value="$PROJECT_DIR$/MVC/scripts/user_allergies.js" />
+        <option value="$PROJECT_DIR$/MVC/scripts/index.js" />
+        <option value="$PROJECT_DIR$/Server/dbManager.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
-    <option name="width" value="979" />
+    <option name="width" value="980" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
@@ -184,23 +152,23 @@
         <subPane>
           <expand>
             <path>
-              <item name="sean - Copy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sean - Copy" type="462c0819:PsiDirectoryNode" />
+              <item name="sean" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sean" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="sean - Copy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sean - Copy" type="462c0819:PsiDirectoryNode" />
+              <item name="sean" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sean" type="462c0819:PsiDirectoryNode" />
               <item name="MVC" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="sean - Copy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sean - Copy" type="462c0819:PsiDirectoryNode" />
+              <item name="sean" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sean" type="462c0819:PsiDirectoryNode" />
               <item name="MVC" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="sean - Copy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sean - Copy" type="462c0819:PsiDirectoryNode" />
+              <item name="sean" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sean" type="462c0819:PsiDirectoryNode" />
               <item name="Server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -385,14 +353,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4981203" visible="true" weight="0.16380449" />
       <window_info id="Structure" order="1" sideWeight="0.5018797" side_tool="true" weight="0.16314399" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4993395" visible="true" weight="0.37906647" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4993395" visible="true" weight="0.3903819" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -613,13 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MVC/scripts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="61" column="1" lean-forward="true" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MVC/new_allergy.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -645,34 +605,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MVC/scripts/allergy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/server2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-312">
-          <caret line="100" column="68" selection-start-line="100" selection-start-column="68" selection-end-line="100" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/dbManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="377" column="46" lean-forward="true" selection-start-line="377" selection-start-column="46" selection-end-line="377" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MVC/scripts/ajaxCalls.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1922">
-          <caret line="460" column="19" lean-forward="true" selection-start-line="460" selection-start-column="19" selection-end-line="460" selection-end-column="19" />
+        <state relative-caret-position="17">
+          <caret line="465" column="3" lean-forward="true" selection-start-line="465" selection-start-column="3" selection-end-line="465" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -688,17 +624,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MVC/scripts/user_allergies.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="122" column="39" lean-forward="true" selection-start-line="122" selection-start-column="39" selection-end-line="122" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MVC/scripts/new_allergy.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
+        <state relative-caret-position="331">
           <caret line="53" column="1" lean-forward="true" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MVC/scripts/user_allergies.js">
+    <entry file="file://$PROJECT_DIR$/MVC/scripts/allergy.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
+        <state relative-caret-position="272">
+          <caret line="16" column="38" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/server2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="262" column="34" lean-forward="true" selection-start-line="253" selection-start-column="33" selection-end-line="253" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MVC/scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/dbManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="436" column="35" lean-forward="true" selection-start-line="436" selection-start-column="35" selection-end-line="436" selection-end-column="35" />
         </state>
       </provider>
     </entry>

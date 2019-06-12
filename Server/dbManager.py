@@ -426,6 +426,26 @@ def insertComment(parametri):
         cursor.execute(querystring, (parametri["username"], parametri["allergy_name"], parametri["comment"]))
         connection.commit()
 
+    with connection.cursor() as cursor:
+
+        querystring = "select id_user from user_allergy where id_allergy = (select id from allergies where name=%s)"
+        cursor.execute(querystring, parametri["allergy_name"])
+        result = cursor.fetchall()
+
+        querystring = "select id from users where username=%s"
+        cursor.execute(querystring, parametri["username"])
+        user = cursor.fetchone()[0]
+        print("testulet", user)
+        mesaj = "New comment added on " + str(parametri["allergy_name"]) + " allergy"
+
+        ids = list(sum(result, ()))
+        for id_user in ids:
+            if user != id_user:
+                with connection.cursor() as cursor:
+                    print(id_user)
+                    querystring = "insert into notifications(id_user, mesaj, tip) VALUES(%s,%s,%s)"
+                    cursor.execute(querystring, (str(id_user), mesaj, 3))
+                    connection.commit()
 
 def selectComments(allergy_name):
     with connection.cursor() as cursor:
