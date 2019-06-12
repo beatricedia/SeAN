@@ -37,6 +37,10 @@ function listAllergies(){
                 document.getElementById("notificare2").checked = true;
             else
                 document.getElementById("notificare2").checked = false;
+            if(JSON.parse(getCookie("seanData")).notificare3)
+                document.getElementById("notificare3").checked = true;
+            else
+                document.getElementById("notificare3").checked = false;
 
         }
     }
@@ -84,6 +88,20 @@ function saveSettings()
         setCookie("seanData", JSON.stringify(dataSean), 0)
     }
 
+    if( document.getElementById("notificare3").checked )
+    {
+       json.notificare3 = 1
+        var dataSean = JSON.parse(getCookie("seanData"))
+        dataSean.notificare3 = 1
+        setCookie("seanData", JSON.stringify(dataSean), 1)
+    }
+    else
+    {
+        json.notificare3=0
+        var dataSean = JSON.parse(getCookie("seanData"))
+        dataSean.notificare3 = 0
+        setCookie("seanData", JSON.stringify(dataSean), 0)
+    }
 
     for(var i=0; i<copii.length; i++)
     {
@@ -95,6 +113,12 @@ function saveSettings()
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "setari");
+    xmlhttp.onreadystatechange = function () {
+    if (this.readyState === 4) {
+        alert("Settings Saved!")
+        window.location.replace("index.html");
+    }
+    }
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send(JSON.stringify(json));
 

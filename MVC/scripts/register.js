@@ -1,46 +1,13 @@
-var expanded1 = false;
 
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
-function showCheckboxes1() {
-    var checkboxes1 = document.getElementById("checkboxes1");
-    if (!expanded1) {
-        checkboxes1.style.display = "block";
-        expanded1 = true;
-    } else {
-        checkboxes1.style.display = "none";
-        expanded1 = false;
-    }
-}
 
-var expanded2 = false;
 
-function showCheckboxes2() {
-    var checkboxes2= document.getElementById("checkboxes2");
-    if (!expanded2) {
-        checkboxes2.style.display = "none";
-        expanded2 = true;
-    } else {
-        checkboxes2.style.display = "block";
-        expanded2 = false;
-    }
-}
 
-var expanded3 = false;
 
-function showCheckboxes3() {
-    var checkboxes3= document.getElementById("checkboxes3");
-    if (!expanded3) {
-        checkboxes3.style.display = "none";
-        expanded3 = true;
-    } else {
-        checkboxes3.style.display = "block";
-        expanded3 = false;
-    }
-}
 
 function postRegister(json,callback)
 {
@@ -63,7 +30,6 @@ function getValue(){
     var emailValue = document.getElementById("email").value;
     var sexValue = document.getElementById("sex").value;
 
-    var catAlergii = [];
 
 
 
@@ -92,38 +58,10 @@ function getValue(){
         return
     }
 
-    var weatherList = []
-    var checks1 = document.getElementsByClassName('checks1');
-    for( i =0;i<3;i++)
-    {
-        if( checks1[i].checked == true){
-            weatherList.push(checks1[i].value)
            
-        } 
-    }
-    console.log(weatherList)
 
-    var respiratoryList = []
-    var checks2 = document.getElementsByClassName('checks2');
-    for( i =0;i<4;i++)
-    {
-        if( checks2[i].checked == true){
-            respiratoryList.push(checks2[i].value)
-        } 
-    }
-    console.log(respiratoryList)
 
-    var foodList = []
-    var checks3 = document.getElementsByClassName('checks3');
-    for( i =0;i<4;i++)
-    {
-        if( checks3[i].checked == true){
-            foodList.push(checks3[i].value)
-        } 
-    }
-    console.log(foodList)
 
-    var otherAllergy = document.getElementById("another-allergy").value;
 
    
     json = {};
@@ -145,7 +83,6 @@ function getValue(){
     //     json.foodAllergy[i] = foodList[i];
     // }
 
-    json.otherAllergy = otherAllergy;
 
     postRegister(json, function(response){
         console.log(response)

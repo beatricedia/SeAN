@@ -56,6 +56,8 @@ if (this.readyState === 4){
             alert(notificare[2])
         if(notificare[3] == 2 && globalData.notificare2)
             alert(notificare[2])
+        if(notificare[3] == 3 && globalData.notificare3)
+            alert(notificare[2])
     }
 }
 }

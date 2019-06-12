@@ -230,7 +230,7 @@ footer {
 
 
 .modal {
-  display: none; Hidden by default
+  display: none; /*Hidden by default*/
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -274,13 +274,14 @@ footer {
   margin-bottom: 20px;
   font-weight: bold;
   color: #b32d00;
+  /* padding: 15px 16px; */
   
 }
 
 .reports {
   float: right;
   font-size: 16px;
-  margin-right: 23px;
+  margin-right: 5px;
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -288,11 +289,14 @@ footer {
 .reports a{
   color: #b32d00;
   text-align: center;
-  padding: 15px 16px;
+  padding: 9px 10px;
   text-decoration: none;
 }
 .reports a:hover{
   color:#35424a;
   font-weight: bold;
   cursor: pointer;
+}
+.container{
+  margin-right: 45px;
 }

@@ -68,6 +68,7 @@ function getAllergiess() {
 
                 var allergy_name = value[1];
                 try{
+                    if (value[8] != null && value[9] != null && value[10] != null && value[11] != null) {
                 table += '<h2 style="color: #992600;">Statistics of people who have ' + allergy_name + ' allergy per year</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
                 table += '<tbody>';
                 var years = value[8].split(",");
@@ -139,6 +140,7 @@ function getAllergiess() {
                 }
                 table += '</tbody>';
                 table += '</table><br><br>';
+                    }
                 }catch(e){statistics.style.display="none"}
             }
 
@@ -222,6 +224,19 @@ function getAllergyDetails() {
             alergy_question.id = "title-description";
             alergy_question.innerHTML = "What is " + selectedAllergy[1] + " Allergy ?";
 
+            document.getElementById("container").appendChild(allergy_title);
+            document.getElementById("container").appendChild(alergy_question);
+            function download(filename, text) {
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+                element.setAttribute('download', filename);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }
+            try {
+                if (selectedAllergy[8] != null && selectedAllergy[9] != null && selectedAllergy[10] != null && selectedAllergy[11] != null) {
             var statistics = document.createElement("a");
             statistics.id = "statistics";
             statistics.innerHTML = "Statistics: "
@@ -239,20 +254,10 @@ function getAllergyDetails() {
             allergy_reports.appendChild(pdf_report_option);
             statistics.appendChild(allergy_reports);
 
-            function download(filename, text) {
-                var element = document.createElement('a');
-                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-                element.setAttribute('download', filename);
 
-                element.style.display = 'none';
-                document.body.appendChild(element);
 
-                element.click();
 
-                document.body.removeChild(element);
-            }
 
-            try{
 
             var allergy_name = selectedAllergy[1];
             let table = '<h2>Statistics of people who have ' + allergy_name + ' allergy per year</h1><table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
@@ -370,6 +375,8 @@ function getAllergyDetails() {
                         //          this allow the insertion of new lines after html
                         pdf.save('report  .pdf');
                     }, margins);
+                    }
+                    document.getElementById("container").appendChild(statistics);
             }
 
             }catch(e){statistics.style.display="none"}
@@ -430,10 +437,8 @@ function getAllergyDetails() {
 
             var Pspatii = document.createElement("div");
             Pspatii.innerHTML = "&#10&#10&#10&#10&#10&#10&#10&#10&#10&#10"
-            document.getElementById("container").appendChild(allergy_title)
-            document.getElementById("container").appendChild(allergy_title);
-            document.getElementById("container").appendChild(alergy_question);
-            document.getElementById("container").appendChild(statistics);
+
+
             document.getElementById("container").appendChild(description);
             document.getElementById("container").appendChild(symptoms_title);
             document.getElementById("container").appendChild(symptoms_box);
@@ -447,7 +452,7 @@ function getAllergyDetails() {
 
             //section.appendChild(container);
             //document.getElementById("info").appendChild(container);
-           // document.body.appendChild(section);
+            //document.body.appendChild(section);
 
         getCommentsDetails()
         }
@@ -463,3 +468,144 @@ function getAllergyDetails() {
 //function showAllergyDetails() {
 //    getAllergyDetails("../cgi-bin/getAllAlergies.py");
 //}
+function getGeneralStatisticsHTML() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "/gender-statistics");
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            let responseJson = JSON.parse(this.response);
+            var html_report_option = document.getElementById("html-general");
+            var pdf_report_option = document.getElementById("pdf-general");
+            let table = '<h1 style="text-align:center; color:#e63900;"  >Gender statistics</h1><br>';
+            table += '<table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
+            table += '<tbody>';
+            function download(filename, text) {
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+                element.setAttribute('download', filename);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }
+            for (const [key, value] of Object.entries(responseJson)) {
+                if (key == 1) {
+                    var femaleList = value;
+                    console.log(femaleList);
+                }
+                else
+                    var maleList = value;
+                console.log(maleList);
+            }
+            for (var i = 0; i < femaleList.length +1; i++) {
+                table += '<tr>';
+                for (var j = 0; j < 3; j++) {
+                    if (i == 0) {
+                        if (j == 0) {
+                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Allergy</td>';
+                        }
+                        else if (j == 1) {
+                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Females</td>';
+                        }
+                        else if (j == 2) {
+                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Males</td>';
+                        }
+                    }
+                    else if(j==0){
+                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${femaleList[i-1][0]}</td>`;
+                    }
+                    else if (j==1){
+                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${femaleList[i-1][1]}</td>`;
+                    }
+                    else if (j==2){
+                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${maleList[i-1][1]}</td>`;
+                    }
+                }
+                table += '</tr>';
+            }
+            table += '</tbody>';
+            table += '</table>';
+            var filename = "gender-report.html";
+            download(filename, table);
+        }
+    }
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send();
+}
+function getGeneralStatisticsPDF() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "/gender-statistics");
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            let responseJson = JSON.parse(this.response);
+            var html_report_option = document.getElementById("html-general");
+            var pdf_report_option = document.getElementById("pdf-general");
+            let table = '<h1 style="text-align:center; color:#e63900;"  >Gender statistics</h1><br>';
+            table += '<table style="width:100%;  border: 2px solid #ddd;padding: 15px;  border-collapse: collapse;">';
+            table += '<tbody>';
+            for (const [key, value] of Object.entries(responseJson)) {
+                if (key == 1) {
+                    var femaleList = value;
+                    console.log(femaleList);
+                }
+                else
+                    var maleList = value;
+                console.log(maleList);
+            }
+            for (var i = 0; i < femaleList.length +1; i++) {
+                table += '<tr>';
+                for (var j = 0; j < 3; j++) {
+                    if (i == 0) {
+                        if (j == 0) {
+                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Allergy</td>';
+                        }
+                        else if (j == 1) {
+                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Females</td>';
+                        }
+                        else if (j == 2) {
+                            table += '<td style="border: 2px solid #ddd;padding: 8px;  background-color: #b2b2b2;">Males</td>';
+                        }
+                    }
+                    else if(j==0){
+                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${femaleList[i-1][0]}</td>`;
+                    }
+                    else if (j==1){
+                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${femaleList[i-1][1]}</td>`;
+                    }
+                    else if (j==2){
+                        table += `<td style="border: 2px solid #ddd;padding: 8px;">${maleList[i-1][1]}</td>`;
+                    }
+                }
+                table += '</tr>';
+            }
+            table += '</tbody>';
+            table += '</table>';
+            var pdf = new jsPDF('p', 'pt', 'letter');
+                        console.log("intra in functie");
+                        source = table
+                        specialElementHandlers = {
+                            '#bypassme': function (element, renderer) {
+                                return true
+                            }
+                        };
+                        margins = {
+                            top: 80,
+                            bottom: 60,
+                            left: 30,
+                            width: 700
+                        };
+                        pdf.fromHTML(
+                            source, // HTML string or DOM elem ref.
+                            margins.left, // x coord
+                            margins.top, { // y coord
+                                'width': margins.width, // max width of content on PDF
+                                'elementHandlers': specialElementHandlers
+                            },
+                            function (dispose) {
+                                pdf.save('gender-report.pdf');
+                            }, margins);
+        }
+    }
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send();
+}

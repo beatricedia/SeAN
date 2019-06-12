@@ -57,9 +57,13 @@ function getSuggestionDetails() {
 
                     var allergy_title = document.createElement("h2");
                     allergy_title.classList.add('allergy-title');
-                    allergy_title.innerHTML = value[3] + " Allergy ";
+                    allergy_title.innerHTML = value[1] + " Allergy ";
                     if(JSON.parse(getCookie("seanData")).id == 1)
                         allergy_title.innerHTML += "<div onclick='validate("+value[0]+")' style='cursor: pointer'>&#10004;</div>"
+                    var description_title = document.createElement("h3");
+                    description_title.innerHTML = "Description";
+                    var description = document.createElement("p");
+                    description.innerHTML = value[3];
 
                     var symptoms_title = document.createElement("h3");
                     symptoms_title.innerHTML = "Symptoms";
@@ -76,6 +80,8 @@ function getSuggestionDetails() {
                     var content = document.createElement("div");
                     content.classList.add('content');
                     content.appendChild(allergy_title);
+                    content.appendChild(description_title);
+                    content.appendChild(description);
                     content.appendChild(symptoms_title);
                     content.appendChild(symptoms);
                     content.appendChild(prevention_title);
@@ -96,10 +102,14 @@ function getSuggestionDetails() {
 
                     var allergy_title = document.createElement("h2");
                     allergy_title.classList.add('allergy-title');
-                    allergy_title.innerHTML = value[3] + " Allergy";
+                    allergy_title.innerHTML = value[1] + " Allergy";
                     if(JSON.parse(getCookie("seanData")).id == 1)
                         allergy_title.innerHTML += "<div onclick='validate("+value[0]+")' style='cursor: pointer'>&#10004;</div>"
 
+                    var description_title = document.createElement("h3");
+                    description_title.innerHTML = "Description";
+                    var description = document.createElement("p");
+                    description.innerHTML = value[3];
                     var symptoms_title = document.createElement("h3");
                     symptoms_title.innerHTML = "Symptoms";
 
@@ -115,6 +125,8 @@ function getSuggestionDetails() {
                     var content = document.createElement("div");
                     content.classList.add('content');
                     content.appendChild(allergy_title);
+                    content.appendChild(description_title);
+                    content.appendChild(description);
                     content.appendChild(symptoms_title);
                     content.appendChild(symptoms);
                     content.appendChild(prevention_title);

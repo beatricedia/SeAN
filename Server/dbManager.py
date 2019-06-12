@@ -3,6 +3,7 @@ import pymysql.cursors
 import pymysql
 import smtplib
 import random
+import re
 from mysql.connector import (connection)
 
 
@@ -168,9 +169,13 @@ def formatAllSelectedSuggestions():
 
 def insertSuggestion(name, category, description, symptoms, prevention, treatment, medication, id_user):
         with connection.cursor() as cursor:
-                querystring = "insert into allergies (name, category, description, symptoms, prevention, " \
-                              "treatment, medication,user_id, validation) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                cursor.execute(querystring, (name, category, description, symptoms, prevention, treatment, medication, id_user, 0))
+                querystring = "select max(id) from allergies"
+                cursor.execute(querystring)
+                id = int(cursor.fetchone()[0]) + 1
+                id = str(id)
+                querystring = "insert into allergies (id, name, category, description, symptoms, prevention, " \
+                              "treatment, medication,user_id, validation) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                cursor.execute(querystring, (id, name, category, description, symptoms, prevention, treatment, medication, id_user, 0))
                 connection.commit()
 
 # insertSuggestion("1","2","Weather","Sun","hapciu","medicamente","Nurofren","altceva","0")
@@ -203,6 +208,11 @@ def insertUserAllergy(id_user,id_allergy):
 # insertUserAllergy("1","2")
 # print(selectAllUserAllergy())
 
+def seletUserAllergies(id_user):
+          with connection.cursor() as cursor:
+                querystring = "delete from user_allergy WHERE id_user = %s"
+                cursor.execute(querystring, str(id_user))
+                connection.commit()
 
 def selectSpecificAllergy(id):
          with connection.cursor() as cursor:
@@ -232,9 +242,9 @@ def selectUserAllergy(id_user):
 def selectLastAllergyId():
         with connection.cursor() as cursor:
                 querystring = "select max(id) from allergies"
-                cursor.execute(querystring, str(id))
+                cursor.execute(querystring)
                 result = cursor.fetchall()
-                return result  
+                return result[0][0] 
 
 
 def selectLastUserId():
@@ -343,14 +353,18 @@ def validate(id):
         notify(userID, "New allergy added! \nCategory: "+rezultat[1] +"Name: "+rezultat[0], 1)
 
 
-def saveNotifications(userID,val1, val2):
+def saveNotifications(userID,val1, val2, val3):
         with connection.cursor() as cursor:
-                querystring = "UPDATE users SET notificare1=%s, notificare2=%s WHERE id=%s;"
-                cursor.execute(querystring,(val1, val2, userID))
+                querystring = "UPDATE users SET notificare1=%s, notificare2=%s, notificare3=%s WHERE id=%s;"
+                cursor.execute(querystring,(val1, val2, val3, userID))
                 connection.commit()
+
+
+
 def saveAllergies(userID, allergies):
+
         with connection.cursor() as cursor:
-                querystring= "DELETE FROM user_allergy where id_user=%s"
+                querystring = "DELETE FROM user_allergy where id_user=%s"
                 cursor.execute(querystring,(userID))
                 for i in allergies:
                     print(i)
@@ -358,12 +372,15 @@ def saveAllergies(userID, allergies):
                     cursor.execute(querystring, (userID, i))
                 connection.commit()
 def saveSettings(parametri):
+
         userId = parametri["id"]
         notificare1 = parametri["notificare1"]
         notificare2 = parametri["notificare2"]
+        notificare3 = parametri["notificare3"]
         allergies = parametri["alergii"]
-        saveNotifications(userId, notificare1,notificare2)
+        saveNotifications(userId, notificare1,notificare2, notificare3)
         saveAllergies(userId, allergies)
+
 def selectAllergiesForUserProfile(id):
     with connection.cursor() as cursor:
         querystring = "SELECT *,(SELECT COUNT(*) from user_allergy where id_allergy=id and id_user = " + id + ") FROM sean_db.allergies;"
@@ -426,3 +443,115 @@ def formatComments(allergy_name):
             result[i] = list(comment)
         return result
 
+def checkIfAllergyExists(id):
+        with connection.cursor() as cursor:
+                querystring = "select name from allergies where id = %s and validation=1"
+                rows_count = cursor.execute(querystring, str(id))
+                if rows_count > 0:
+                    rs = cursor.fetchall()
+                    return 1
+                else:
+                    return 0
+def selectFemale():
+        with connection.cursor() as cursor:
+                querystring = "select * from users where sex=0000000001 "
+                cursor.execute(querystring)
+                result = cursor.fetchall()
+                return result
+def selectFemaleID():
+        result = []
+        i = 0
+        for value in selectFemale():
+           result.append(value[0])
+        return result
+def findUser(id):
+        resultList = []
+        with connection.cursor() as cursor:
+                        querystring = "select id_allergy from user_allergy where id_user =%s "
+                        cursor.execute(querystring,id)
+                        result = cursor.fetchall()
+                        for value in result:
+                                resultList.append(value[0])
+                        return resultList
+def selectFemaleAllergy():
+        resultList = []
+        for value in selectFemaleID():
+                for item in findUser(value):
+                        resultList.append(item)
+        return resultList
+def selectAllergyName(id):
+         with connection.cursor() as cursor:
+                        querystring = "select name from allergies where id =%s "
+                        cursor.execute(querystring,id)
+                        result = cursor.fetchone()
+                        return result[0]
+def allergyFemaleStatistics():
+        femaleList = selectFemaleAllergy()
+        resultList = []
+        for i in range(0, selectLastAllergyId()):
+                resultList.append(0)
+        for item in femaleList:
+                for i,value in enumerate(resultList):
+                        if checkIfAllergyExists(i+1)==1:
+                                if item-1 == i:
+                                        resultList[i] +=1
+                        else:
+                                resultList[i] = -1
+        for i,value in enumerate(resultList):
+                if resultList[i] !=-1:
+                        resultList[i]  = [selectAllergyName(i+1),value]
+        resultList = list(filter(lambda a: a != -1, resultList))
+        return(resultList)
+def selectMale():
+        with connection.cursor() as cursor:
+                querystring = "select * from users where sex=0000000000 "
+                cursor.execute(querystring)
+                result = cursor.fetchall()
+                return result
+def selectMaleID():
+        result = []
+        i = 0
+        for value in selectMale():
+           result.append(value[0])
+        return result
+def selectMaleAllergy():
+        resultList = []
+        for value in selectMaleID():
+                for item in findUser(value):
+                        resultList.append(item)
+        return resultList
+def allergyMaleStatistics():
+        maleList = selectMaleAllergy()
+        resultList = []
+        for i in range(0, selectLastAllergyId()):
+                resultList.append(0)
+        for item in maleList:
+                for i,value in enumerate(resultList):
+                        if checkIfAllergyExists(i+1)==1:
+                                if item-1 == i:
+                                        resultList[i] +=1
+                        else:
+                                resultList[i] = -1
+        for i,value in enumerate(resultList):
+                if resultList[i] !=-1:
+                        resultList[i]  = [selectAllergyName(i+1),value]
+        resultList = list(filter(lambda a: a != -1, resultList))
+        return(resultList)
+def allergyStatistics():
+        dictResult = {}
+        femaleList = allergyFemaleStatistics()
+        maleList = allergyMaleStatistics()
+        dictResult["1"] = femaleList
+        dictResult["2"] = maleList
+        return dictResult
+# print(allergyStatistics())
+def validateTextSqlInjection(textToCheck):
+    pattern = re.compile(r"('(''|[^'])*')|(;)|(\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|MERGE|SELECT|UPDATE|UNION( +ALL){0,1})\b)  ")
+    if (pattern.match(textToCheck)) or (re.findall(pattern, textToCheck)):
+        return False
+    else:
+        return True
+def validateTextXss(text):
+    if re.search(r'<(|\/|[^\/>][^>]+|\/[^>][^>]+)>',text):
+        return False
+    return True
