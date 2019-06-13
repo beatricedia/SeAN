@@ -11,14 +11,13 @@
   <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="../css/suggestions.css" />
   <script src="../scripts/index.js" defer></script>
-    <script src="../scripts/ajaxCalls.js" defer></script>
   <script src="../scripts/suggestions.js" defer></script>
 </head>
 
 <style>
-    .okey{
-        display: none
-    }
+  .okey {
+    display: none
+  }
 </style>
 
 <body onload="getSuggestionDetails()">
@@ -27,21 +26,22 @@
   <div class="nav" id="myTopnav">
     <div>
       <a class="menu" href="index.html">News</a>
-      <a id="addAllergyDiv"  style="display:none" class="menu" href="new_allergy.html"><i class="fa fa-plus-circle"></i> Add allergy</a>
+      <a id="addAllergyDiv" style="display:none" class="menu" href="new_allergy.html"><i class="fa fa-plus-circle"></i>
+        Add allergy</a>
       <a class="menu" href="suggestions.html">Sugestions</a>
-        <a id="profileDiv" style="display:none" class="menu" href="user_allergies.html">Profile</a>
-        <a id="feedbackDiv" style="display:none" class="menu" href="feedback.html">Feedback</a>
+      <a id="profileDiv" style="display:none" class="menu" href="user_allergies.html">Profile</a>
+      <a id="feedbackDiv" style="display:none" class="menu" href="feedback.html">Feedback</a>
     </div>
 
-        <div class="icon-menu">
-            <a id="registerDiv" class="Login-btn" href="register.html">Register</a>
-            <a id="loginDiv"    class="Login-btn" href="login.html">Login</a>
-            <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
-            <a id="logoutDiv"   class="Login-btn"  style="display:none" onclick="logout()">Logout</a>
-            <form id="search">
-                <input id="searchInput" type="text" placeholder="Search..." oninput="searchSuggestions()">
-            </form>
-        </div>
+    <div class="icon-menu">
+      <a id="registerDiv" class="Login-btn" href="register.html">Register</a>
+      <a id="loginDiv" class="Login-btn" href="login.html">Login</a>
+      <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
+      <a id="logoutDiv" class="Login-btn" style="display:none" onclick="logout()">Logout</a>
+      <form id="search">
+        <input id="searchInput" type="text" placeholder="Search..." oninput="searchSuggestions()">
+      </form>
+    </div>
     <a href="javascript:void(0);" class="icon" onclick="menuBars()">
       <i class="fa fa-bars"></i>
     </a>
@@ -51,111 +51,8 @@
 
   <h2 class="sugestion-title">Sugestions</h2>
 
-  <div class="timeline">
-    <!-- <div class="containers left">
-      <div class="content">
-        <h2>Pollen allergy</h2>
-        <h3>Symptoms</h3>
-        <p>Allergic symptoms tend to be particularly intense on cool days when the wind rises and
-          the pollen is transported through the air. On rainy days, on the other hand, there is a decrease in the amount
-          of pollen in
-          air. Allergy manifestations include:</p>
-        <ul>
-          <li>rhinorrhoea, eyes tearing</li>
-          <li>sneezing</li>
-          <li>cough</li>
-          <li>itching of the nose and eyes</li>
-          <li>swelling of the eyes.</li>
-        </ul>
-        <h3>Treatment </h3>
-        <p>Treatments for spring allergies include many non-prescription drugs.
-          These drugs are effective in most cases and include: </p>
-        <ul>
-          <li> antihistamines - relieves allergy symptoms by lowering histamine levels </li>
-          <li> decongestants - helps relieve nasal passages and relieve congestion and inflammation </li>
-          <li> nasal sprays with cromolyn sodium - can help prevent seasonal allergic rhinitis by limiting
-            histamine production before it triggers allergic symptoms </li>
-          <li> eye drops - to relieve itching and eye lacrimation.</li>
-        </ul>
-        <p>
-          Even if you can purchase these medicines without a prescription, it is advisable to talk with
-          your doctor before using them to make sure you are being treated appropriately and safely.
-          Some antihistamines may cause the feeling of being sleepy (so you need to be careful when
-          when you take them during the day). Do not use antihistamines and decongestants released without prescription
-          medical, more than a few days without first talking to your doctor. </p>
-      </div>
-    </div>
-    <div class="containers right">
-      <div class="content">
-        <h2>Milk allergy</h2>
-        <h3>Symptoms </h3>
-        <p> Symptoms of allergy usually start a few minutes after milk consumption. Symptoms can be: </p>
-        <ul>
-          <li>rash</li>
-          <li>hives</li>
-          <li>pruritus</li>
-          <li>nasal congestion, aqueous nose and sneezing (allergic rhinitis) </li>
-          <li>difficulty breathing</li>
-          <li>wheezing</li>
-          <li>cramps</li>
-          <li>nausea</li>
-          <li>vomiting</li>
-          <li>diarrhea</li>
-          <li>watery eyes</li>
-          <li>colic (at babies)</li>
-          <li>manafilaxie</li>
-        </ul>
-        <h3>Treatment</h3>
-        <ul>
-          <li>administration of antihistamines</li>
-          <li>treatment of epinephrine injectable anaphylaxis </li>
-          <li>elimination of products containing milk proteins </li>
-          <li>acupuncture</li>
-          <li>reflexology</li>
-          <li>horseradish</li>
-          <li>chamomile tea</li>
-        </ul>
-      </div>
-    </div>
-    <div class="containers left">
-      <div class="content">
-        <h2>Dust allergy</h2>
-        <h3>Symptoms</h3>
-        <p>Its most common symptoms are similar to those of flu or cold, because they include it
-          nasal itching, sneezing, aqueous or mucous nasal secretions, itching in the mouth of the mouth or even
-          itching of the eyes, red eyes, swollen eyes and tears. </p>
-        <h3>Treatment</h3>
-        <p>Mint tea is one of the most commonly used natural remedies against dust allergy. And that for
-          that it is a natural and antibacterial anti-inflammatory, and the essential oil of peppermint leaves is one
-          natural nasal decongestant. As you always have mint through the house, it will not be hard to put a little
-          water at
-          boiled and leave the leaves or tea bags infused. It will help you. </p>
-        <p>A spoonful of honey poliflora will reduce the symptoms of allergic reaction to dust. After all, honey
-          is a natural treatment used for multiple allergies, for flu or cold. After you swallow
-          honey, the slander should cease. Furthermore, if your skin has reddened and you have rashes from
-          allergic reaction, soak a cleansing disc or a cotton cloth in honey and apply it to areas with
-          question. In this way, you will have more smooth skin, swelling will diminish, and these rashes do not
-          will leave spots on the body.</p>
-      </div>
-    </div>
-    <div class="containers right">
-      <div class="content">
-        <h2>Sun allergy</h2>
-        <h3>Symptoms</h3>
-        <p>In most cases, sun allergy suffers from severe rashes and reddened skin. Sometimes
-          blisters, pustules, bleeding or intense pruritus (itching) may also occur. The face is affected by allergies
-          in rare cases. The chest and chest are usually affected - areas that have not been protected by
-          radiation and were exposed directly to the sun.</p>
-        <h3>Treatment</h3>
-        <p>You can prevent sun allergy using an effective sunscreen cream specifically formulated to
-          combat polymorphic dermatitis to light. Avoid strong mid-day radiation and always cover up
-          with matching clothes. It is best to choose UV-protected clothes with tested effect. They are made of a
-          special fabric that blocks UV penetration. In addition, those who suffer from sun allergy can do it
-          light therapy before the warm season starts. This desensitizes the skin in the sun.</p>
-      </div> -->
-    <!-- </div> -->
+  <div class="timeline">   </div>
 
-  </div>
   <footer>Copyright &copy; Proiect TW</footer>
 </body>
 

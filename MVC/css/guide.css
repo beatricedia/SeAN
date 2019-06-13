@@ -36,10 +36,6 @@ body header:first-of-type {
 }
 
 #title{
-    /* background-color: #35424a;
-    color: #ffffff;
-    font-size: 2em;
-    font-weight: bold; */
     text-align: center;
 }
 
@@ -67,7 +63,6 @@ figure img, figure figcaption{
 }
 p{
     font-size: 18px;
-    /* color: white; */
 }
 
 #join{
@@ -80,7 +75,6 @@ footer {
     color: white;
     padding-top: 10px;
     padding-bottom: 0px;
-    /* position:fixed; */
     bottom:0;
     width:100%;
     text-align:center;

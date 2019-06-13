@@ -10,7 +10,6 @@ body header:first-of-type {
     color:#ffffff;
     padding: 30px 0px 27px 0px;
     border-bottom: #e8491d 3px solid;
-    
 }
 
 
@@ -25,8 +24,6 @@ body header:first-of-type {
     overflow: hidden;
 }
 
-
-
 @media(max-width:768px){
     .w80p {
         width: 100%;
@@ -36,10 +33,6 @@ body header:first-of-type {
 }
 
 #title{
-    /* background-color: #35424a;
-    color: #ffffff;
-    font-size: 2em;
-    font-weight: bold; */
     text-align: center;
 }
 
@@ -75,7 +68,6 @@ footer {
     color: white;
     padding-top: 10px;
     padding-bottom: 0px;
-    /* position:fixed; */
     bottom:0;
     width:100%;
     text-align:center;

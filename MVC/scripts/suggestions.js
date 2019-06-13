@@ -1,52 +1,45 @@
-function validate(id){
+function validate(id) {
     var xmlhttp = new XMLHttpRequest();
-
     xmlhttp.open("POST", "/validate");
-       xmlhttp.onreadystatechange = function() {
-       if(this.readyState == 4)
-        window.location.replace("index.html");
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4)
+            window.location.replace("index.html");
     };
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xmlhttp.send(JSON.stringify({id:id}))
+    xmlhttp.send(JSON.stringify({ id: id }))
 }
 
-function searchSuggestions(){
+function searchSuggestions() {
     var searchPattern = document.getElementById("searchInput").value
-    if(searchPattern == "Search...")
+    if (searchPattern == "Search...")
         return
     var ok = true;
     var contor = 1;
-    while(ok){
-        element = document.getElementById(""+contor)
-        if(!element){
+    while (ok) {
+        element = document.getElementById("" + contor)
+        if (!element) {
             ok = false
             break
         }
-        htmeleu = (element.innerText || element.textContent).replace("Allergy","").replace("Symptoms","").replace("Prevention","")
-        if(htmeleu.indexOf(searchPattern) == -1)
+        htmeleu = (element.innerText || element.textContent).replace("Allergy", "").replace("Symptoms", "").replace("Prevention", "")
+        if (htmeleu.indexOf(searchPattern) == -1)
             element.style.display = 'none'
-         else{
+        else {
             element.style.display = 'block'
-         }
+        }
         contor++
     }
 }
 
 function getSuggestionDetails() {
-    //console.log("intra in functie")
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "/suggestions");
     xmlhttp.onreadystatechange = function () {
-        //console.log("intra in aici")
         if (this.readyState === 4) {
-            //console.log("intra in if")
             let responseJson = JSON.parse(this.response);
-            //console.log(responseJson);
             for (const [key, value] of Object.entries(responseJson)) {
-                //console.log(responseJson);
                 var section = document.createElement("div");
                 section.className = 'timeline'
-
 
                 if (key % 2 != 0) {
 
@@ -58,8 +51,8 @@ function getSuggestionDetails() {
                     var allergy_title = document.createElement("h2");
                     allergy_title.classList.add('allergy-title');
                     allergy_title.innerHTML = value[1] + " Allergy ";
-                    if(JSON.parse(getCookie("seanData")).id == 1)
-                        allergy_title.innerHTML += "<div onclick='validate("+value[0]+")' style='cursor: pointer'>&#10004;</div>"
+                    if (JSON.parse(getCookie("seanData")).id == 1)
+                        allergy_title.innerHTML += "<div onclick='validate(" + value[0] + ")' style='cursor: pointer'>&#10004;</div>"
                     var description_title = document.createElement("h3");
                     description_title.innerHTML = "Description";
                     var description = document.createElement("p");
@@ -99,12 +92,11 @@ function getSuggestionDetails() {
                     container_right.classList.add('right');
                     container_right.id = String(key)
 
-
                     var allergy_title = document.createElement("h2");
                     allergy_title.classList.add('allergy-title');
                     allergy_title.innerHTML = value[1] + " Allergy";
-                    if(JSON.parse(getCookie("seanData")).id == 1)
-                        allergy_title.innerHTML += "<div onclick='validate("+value[0]+")' style='cursor: pointer'>&#10004;</div>"
+                    if (JSON.parse(getCookie("seanData")).id == 1)
+                        allergy_title.innerHTML += "<div onclick='validate(" + value[0] + ")' style='cursor: pointer'>&#10004;</div>"
 
                     var description_title = document.createElement("h3");
                     description_title.innerHTML = "Description";
@@ -131,13 +123,10 @@ function getSuggestionDetails() {
                     content.appendChild(symptoms);
                     content.appendChild(prevention_title);
                     content.appendChild(prevention);
-
-
                     container_right.appendChild(content);
                     section.appendChild(container_right);
                     document.body.appendChild(section);
                 }
-
             }
         }
     }

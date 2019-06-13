@@ -12,108 +12,106 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="../css/new_allergy.css" />
 	<script src="../scripts/index.js" defer></script>
 	<script src="../scripts/new_allergy.js" defer></script>
-	
+
 </head>
 
 <body>
 
-<!-- navbar -->
-    <div class="nav" id="myTopnav">
-        <div>
-            <a class="menu" href="index.html">News</a>
-            <a id="addAllergyDiv" style="display:none" class="menu" href="new_allergy.html"><i
-                    class="fa fa-plus-circle"></i> Add allergy</a>
-            <a id="suggestionsDiv" style="display:none" class="menu" href="suggestions.html">Sugestions</a>
+	<!-- navbar -->
+	<div class="nav" id="myTopnav">
+		<div>
+			<a class="menu" href="index.html">News</a>
+			<a id="addAllergyDiv" style="display:none" class="menu" href="new_allergy.html"><i
+					class="fa fa-plus-circle"></i> Add allergy</a>
+			<a id="suggestionsDiv" style="display:none" class="menu" href="suggestions.html">Sugestions</a>
 			<a id="profileDiv" style="display:none" class="menu" href="user_allergies.html">Profile</a>
 			<a id="feedbackDiv" style="display:none" class="menu" href="feedback.html">Feedback</a>
-        </div>
+		</div>
 
-        <div class="icon-menu">
-            <a id="registerDiv" class="Login-btn" href="register.html">Register</a>
-            <a id="loginDiv" class="Login-btn" href="login.html">Login</a>
-            <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
-            <a id="logoutDiv" class="Login-btn" style="display:none" onclick="logout()">Logout</a>
+		<div class="icon-menu">
+			<a id="registerDiv" class="Login-btn" href="register.html">Register</a>
+			<a id="loginDiv" class="Login-btn" href="login.html">Login</a>
+			<a class="Login-btn" id="usernameDiv" style="display:none">User</a>
+			<a id="logoutDiv" class="Login-btn" style="display:none" onclick="logout()">Logout</a>
 
-        </div>
-        <a href="javascript:void(0);" class="icon" onclick="menuBars()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
+		</div>
+		<a href="javascript:void(0);" class="icon" onclick="menuBars()">
+			<i class="fa fa-bars"></i>
+		</a>
+	</div>
 
 	<!-- add-allergy-form -->
 	<table class="register_table">
 
-			<tr>
-				<td colspan=2 style="font-size: 125%">
-					<span><b>ENTER NEW ALLERGY</b></span>
-				</td>
-			</tr>
-			<tr>
-				<td>Category</td>
-				<td>
-					<select id="optionType">
-						<option value="Weather">Weather</option>
-						<option value="Respiratory">Respiratory</option>
-						<option value="Food">Food</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Name</td>
-				<td>
-					<textarea name="name" id="name">
+		<tr>
+			<td colspan=2 style="font-size: 125%">
+				<span><b>ENTER NEW ALLERGY</b></span>
+			</td>
+		</tr>
+		<tr>
+			<td>Category</td>
+			<td>
+				<select id="optionType">
+					<option value="Weather">Weather</option>
+					<option value="Respiratory">Respiratory</option>
+					<option value="Food">Food</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Name</td>
+			<td>
+				<textarea name="name" id="name">
 					</textarea>
-				</td>
-			</tr>	<tr>
-				<td>Description</td>
-				<td>
-					<textarea name="description" id="description">
+			</td>
+		</tr>
+		<tr>
+			<td>Description</td>
+			<td>
+				<textarea name="description" id="description">
 					</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Symptoms</td>
-				<td>
-					<textarea name="symptoms" id="symptoms">
+			</td>
+		</tr>
+		<tr>
+			<td>Symptoms</td>
+			<td>
+				<textarea name="symptoms" id="symptoms">
 					</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Prevention</td>
-				<td>
-					<textarea name="prevention" id="prevention">
+			</td>
+		</tr>
+		<tr>
+			<td>Prevention</td>
+			<td>
+				<textarea name="prevention" id="prevention">
 					</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Treatment</td>
-				<td>
-					<textarea name="treatment" id="treatment">
+			</td>
+		</tr>
+		<tr>
+			<td>Treatment</td>
+			<td>
+				<textarea name="treatment" id="treatment">
 					</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>Medication</td>
-				<td>
-					<textarea name="medication" id="medication">
+			</td>
+		</tr>
+		<tr>
+			<td>Medication</td>
+			<td>
+				<textarea name="medication" id="medication">
 					</textarea>
-				</td>
-			</tr>
-					<tr>
+			</td>
+		</tr>
+		<tr>
 
-			<tr>
-				<td>
-					<input type="reset">
-				</td>
-				<td>
-					<input type="submit" value="Add" onclick="getValue()">
-				</td>
-			</tr>
+		<tr>
+			<td>
+				<input type="reset">
+			</td>
+			<td>
+				<input type="submit" value="Add" onclick="getValue()">
+			</td>
+		</tr>
 	</table>
-
-
 
 	<footer>Copyright &copy; Proiect TW</footer>
 </body>
-
 </html>

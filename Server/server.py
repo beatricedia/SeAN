@@ -1,29 +1,32 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from threading   import Thread
+from threading import Thread
 
 import time
-import os, json
+import os
+import json
 import dbManager as db
 
 anotimp = "summer"
 
 mesajeNot = {
-    "summer" : {
-        "mesaj" : "Summer is here and bring the strong sun with it! The allergy arrive. Be carefoul!",
-        "alergieID" : 2,
-        "interval" : 10
+    "summer": {
+        "mesaj": "Summer is here and bring the strong sun with it! The allergy arrive. Be carefoul!",
+        "alergieID": 2,
+        "interval": 3600
     },
-    "spring" : {
-        "mesaj" : "Primavara este aici. Aveti grija la polen",
-        "alergieID" : 9,
-        "interval" : 3600
+    "spring": {
+        "mesaj": "Primavara este aici. Aveti grija la polen",
+        "alergieID": 9,
+        "interval": 3600
     }
 }
+
 
 class ServerConcurent(HTTPServer):
 
     def process_request(self, request, client_address):
-        Thread(target=self.requestNou, args=(self.RequestHandlerClass, request, client_address, self)).start()
+        Thread(target=self.requestNou, args=(
+            self.RequestHandlerClass, request, client_address, self)).start()
 
     def requestNou(self, handlerClass, request, address, server):
         handlerClass(request, address, server)
@@ -38,7 +41,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def genSetCookieCode(self, id):
-        code  = "\t<script>\n"
+        code = "\t<script>\n"
         code += '\t\tsetCookie("selectedAllergy",' + id + ',1)\n'
         code += "\t</script defer>"
         return code
@@ -58,38 +61,46 @@ class RequestHandler(BaseHTTPRequestHandler):
                 data["type"] = "text/javascript"
             elif resursa == "alergii":
                 data["type"] = "application/json"
-                data["file"] = bytes(json.dumps(db.formatAllSelectedAllergies()), "utf-8")
+                data["file"] = bytes(json.dumps(
+                    db.formatAllSelectedAllergies()), "utf-8")
             elif "alergie" in resursa:
                 data["type"] = "text/html"
                 pagina_creata = open("allergy.html", "r").read()
-                pagina_creata = pagina_creata.replace("<!--replace me senpai-->",self.genSetCookieCode(resursa.replace("alergie","")))
+                pagina_creata = pagina_creata.replace(
+                    "<!--replace me senpai-->", self.genSetCookieCode(resursa.replace("alergie", "")))
                 data["file"] = bytes(pagina_creata, "utf-8")
             elif resursa == "user_allergies":
                 data["type"] = "application/json"
-                data["file"] = bytes(json.dumps(db.formatAllergiesForUSers()), "utf-8")
+                data["file"] = bytes(json.dumps(
+                    db.formatAllergiesForUSers()), "utf-8")
             elif resursa == "suggestions":
                 data["type"] = "application/json"
-                data["file"] = bytes(json.dumps(db.formatAllSelectedSuggestions()), "utf-8")
+                data["file"] = bytes(json.dumps(
+                    db.formatAllSelectedSuggestions()), "utf-8")
             elif "user_allergies_profile" in resursa:
                 data["type"] = "application/json"
-                data["file"] = bytes(json.dumps(db.formatAllergiesForUserProfile(resursa.replace("user_allergies_profile",""))),"utf-8")
+                data["file"] = bytes(json.dumps(db.formatAllergiesForUserProfile(
+                    resursa.replace("user_allergies_profile", ""))), "utf-8")
             elif resursa == "gender-statistics":
                 data["type"] = "application/json"
-                data["file"] = bytes(json.dumps(db.allergyStatistics()), "utf-8")
+                data["file"] = bytes(json.dumps(
+                    db.allergyStatistics()), "utf-8")
             elif "notificari" in resursa:
                 data["type"] = "application/json"
-                data["file"] = bytes(json.dumps(db.getNotificari(resursa.replace("notificari",""))),"utf-8")
+                data["file"] = bytes(json.dumps(db.getNotificari(
+                    resursa.replace("notificari", ""))), "utf-8")
                 print(data["file"])
             elif "comments" in resursa:
                 arg = resursa.replace("comments", "")
                 print("Sa vedem", arg)
                 data["type"] = "application/json"
-                data["file"] = bytes(json.dumps(db.formatComments(arg)), "utf-8")
+                data["file"] = bytes(json.dumps(
+                    db.formatComments(arg)), "utf-8")
 
             if resursa != "alergii" and "alergie" not in resursa and resursa != "suggestions" \
                     and resursa != "user_allergies" and "user_allergies_profile" not in resursa \
                     and "comments" not in resursa and "notificari" not in resursa and resursa != "gender-statistics":
-                    data["file"] = open(resursa, "rb").read()
+                data["file"] = open(resursa, "rb").read()
 
         except Exception as exception:
             print(exception)
@@ -196,14 +207,15 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def register(self, parametri):
         response = {}
-        if db.validateTextSqlInjection(parametri["email"]) == True and db.validateTextSqlInjection(parametri["password"]) == True and db.validateTextSqlInjection(parametri["sex"]) == True :
-            if db.validateTextXss(parametri["email"]) == True and db.validateTextXss(parametri["password"]) == True and db.validateTextXss(parametri["sex"]) == True :
+        if db.validateTextSqlInjection(parametri["email"]) == True and db.validateTextSqlInjection(parametri["password"]) == True and db.validateTextSqlInjection(parametri["sex"]) == True:
+            if db.validateTextXss(parametri["email"]) == True and db.validateTextXss(parametri["password"]) == True and db.validateTextXss(parametri["sex"]) == True:
                 if db.checkIfUserExists(parametri["email"]):
                     response["code"] = 409
                     response["message"] = "Email already in use"
                     response["type"] = "Error"
                 else:
-                    db.insertUser(parametri["username"], parametri["password"], parametri["email"], parametri["sex"])
+                    db.insertUser(
+                        parametri["username"], parametri["password"], parametri["email"], parametri["sex"])
                     response["code"] = 200
                     response["message"] = "All is well"
                     response["type"] = "Success"
@@ -220,9 +232,10 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def add_allergy(self, parametri):
         response = {}
-        if db.validateTextSqlInjection(parametri['name']) == True and db.validateTextSqlInjection(parametri['description'])==True and db.validateTextSqlInjection(parametri['symptoms'])==True and db.validateTextSqlInjection(parametri['prevention'])==True and db.validateTextSqlInjection(parametri['treatment'])==True and db.validateTextSqlInjection(parametri['medication'])==True:
-            if db.validateTextXss(parametri['name']) == True and db.validateTextXss(parametri['description'])==True and db.validateTextXss(parametri['symptoms'])==True and db.validateTextXss(parametri['prevention'])==True and db.validateTextXss(parametri['treatment'])==True and db.validateTextXss(parametri['medication'])==True:
-                db.insertSuggestion(parametri['name'], parametri['allergy_type'], parametri['description'], parametri['symptoms'],parametri['prevention'],parametri['treatment'],parametri['medication'], parametri['id'])
+        if db.validateTextSqlInjection(parametri['name']) == True and db.validateTextSqlInjection(parametri['description']) == True and db.validateTextSqlInjection(parametri['symptoms']) == True and db.validateTextSqlInjection(parametri['prevention']) == True and db.validateTextSqlInjection(parametri['treatment']) == True and db.validateTextSqlInjection(parametri['medication']) == True:
+            if db.validateTextXss(parametri['name']) == True and db.validateTextXss(parametri['description']) == True and db.validateTextXss(parametri['symptoms']) == True and db.validateTextXss(parametri['prevention']) == True and db.validateTextXss(parametri['treatment']) == True and db.validateTextXss(parametri['medication']) == True:
+                db.insertSuggestion(parametri['name'], parametri['allergy_type'], parametri['description'], parametri['symptoms'],
+                                    parametri['prevention'], parametri['treatment'], parametri['medication'], parametri['id'])
                 response["code"] = 200
                 response["message"] = "All is well"
                 response["type"] = "Success"
@@ -239,8 +252,8 @@ class RequestHandler(BaseHTTPRequestHandler):
     def add_user_allergies(self, parametri):
         response = {}
         db.deleteUserAllergies(parametri['id'])
-        for i in range(0,parametri['countAllergies']):
-            db.insertUserAllergy(parametri['id'],parametri['allergiesId'][i])
+        for i in range(0, parametri['countAllergies']):
+            db.insertUserAllergy(parametri['id'], parametri['allergiesId'][i])
         response["code"] = 200
         response["message"] = "All is well"
         response["type"] = "Success"
@@ -268,7 +281,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def comment(self, parametri):
         response = {}
-        if db.validateTextSqlInjection(parametri['comment']) == True :
+        if db.validateTextSqlInjection(parametri['comment']) == True:
             if db.validateTextXss(parametri['comment']) == True:
                 db.insertComment(parametri)
                 response["code"] = 200
@@ -286,13 +299,15 @@ class RequestHandler(BaseHTTPRequestHandler):
         return response
 
 
-os.chdir(os.path.join(os.path.dirname(__file__),'..','MVC',))
-server = ServerConcurent(('localhost',4034), RequestHandler)
+os.chdir(os.path.join(os.path.dirname(__file__), '..', 'MVC',))
+server = ServerConcurent(('localhost', 4034), RequestHandler)
 Thread(target=server.serve_forever).start()
+
 
 def notificari_add():
     while True:
         db.add_sesonal_notifications(mesajeNot[anotimp])
         time.sleep(mesajeNot[anotimp]["interval"])
+
 
 Thread(target=notificari_add).start()
