@@ -13,85 +13,83 @@
 	<script src="../scripts/index.js" defer></script>
 	<script src="../scripts/feedback.js" defer></script>
 	<script src="../scripts/register.js" defer></script>
-	
+
 </head>
 
 <body>
 
-<!-- navbar -->
-    <div class="nav" id="myTopnav">
-        <div>
-            <a class="menu" href="index.html">News</a>
-            <a id="addAllergyDiv" style="display:none" class="menu" href="new_allergy.html"><i
-                    class="fa fa-plus-circle"></i> Add allergy</a>
-            <a class="menu" href="suggestions.html">Sugestions</a>
+	<!-- navbar -->
+	<div class="nav" id="myTopnav">
+		<div>
+			<a class="menu" href="index.html">News</a>
+			<a id="addAllergyDiv" style="display:none" class="menu" href="new_allergy.html"><i
+					class="fa fa-plus-circle"></i> Add allergy</a>
+			<a class="menu" href="suggestions.html">Sugestions</a>
 			<a id="profileDiv" style="display:none" class="menu" href="user_allergies.html">Profile</a>
 			<a id="feedbackDiv" class="menu" href="feedback.html">Feedback</a>
-        </div>
+		</div>
 
-        <div class="icon-menu">
-            <a id="registerDiv" class="Login-btn" href="register.html">Register</a>
-            <a id="loginDiv" class="Login-btn" href="login.html">Login</a>
-            <a class="Login-btn" id="usernameDiv" style="display:none">User</a>
-            <a id="logoutDiv" class="Login-btn" style="display:none" onclick="logout()">Logout</a>
+		<div class="icon-menu">
+			<a id="registerDiv" class="Login-btn" href="register.html">Register</a>
+			<a id="loginDiv" class="Login-btn" href="login.html">Login</a>
+			<a class="Login-btn" id="usernameDiv" style="display:none">User</a>
+			<a id="logoutDiv" class="Login-btn" style="display:none" onclick="logout()">Logout</a>
 
-        </div>
-        <a href="javascript:void(0);" class="icon" onclick="menuBars()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
+		</div>
+		<a href="javascript:void(0);" class="icon" onclick="menuBars()">
+			<i class="fa fa-bars"></i>
+		</a>
+	</div>
 
 	<!-- add-allergy-form -->
 	<table class="register_table">
 
-			<tr>
-				<td colspan=2 style="font-size: 125%">
-					<span><b>ENTER YOUR FEEDBACK</b></span>
-				</td>
-			</tr>
-			<tr>
-				<td>Name</td>
-				<td>
-					<textarea name="name" id="name">
+		<tr>
+			<td colspan=2 style="font-size: 125%">
+				<span><b>ENTER YOUR FEEDBACK</b></span>
+			</td>
+		</tr>
+		<tr>
+			<td>Name</td>
+			<td>
+				<textarea name="name" id="name">
 					</textarea>
-				</td>
-			<tr>
-			<tr>
-				<td>Email</td>
-				<td>
-					<textarea name="email" id="email">
+			</td>
+		<tr>
+		<tr>
+			<td>Email</td>
+			<td>
+				<textarea name="email" id="email">
 					</textarea>
-				</td>
+			</td>
 
-			<tr>
-			<tr>
-				<td>Rating</td>
-				<td>
-					<select id="rating">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Your message</td>
-				<td>
-					<textarea name="message" id="message">
+		<tr>
+		<tr>
+			<td>Rating</td>
+			<td>
+				<select id="rating">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Your message</td>
+			<td>
+				<textarea name="message" id="message">
 					</textarea>
-				</td>
+			</td>
 
-			<tr>
+		<tr>
 
-				<td colspan=2 style="font-size: 125%">
-					<input type="submit" value="Submit Feedback" onclick="getFeedback()">
-				</td>
-			</tr>
+			<td colspan=2 style="font-size: 125%">
+				<input type="submit" value="Submit Feedback" onclick="getFeedback()">
+			</td>
+		</tr>
 	</table>
-
-
 
 	<footer>Copyright &copy; Proiect TW</footer>
 </body>

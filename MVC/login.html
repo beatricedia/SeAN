@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <link rel="stylesheet" type="text/css" href="../css/register.css">
     <script src="../scripts/pass.js" defer></script>
-    <script src="/scripts/ajaxCalls.js" defer></script>
+    <!-- <script src="/scripts/ajaxCalls.js" defer></script> -->
     <script src="/scripts/login.js" defer></script>
     <script src="/scripts/index.js" defer></script>
 </head>
@@ -35,38 +35,36 @@
 
     <!-- login-form -->
 
-        <table class="register_table">
+    <table class="register_table">
 
-            <tr>
-                <td colspan=2 style="font-size: 25px">
-                    <span><b>Log In</b></span>
-                </td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>
-                    <input type="text" name="username" id="email" size="30">
-                </td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td>
-                    <input type="password" name="password" id="password" size="30">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="reset">
-                </td>
-                <td>
-                    <button onclick="getLoginData()">Login</button>
-                </td>
-            </tr>
-        </table>
-
+        <tr>
+            <td colspan=2 style="font-size: 25px">
+                <span><b>Log In</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>
+                <input type="text" name="username" id="email" size="30">
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="password" name="password" id="password" size="30">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="reset">
+            </td>
+            <td>
+                <button onclick="getLoginData()">Login</button>
+            </td>
+        </tr>
+    </table>
 
     <footer>Copyright &copy; Proiect TW</footer>
 
 </body>
-
 </html>

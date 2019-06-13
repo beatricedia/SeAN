@@ -1,8 +1,6 @@
 .user_container{
     font-size:20px;
     color: black;
-    /* text-align: center; */
-    /* margin-top: 20px; */
     margin-left: 42%;
     margin-bottom: 5px;
     text-decoration: none;
@@ -16,7 +14,6 @@
 
 .corpus{
     margin-bottom: 50px;
-    /* padding: 10px; */
 }
 
 .notification{
@@ -27,20 +24,3 @@
 #submit{
     position: fixed;
 }
-
-i {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-  }
-  
-  .right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
-  
-
-  .allergy-name{
-      color:red;
-  }
