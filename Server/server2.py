@@ -9,9 +9,9 @@ anotimp = "summer"
 
 mesajeNot = {
     "summer" : {
-        "mesaj" : "A venit vara si odata cu ea soarele puternic. Atentie!",
+        "mesaj" : "Summer is here and bring the strong sun with it! The allergy arrive. Be carefoul!",
         "alergieID" : 2,
-        "interval" : 3600
+        "interval" : 10
     },
     "spring" : {
         "mesaj" : "Primavara este aici. Aveti grija la polen",
