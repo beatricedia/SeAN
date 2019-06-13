@@ -354,7 +354,7 @@ def saveSettings(parametri):
 def selectAllergiesForUserProfile(id):
     with connection.cursor() as cursor:
         querystring = "SELECT *,(SELECT COUNT(*) from user_allergy where id_allergy=id and id_user = " + \
-            id + ") FROM sean_db.allergies;"
+            id + ") FROM sean_db.allergies where validation = 1;"
         cursor.execute(querystring)
         result = cursor.fetchall()
         return result
